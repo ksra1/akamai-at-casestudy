@@ -1,16 +1,29 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import TitleSlide from "@/components/slides/TitleSlide";
+import ChallengeSlide from "@/components/slides/ChallengeSlide";
+import ArchitectureSlide from "@/components/slides/ArchitectureSlide";
+import DeliverySlide from "@/components/slides/DeliverySlide";
+import SecuritySlide from "@/components/slides/SecuritySlide";
+import BotThreatSlide from "@/components/slides/BotThreatSlide";
+import RoadmapSlide from "@/components/slides/RoadmapSlide";
+import RiskSlide from "@/components/slides/RiskSlide";
+import CompetitiveSlide from "@/components/slides/CompetitiveSlide";
+import SummarySlide from "@/components/slides/SummarySlide";
+import SlideNav from "@/components/SlideNav";
 
-// IMPORTANT: Fully REPLACE this with your own code
-const PlaceholderIndex = () => {
-  // PLACEHOLDER: Replace this entire return statement with the user's app.
-  // The inline background color is intentionally not part of the design system.
-  return (
-    <div className="flex min-h-screen items-center justify-center" style={{ backgroundColor: '#fcfbf8' }}>
-      <img data-lovable-blank-page-placeholder="REMOVE_THIS" src="/placeholder.svg" alt="Your app will live here!" />
-    </div>
-  );
-};
-
-const Index = PlaceholderIndex;
+const Index = () => (
+  <div className="relative">
+    <SlideNav />
+    <TitleSlide />
+    <ChallengeSlide />
+    <ArchitectureSlide />
+    <DeliverySlide />
+    <SecuritySlide />
+    <BotThreatSlide />
+    <RoadmapSlide />
+    <RiskSlide />
+    <CompetitiveSlide />
+    <SummarySlide />
+  </div>
+);
 
 export default Index;
