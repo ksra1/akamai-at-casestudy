@@ -1,5 +1,5 @@
 import SlideLayout from "./SlideLayout";
-import { Truck, Shield, Clock, Users, Zap, Image, AlertTriangle, Bot, CreditCard, ShoppingCart, UserX, Radio, Globe, Layers, GitBranch } from "lucide-react";
+import { Truck, Shield, Clock, Users, Zap, Image, AlertTriangle, Bot, CreditCard, ShoppingCart, UserX, Globe, Layers, GitBranch, ArrowRight } from "lucide-react";
 
 const deliveryChallenges = [
   { icon: Clock, text: "5,000 hostnames in 30 days" },
@@ -7,6 +7,7 @@ const deliveryChallenges = [
   { icon: Zap, text: "Handle 5x peak traffic" },
   { icon: Image, text: "Slow image loading" },
   { icon: AlertTriangle, text: "No testing — straight to production" },
+  { icon: Globe, text: "Multi-geography resource coordination" },
 ];
 
 const securityChallenges = [
@@ -19,16 +20,21 @@ const securityChallenges = [
 ];
 
 const scaleGovChallenges = [
-  { icon: Globe, text: "Multi-geography resource coordination" },
   { icon: Layers, text: "Legacy monolith → microservices migration" },
   { icon: GitBranch, text: "Acquired companies need platform migration" },
   { icon: Users, text: "Cross-team change management at scale" },
 ];
 
+const traceability = [
+  { label: "Delivery (6)", section: "Section A", slides: "Slides 5, 8", color: "bg-primary" },
+  { label: "Security (6)", section: "Section B", slides: "Slides 4, 6", color: "bg-accent" },
+  { label: "Scale & Gov (3)", section: "Sections A + C", slides: "Slides 7, 8, 9", color: "bg-akamai-green" },
+];
+
 const ChallengeSlide = () => {
   return (
     <SlideLayout id="challenge" variant="alt" pageNumber={3}>
-      <div className="space-y-6">
+      <div className="space-y-5">
         <div className="text-center space-y-2">
           <p className="text-primary font-semibold tracking-widest uppercase text-sm">Understanding the Problem</p>
           <h2 className="font-display text-4xl md:text-5xl font-bold text-secondary">15 Key Challenges</h2>
@@ -44,7 +50,7 @@ const ChallengeSlide = () => {
               </div>
               <div>
                 <h3 className="font-display text-lg font-bold text-secondary">Delivery</h3>
-                <p className="text-xs text-muted-foreground">5 challenges</p>
+                <p className="text-xs text-muted-foreground">6 challenges</p>
               </div>
             </div>
             <div className="space-y-2">
@@ -90,7 +96,7 @@ const ChallengeSlide = () => {
               </div>
               <div>
                 <h3 className="font-display text-lg font-bold text-secondary">Scale & Governance</h3>
-                <p className="text-xs text-muted-foreground">4 challenges</p>
+                <p className="text-xs text-muted-foreground">3 challenges</p>
               </div>
             </div>
             <div className="space-y-2">
@@ -104,6 +110,20 @@ const ChallengeSlide = () => {
               ))}
             </div>
           </div>
+        </div>
+
+        {/* Traceability strip */}
+        <div className="flex gap-3">
+          {traceability.map(t => (
+            <div key={t.label} className="flex-1 flex items-center gap-2 bg-card rounded-xl border border-border px-4 py-3">
+              <div className={`w-3 h-3 rounded-full ${t.color} shrink-0`} />
+              <div className="flex-1">
+                <p className="text-xs font-bold text-secondary">{t.label}</p>
+                <p className="text-[10px] text-muted-foreground">{t.section} · {t.slides}</p>
+              </div>
+              <ArrowRight size={12} className="text-muted-foreground shrink-0" />
+            </div>
+          ))}
         </div>
 
         {/* Key stats ribbon */}

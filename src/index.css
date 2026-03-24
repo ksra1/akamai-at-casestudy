@@ -102,11 +102,15 @@ html {
   }
   body {
     @apply bg-background text-foreground;
-    font-family: 'Source Sans 3', sans-serif;
   }
-  h1, h2, h3, h4, h5, h6 {
-    font-family: 'Space Grotesk', sans-serif;
-  }
+}
+
+/* Font declarations outside @layer to prevent specificity override */
+body {
+  font-family: 'Source Sans 3', sans-serif !important;
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Space Grotesk', sans-serif !important;
 }
 
 /* Slide styles */
