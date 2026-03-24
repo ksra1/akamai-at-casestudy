@@ -7,7 +7,7 @@ const deliverySolutions = [
   {
     icon: Clock,
     issue: "5,000 hostnames in 30 days",
-    solution: "Property Manager API + Bulk DNS Cutover + CPS Automation",
+    solution: "Property Manager API + CPS Automation + Bulk DNS",
     products: ["Property Manager API", "CPS API", "mPulse"],
     steps: [
       "Define reusable config template — baseline caching, compression, origin health checks, WAF rules bundled as a golden template",
@@ -67,7 +67,7 @@ const deliverySolutions = [
     solution: "GTM Geographic Routing + DataStream",
     products: ["GTM", "mPulse", "DataStream"],
     steps: [
-      "Define primary/secondary origins per region — EU (Frankfurt + London), US (Virginia + Oregon), APAC (Tokyo + Singapore)",
+      "Define primary/secondary origins per region — EU (Frankfurt + London), US (Virginia + Oregon), LATAM (São Paulo)",
       "Configure GTM health checks every 60s — when primary origin exceeds latency threshold, traffic auto-routes to secondary",
       "mPulse tracks real latency per region — if EU origin latency >300ms, GTM auto-reduces traffic allocation",
       "DataStream provides per-region traffic trends and origin utilization — capacity planning becomes data-driven",
@@ -103,35 +103,30 @@ const SolutionDesignSlide = () => {
           <p className="text-muted-foreground text-sm">Click each challenge for step-by-step solution</p>
         </div>
 
-        {/* Visual cards grid */}
-        <div className="grid md:grid-cols-3 gap-4">
+        {/* 2-column layout for more breathing room */}
+        <div className="grid md:grid-cols-2 gap-5">
           {deliverySolutions.map((s, i) => (
             <div
               key={s.issue}
               onClick={() => setActiveModal(i)}
-              className="visual-card callout-badge bg-card rounded-xl border border-border p-5 shadow-sm group"
+              className="visual-card callout-badge bg-card rounded-xl border border-border p-5 shadow-sm group cursor-pointer"
             >
-              <div className="flex items-start gap-3 mb-3">
-                <div className="w-11 h-11 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
-                  <s.icon size={22} className="text-primary" />
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
+                  <s.icon size={24} className="text-primary" />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <h3 className="font-display font-bold text-secondary text-sm leading-tight">{s.issue}</h3>
+                  <h3 className="font-display font-bold text-secondary leading-tight">{s.issue}</h3>
                   <p className="text-xs text-primary font-semibold mt-1">{s.solution}</p>
+                  <div className="flex flex-wrap gap-1.5 mt-2">
+                    {s.products.map(p => (
+                      <span key={p} className="text-[10px] px-2 py-0.5 rounded-full bg-primary/10 text-primary font-semibold">{p}</span>
+                    ))}
+                  </div>
                 </div>
-              </div>
-
-              {/* Product pills */}
-              <div className="flex flex-wrap gap-1.5 mb-3">
-                {s.products.map(p => (
-                  <span key={p} className="text-[10px] px-2 py-0.5 rounded-full bg-primary/10 text-primary font-semibold">{p}</span>
-                ))}
-              </div>
-
-              <p className="text-xs text-muted-foreground line-clamp-2">{s.result}</p>
-
-              <div className="mt-3 flex items-center gap-1 text-primary text-xs font-semibold group-hover:gap-2 transition-all">
-                View steps <ArrowRight size={12} />
+                <div className="flex items-center gap-1 text-primary text-xs font-semibold group-hover:gap-2 transition-all shrink-0 mt-1">
+                  <ArrowRight size={14} />
+                </div>
               </div>
             </div>
           ))}
