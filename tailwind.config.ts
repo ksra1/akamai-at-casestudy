@@ -55,9 +55,11 @@ export default {
           blue: "hsl(var(--akamai-blue))",
           navy: "hsl(var(--akamai-navy))",
           orange: "hsl(var(--akamai-orange))",
-          light: "hsl(var(--akamai-light))",
           green: "hsl(var(--akamai-green))",
-          purple: "hsl(var(--akamai-purple))",
+          lavender: "hsl(var(--akamai-lavender))",
+          violet: "hsl(var(--akamai-violet))",
+          electric: "hsl(var(--akamai-electric))",
+          red: "hsl(var(--akamai-red))",
         },
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",

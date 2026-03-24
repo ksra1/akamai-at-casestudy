@@ -4,100 +4,91 @@ import { CheckCircle2, AlertCircle } from "lucide-react";
 const weeks = [
   {
     week: "Week 1",
-    title: "Discovery & Assessment",
+    title: "Discovery",
     days: "Days 1-7",
-    color: "border-primary",
-    dotColor: "bg-primary",
-    lanes: {
-      Delivery: ["Audit existing configurations & hostname inventory", "Create golden templates (e-commerce, content, API)", "Establish mPulse baseline monitoring"],
-      Security: ["Security posture assessment", "Identify legacy WAF rule gaps", "Enable Site Shield on critical origins"],
-      Training: ["Akamai 101 workshops for new teams", "Property Manager training sessions"],
-      Governance: ["Stakeholder mapping & RACI setup", "Communication plan & escalation paths", "Risk register initialization"],
-    },
+    color: "border-t-primary",
+    items: [
+      { lane: "Delivery", tasks: ["Audit hostname inventory", "Create golden templates", "Establish mPulse baseline"] },
+      { lane: "Security", tasks: ["Security posture assessment", "Identify WAF rule gaps", "Enable Site Shield"] },
+      { lane: "Governance", tasks: ["Stakeholder RACI setup", "Training: Akamai 101 for new teams", "Risk register"] },
+    ],
   },
   {
     week: "Week 2",
     title: "Foundation",
     days: "Days 8-14",
-    color: "border-akamai-green",
-    dotColor: "bg-akamai-green",
-    lanes: {
-      Delivery: ["Wave 1: Pilot 500 hostnames via Bulk API", "Validate caching, SSL, Ion performance", "GTM configuration for multi-origin routing"],
-      Security: ["Deploy AAP in Alert mode on Wave 1", "Bot Manager Premier in Monitoring mode", "API Discovery scan on checkout endpoints"],
-      Training: ["Hands-on lab: Property Manager + Control Center", "Security product walkthrough"],
-      Governance: ["Daily standup cadence established", "Wave 1 success criteria checkpoint"],
-    },
+    color: "border-t-akamai-green",
+    items: [
+      { lane: "Delivery", tasks: ["Wave 1: Pilot 500 hostnames", "Validate caching + SSL + Ion", "GTM multi-origin config"] },
+      { lane: "Security", tasks: ["AAP deployed in Alert mode", "Bot Manager in Monitoring", "API Discovery on checkout"] },
+      { lane: "Governance", tasks: ["Daily standup cadence", "Wave 1 success checkpoint", "Hands-on PM training"] },
+    ],
   },
   {
     week: "Week 3",
     title: "Scale",
     days: "Days 15-21",
-    color: "border-accent",
-    dotColor: "bg-accent",
-    lanes: {
-      Delivery: ["Wave 2-3: 3,000 hostnames via Terraform", "Image Manager policies activated", "DNS cutover with canary routing (10→50→100%)"],
-      Security: ["AAP: Alert → Deny transition (tuned rules)", "Bot Manager: Enable actions on classified bots", "Rate limiting on checkout & auth APIs"],
-      Training: ["Incident response playbook walkthrough", "Monitoring dashboard training"],
-      Governance: ["Risk review & mitigation updates", "Stakeholder progress report"],
-    },
+    color: "border-t-accent",
+    items: [
+      { lane: "Delivery", tasks: ["Wave 2-3: 3,000 hostnames", "Image Manager activation", "DNS canary (10→50→100%)"] },
+      { lane: "Security", tasks: ["AAP: Alert → Deny (tuned)", "Bot Manager enforcement", "API rate limiting active"] },
+      { lane: "Governance", tasks: ["Risk review update", "Stakeholder progress report", "Incident playbook walkthrough"] },
+    ],
   },
   {
     week: "Week 4",
-    title: "Hardening & Go-Live",
+    title: "Hardening",
     days: "Days 22-30",
-    color: "border-akamai-purple",
-    dotColor: "bg-akamai-purple",
-    lanes: {
-      Delivery: ["Wave 4: Final 1,500 hostnames", "Cache hit ratio optimization (target >85%)", "Performance benchmarking vs mPulse baseline"],
-      Security: ["Full security stack active & tuned", "Penetration testing validation", "DataStream SIEM integration"],
-      Training: ["Operations handoff documentation", "Runbook delivery for L1/L2 support"],
-      Governance: ["Final project review & lessons learned", "Ongoing governance model handoff", "SLA/KPI monitoring framework"],
-    },
+    color: "border-t-akamai-lavender",
+    items: [
+      { lane: "Delivery", tasks: ["Wave 4: Final 1,500 hostnames", "Cache optimization (>85% hit)", "Performance benchmarking"] },
+      { lane: "Security", tasks: ["Full security stack tuned", "Pen test validation", "DataStream SIEM integration"] },
+      { lane: "Governance", tasks: ["Ops handoff documentation", "L1/L2 runbook delivery", "Lessons learned review"] },
+    ],
   },
 ];
 
 const laneColors: Record<string, string> = {
-  Delivery: "bg-primary/10 text-primary",
-  Security: "bg-accent/10 text-accent",
-  Training: "bg-akamai-green/10 text-akamai-green",
-  Governance: "bg-akamai-purple/10 text-akamai-purple",
+  Delivery: "text-primary",
+  Security: "text-accent",
+  Governance: "text-akamai-green",
 };
 
 const RoadmapSlide = () => (
-  <SlideLayout id="roadmap" pageNumber={12}>
+  <SlideLayout id="roadmap" pageNumber={8}>
     <div className="space-y-6">
       <div className="text-center space-y-2">
-        <p className="text-primary font-semibold tracking-widest uppercase text-sm">Execution Plan</p>
-        <h2 className="font-display text-4xl md:text-5xl font-bold text-secondary">30-Day Project Roadmap</h2>
+        <p className="text-primary font-semibold tracking-widest uppercase text-sm">Section A — Execution Plan</p>
+        <h2 className="font-display text-4xl md:text-5xl font-bold text-secondary">30-Day Roadmap</h2>
       </div>
 
       {/* Swim lane legend */}
-      <div className="flex justify-center gap-4 flex-wrap">
+      <div className="flex justify-center gap-6">
         {Object.entries(laneColors).map(([lane, cls]) => (
-          <span key={lane} className={`${cls} px-3 py-1 rounded-full text-xs font-semibold`}>{lane}</span>
+          <span key={lane} className={`${cls} text-xs font-bold flex items-center gap-1.5`}>
+            <div className={`w-2.5 h-2.5 rounded-full ${cls.replace('text-', 'bg-')}`} />
+            {lane}
+          </span>
         ))}
       </div>
 
-      {/* Timeline */}
+      {/* Timeline cards */}
       <div className="grid md:grid-cols-4 gap-4">
-        {weeks.map((w) => (
+        {weeks.map(w => (
           <div key={w.week} className={`border-t-4 ${w.color} bg-card rounded-xl p-5 shadow-sm space-y-4`}>
-            <div className="flex items-center gap-2">
-              <div className={`w-3 h-3 rounded-full ${w.dotColor}`} />
-              <div>
-                <h3 className="font-display font-bold text-secondary text-base">{w.week}</h3>
-                <p className="text-xs text-muted-foreground">{w.days} · {w.title}</p>
-              </div>
+            <div>
+              <h3 className="font-display font-bold text-secondary text-lg">{w.week}</h3>
+              <p className="text-xs text-muted-foreground">{w.days} · {w.title}</p>
             </div>
 
-            {Object.entries(w.lanes).map(([lane, items]) => (
-              <div key={lane}>
-                <p className={`text-xs font-semibold ${laneColors[lane]} inline-block px-2 py-0.5 rounded mb-1.5`}>{lane}</p>
+            {w.items.map(lane => (
+              <div key={lane.lane}>
+                <p className={`text-xs font-bold ${laneColors[lane.lane]} mb-1.5`}>{lane.lane}</p>
                 <ul className="space-y-1">
-                  {items.map((item) => (
-                    <li key={item} className="flex items-start gap-1.5 text-xs text-muted-foreground">
-                      <CheckCircle2 size={12} className="text-primary mt-0.5 shrink-0" />
-                      {item}
+                  {lane.tasks.map(task => (
+                    <li key={task} className="flex items-start gap-1.5 text-xs text-muted-foreground">
+                      <CheckCircle2 size={11} className="text-primary mt-0.5 shrink-0" />
+                      {task}
                     </li>
                   ))}
                 </ul>
@@ -107,12 +98,15 @@ const RoadmapSlide = () => (
         ))}
       </div>
 
-      {/* Key callout */}
-      <div className="flex items-start gap-3 bg-accent/10 border border-accent/20 rounded-xl p-4 max-w-3xl mx-auto">
+      {/* "No Testing" callout */}
+      <div className="flex items-start gap-3 bg-accent/8 border border-accent/20 rounded-xl p-4 max-w-3xl mx-auto">
         <AlertCircle size={20} className="text-accent shrink-0 mt-0.5" />
         <div className="text-sm">
           <p className="font-semibold text-accent">Addressing "No Testing" Preference</p>
-          <p className="text-muted-foreground">Instead of skipping testing entirely, we use <strong>canary deployments via GTM</strong> — routing 10% of traffic to new configs first. This gives us production-like validation while minimizing risk. Combined with instant rollback capability, the customer gets speed without gambling on stability.</p>
+          <p className="text-muted-foreground mt-1">
+            Instead of skipping testing entirely, we use <strong>canary deployments via GTM</strong> — routing 10% of traffic to new configs first. 
+            Combined with mPulse monitoring and instant rollback, the customer gets speed without gambling on stability.
+          </p>
         </div>
       </div>
     </div>

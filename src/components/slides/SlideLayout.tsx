@@ -25,7 +25,7 @@ const SlideLayout = ({ children, className, id, variant = "default", pageNumber 
       <div className="gradient-mesh absolute inset-0 pointer-events-none" />
       <div className="relative z-10 max-w-7xl mx-auto w-full">{children}</div>
       {pageNumber !== undefined && (
-        <div className="absolute bottom-6 right-8 text-sm font-semibold text-muted-foreground">
+        <div className="absolute bottom-4 right-8 text-xs font-semibold text-muted-foreground/50">
           {pageNumber}
         </div>
       )}
