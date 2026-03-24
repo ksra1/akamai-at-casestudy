@@ -12,14 +12,14 @@ const risks = [
 ];
 
 const raciData = [
-  { activity: "Template Design", r: "Akamai TPM (You)", a: "AT Retailers CTO", c: "Akamai Security Team", i: "AT Dev Teams" },
-  { activity: "Bulk Onboarding", r: "Akamai Delivery Team", a: "Akamai TPM (You)", c: "AT IT Operations", i: "AT Business Stakeholders" },
-  { activity: "Cert Provisioning", r: "Akamai Delivery Team", a: "Akamai TPM (You)", c: "AT IT Security", i: "AT Dev Teams" },
-  { activity: "WAF Configuration", r: "Akamai Security Team", a: "Akamai TPM (You)", c: "AT SecOps Team", i: "AT Dev Teams" },
-  { activity: "Bot Manager Setup", r: "Akamai Security Team", a: "Akamai TPM (You)", c: "AT E-commerce Team", i: "AT Business Stakeholders" },
-  { activity: "DNS Cutover", r: "AT IT Operations", a: "Akamai TPM (You)", c: "Akamai Delivery Team", i: "AT Business Owners" },
-  { activity: "Training & Enablement", r: "Akamai TPM (You)", a: "AT CTO", c: "Akamai PS Team", i: "All AT Teams" },
-  { activity: "Go-Live Approval", r: "Akamai TPM (You)", a: "AT Retailers CTO", c: "All Teams", i: "Executive Sponsors" },
+  { activity: "Template Design", r: "Akamai Delivery Team", a: "Akamai TPM (Me)", c: "AT Retailers Technical Lead", i: "AT Dev Teams" },
+  { activity: "Bulk Onboarding", r: "Akamai Delivery Team", a: "Akamai TPM (Me)", c: "AT IT Operations", i: "AT Business Stakeholders" },
+  { activity: "Cert Provisioning", r: "Akamai Delivery Team", a: "Akamai TPM (Me)", c: "AT IT Security", i: "AT Dev Teams" },
+  { activity: "WAF Configuration", r: "Akamai Security Team", a: "Akamai TPM (Me)", c: "AT SecOps Team", i: "AT Dev Teams" },
+  { activity: "Bot Manager Setup", r: "Akamai Security Team", a: "Akamai TPM (Me)", c: "AT E-commerce Team", i: "AT Business Stakeholders" },
+  { activity: "DNS Cutover", r: "AT IT Operations", a: "Akamai TPM (Me)", c: "Akamai Delivery Team", i: "AT Business Owners" },
+  { activity: "Training & Enablement", r: "Akamai TPM (Me)", a: "AT Retailers Technical Lead", c: "Akamai PS Team", i: "All AT Teams" },
+  { activity: "Go-Live Approval", r: "Akamai TPM (Me)", a: "AT Retailers Technical Lead", c: "All Teams", i: "Executive Sponsors" },
 ];
 
 const RiskSlide = () => {

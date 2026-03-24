@@ -68,7 +68,7 @@ const securitySolutions = [
     steps: [
       "Instrument checkout endpoints — AAP learns normal API usage: 1 card validation per 30s per user, <5 card attempts per session",
       "Detect carding patterns — rapid-fire card validations, 50 different cards with same CVV, geographic jumps in seconds",
-      "Block & notify — block transaction immediately, flag account, send fraud signal to payment processor (Stripe/PayPal)",
+      "Block & notify — block transaction immediately, flag account, send fraud signal to payment processor",
       "Force step-up authentication for flagged transactions — re-enter CVV, OTP verification, blacklist card fingerprints",
     ],
     result: "Carding success rate drops to 0.01%, payment processor alerted before chargebacks",
@@ -102,33 +102,30 @@ const SecuritySolutionsSlide = () => {
           <p className="text-muted-foreground text-sm">Click each threat for step-by-step mitigation</p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-4">
+        {/* 2-column layout for breathing room */}
+        <div className="grid md:grid-cols-2 gap-5">
           {securitySolutions.map((s, i) => (
             <div
               key={s.issue}
               onClick={() => setActiveModal(i)}
-              className="visual-card callout-badge bg-card rounded-xl border border-border p-5 shadow-sm group"
+              className="visual-card callout-badge bg-card rounded-xl border border-border p-5 shadow-sm group cursor-pointer"
             >
-              <div className="flex items-start gap-3 mb-3">
-                <div className="w-11 h-11 rounded-xl bg-accent/10 flex items-center justify-center shrink-0">
-                  <s.icon size={22} className="text-accent" />
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center shrink-0">
+                  <s.icon size={24} className="text-accent" />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <h3 className="font-display font-bold text-secondary text-sm leading-tight">{s.issue}</h3>
+                  <h3 className="font-display font-bold text-secondary leading-tight">{s.issue}</h3>
                   <p className="text-xs text-accent font-semibold mt-1">{s.solution}</p>
+                  <div className="flex flex-wrap gap-1.5 mt-2">
+                    {s.products.map(p => (
+                      <span key={p} className="text-[10px] px-2 py-0.5 rounded-full bg-accent/10 text-accent font-semibold">{p}</span>
+                    ))}
+                  </div>
                 </div>
-              </div>
-
-              <div className="flex flex-wrap gap-1.5 mb-3">
-                {s.products.map(p => (
-                  <span key={p} className="text-[10px] px-2 py-0.5 rounded-full bg-accent/10 text-accent font-semibold">{p}</span>
-                ))}
-              </div>
-
-              <p className="text-xs text-muted-foreground line-clamp-2">{s.result}</p>
-
-              <div className="mt-3 flex items-center gap-1 text-accent text-xs font-semibold group-hover:gap-2 transition-all">
-                View steps <ArrowRight size={12} />
+                <div className="flex items-center gap-1 text-accent text-xs font-semibold group-hover:gap-2 transition-all shrink-0 mt-1">
+                  <ArrowRight size={14} />
+                </div>
               </div>
             </div>
           ))}
