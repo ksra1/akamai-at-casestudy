@@ -105,12 +105,17 @@ html {
   }
 }
 
-/* Font declarations outside @layer to prevent specificity override */
-body {
-  font-family: 'Source Sans 3', sans-serif !important;
+/* 
+ * Font declarations — OUTSIDE @layer so they cannot be overridden by Tailwind.
+ * We use the Tailwind utility classes (font-sans / font-display) as the primary
+ * mechanism. These global selectors are a fallback safety net only.
+ */
+html, body, * {
+  font-family: 'Source Sans 3', sans-serif;
 }
+.font-display,
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Space Grotesk', sans-serif !important;
+  font-family: 'Space Grotesk', sans-serif;
 }
 
 /* Slide styles */

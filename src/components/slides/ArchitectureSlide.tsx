@@ -6,7 +6,7 @@ import { ArrowRight, Cloud, Shield, Server, Users, Zap, Globe, Bot, Lock, Image,
 const deliveryProducts = [
   { icon: Zap, label: "Ion", desc: "Akamai's flagship CDN product for dynamic site acceleration. Combines intelligent caching, prefetching, SureRoute optimization, and adaptive acceleration to deliver fast, reliable web experiences globally." },
   { icon: Image, label: "Image & Video Manager", desc: "Automatically optimizes images at the edge — converts to WebP/AVIF, resizes for device, adjusts quality. Zero origin processing. Reduces image payload 50-70%." },
-  { icon: Globe, label: "Global Traffic Management", desc: "DNS-based load balancing across origins and regions. Health checks every 60s, automatic failover, geographic and performance-based routing. Enables canary deployments via traffic splitting." },
+  { icon: Globe, label: "Global Traffic Management", desc: "DNS-based load balancing across origins and regions. Health checks every 60s, automatic failover, geographic and performance-based routing. During migration, keeps legacy provider as fallback for instant rollback via DNS." },
   { icon: BarChart3, label: "mPulse", desc: "Real User Monitoring (RUM) — measures actual end-user page load, Core Web Vitals (LCP, FID, CLS), and business metrics like conversion rate. Anomaly detection triggers alerts." },
 ];
 
@@ -118,7 +118,7 @@ const ArchitectureSlide = () => {
 
         <div className="grid grid-cols-3 gap-4">
           {[
-            { color: "bg-primary/10 text-primary", label: "All traffic flows through Akamai Edge — origin never exposed" },
+            { color: "bg-primary/10 text-primary", label: "Edge offload reduces origin load — lowers risk of overload-related 5xx" },
             { color: "bg-accent/10 text-accent", label: "Security enforced at edge — attacks stopped before reaching origin" },
             { color: "bg-akamai-green/10 text-akamai-green", label: "Single platform for delivery, security, and observability" },
           ].map(item => (
