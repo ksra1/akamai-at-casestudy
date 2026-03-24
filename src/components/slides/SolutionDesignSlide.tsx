@@ -7,16 +7,17 @@ const deliverySolutions = [
   {
     icon: Clock,
     issue: "5,000 hostnames in 30 days",
-    solution: "Property Manager API + Bulk DNS Cutover",
-    products: ["Property Manager API", "mPulse"],
+    solution: "Property Manager API + Bulk DNS Cutover + CPS Automation",
+    products: ["Property Manager API", "CPS API", "mPulse"],
     steps: [
       "Define reusable config template — baseline caching, compression, origin health checks, WAF rules bundled as a golden template",
       "PAPI bulk-creates 5,000 properties from template in parallel — zero manual configuration per hostname",
+      "Automate SSL/TLS certificate provisioning via CPS API — bulk-enroll DV certs (or upload customer's third-party certs) for all 5,000 hostnames. Use SAN certificates to group hostnames (up to 100 SANs per cert) reducing cert count to ~50 managed certificates",
       "Orchestrate phased DNS cutover — CNAME updates in batches (1,000/week) coordinated with customer's DNS team",
       "mPulse monitors real-user performance per cohort — page load times, Core Web Vitals, error rates validate each batch",
     ],
-    result: "Zero manual Akamai work, phased risk mitigation per batch, rollback capability, 30-day completion",
-    bestPractice: "Use golden templates with locked-down rules to prevent configuration drift across 5,000 properties",
+    result: "Zero manual Akamai work, automated cert lifecycle, phased risk mitigation per batch, rollback capability, 30-day completion",
+    bestPractice: "Use golden templates with locked-down rules to prevent configuration drift across 5,000 properties. Use SAN grouping in CPS to minimize cert management overhead.",
   },
   {
     icon: Zap,

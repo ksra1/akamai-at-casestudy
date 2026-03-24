@@ -12,11 +12,14 @@ const risks = [
 ];
 
 const raciData = [
-  { activity: "Template Design", r: "Akamai TPM", a: "AT CTO", c: "Security", i: "Dev Teams" },
-  { activity: "Bulk Onboarding", r: "Akamai Delivery", a: "Akamai TPM", c: "AT IT", i: "Stakeholders" },
-  { activity: "WAF Config", r: "Akamai Security", a: "Akamai TPM", c: "AT SecOps", i: "Dev Teams" },
-  { activity: "DNS Cutover", r: "AT IT", a: "Akamai TPM", c: "Akamai Delivery", i: "Business" },
-  { activity: "Go-Live", r: "Akamai TPM", a: "AT CTO", c: "All Teams", i: "Exec Sponsors" },
+  { activity: "Template Design", r: "Akamai TPM (You)", a: "AT Retailers CTO", c: "Akamai Security Team", i: "AT Dev Teams" },
+  { activity: "Bulk Onboarding", r: "Akamai Delivery Team", a: "Akamai TPM (You)", c: "AT IT Operations", i: "AT Business Stakeholders" },
+  { activity: "Cert Provisioning", r: "Akamai Delivery Team", a: "Akamai TPM (You)", c: "AT IT Security", i: "AT Dev Teams" },
+  { activity: "WAF Configuration", r: "Akamai Security Team", a: "Akamai TPM (You)", c: "AT SecOps Team", i: "AT Dev Teams" },
+  { activity: "Bot Manager Setup", r: "Akamai Security Team", a: "Akamai TPM (You)", c: "AT E-commerce Team", i: "AT Business Stakeholders" },
+  { activity: "DNS Cutover", r: "AT IT Operations", a: "Akamai TPM (You)", c: "Akamai Delivery Team", i: "AT Business Owners" },
+  { activity: "Training & Enablement", r: "Akamai TPM (You)", a: "AT CTO", c: "Akamai PS Team", i: "All AT Teams" },
+  { activity: "Go-Live Approval", r: "Akamai TPM (You)", a: "AT Retailers CTO", c: "All Teams", i: "Executive Sponsors" },
 ];
 
 const RiskSlide = () => {
