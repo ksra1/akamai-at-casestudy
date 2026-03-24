@@ -1,15 +1,13 @@
 import SlideLayout from "./SlideLayout";
 import { Globe, Shield, Zap, ChevronDown } from "lucide-react";
+import akamaiLogo from "@/assets/akamai-logo.png";
 
 const TitleSlide = () => (
   <SlideLayout variant="navy" id="title" pageNumber={1}>
     <div className="flex flex-col items-center justify-center text-center space-y-8 min-h-[70vh]">
-      {/* Akamai wave mark */}
-      <div className="flex items-center gap-3 mb-2">
-        <div className="w-10 h-10 rounded-lg bg-primary flex items-center justify-center">
-          <span className="text-primary-foreground font-display font-bold text-xl">A</span>
-        </div>
-        <span className="text-primary-foreground/50 font-display text-sm tracking-[0.3em] uppercase">Akamai Technologies</span>
+      {/* Akamai logo */}
+      <div className="mb-2">
+        <img src={akamaiLogo} alt="Akamai Technologies" className="h-10 brightness-0 invert" />
       </div>
 
       <div className="space-y-4">
