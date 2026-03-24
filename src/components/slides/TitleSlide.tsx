@@ -38,17 +38,27 @@ const TitleSlide = () => (
         ))}
       </div>
 
-      <div className="mt-8 pt-6 border-t border-primary-foreground/10 w-full max-w-2xl">
-        <div className="flex items-center justify-between">
-          <div className="text-left">
-            <p className="text-primary-foreground/40 text-xs tracking-widest uppercase">Presented by</p>
-            <p className="text-primary-foreground font-display text-lg font-semibold mt-1">Sravan Kollapudi</p>
-          </div>
-          <div className="text-right">
-            <p className="text-primary-foreground/40 text-xs tracking-widest uppercase">Panel</p>
-            <p className="text-primary-foreground/60 text-sm mt-1">Mark Agostino · Mike Buonfiglio · Yancy Carrasco</p>
-            <p className="text-primary-foreground/60 text-sm">Jose Chaverri · Danisha Nivas · Shobhit Bhardwaj</p>
-          </div>
+      {/* Panel Members - PROMINENT */}
+      <div className="mt-8 pt-6 border-t border-primary-foreground/10 w-full max-w-3xl">
+        <p className="text-primary font-semibold tracking-widest uppercase text-xs mb-4">Interview Panel</p>
+        <div className="grid grid-cols-3 gap-3 mb-6">
+          {[
+            "Mark Agostino",
+            "Mike Buonfiglio",
+            "Yancy Carrasco",
+            "Jose Chaverri",
+            "Danisha Nivas",
+            "Shobhit Bhardwaj",
+          ].map(name => (
+            <div key={name} className="bg-primary-foreground/5 border border-primary-foreground/10 rounded-lg px-4 py-2.5 text-center">
+              <p className="text-primary-foreground font-display font-semibold text-sm">{name}</p>
+            </div>
+          ))}
+        </div>
+
+        <div className="text-center">
+          <p className="text-primary-foreground/30 text-xs tracking-widest uppercase">Presented by</p>
+          <p className="text-primary-foreground/60 font-display text-sm mt-1">Sravan Kollapudi</p>
         </div>
       </div>
 
