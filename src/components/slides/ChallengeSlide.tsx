@@ -1,6 +1,5 @@
 import { useState } from "react";
 import SlideLayout from "./SlideLayout";
-import CalloutModal from "./CalloutModal";
 import { Truck, Shield, TrendingUp, Globe, Clock, Users, AlertTriangle, Server } from "lucide-react";
 
 const stats = [
@@ -16,11 +15,11 @@ const challenges = [
     title: "Delivery",
     color: "bg-primary",
     items: [
-      "5,000 hostnames in 30 days — bulk onboarding at scale",
-      "New teams untrained on Akamai products",
-      "5x peak traffic handling required",
-      "Slow image loading across sites",
-      "Customer wants to skip testing — push straight to production",
+      { text: "5,000 hostnames in 30 days — bulk onboarding at scale", site: "New Sites", classification: "Technical" },
+      { text: "New teams untrained on Akamai products", site: "New Sites", classification: "Governance" },
+      { text: "5x peak traffic handling required", site: "Existing Sites", classification: "Technical" },
+      { text: "Slow image loading across sites", site: "Existing Sites", classification: "Technical" },
+      { text: "Customer wants to skip testing — push straight to production", site: "New Sites", classification: "Governance" },
     ],
   },
   {
@@ -28,12 +27,12 @@ const challenges = [
     title: "Security",
     color: "bg-accent",
     items: [
-      "DDoS attacks targeting customer origins",
-      "Outdated WAF rule sets on legacy configs",
-      "Credential stuffing surge",
-      "Inventory scraping by competitive bots",
-      "Carding attempts on checkout APIs",
-      "Sophisticated evasion: IP rotation, spoofed clients",
+      { text: "DDoS attacks targeting customer origins", site: "Existing Sites", classification: "Technical" },
+      { text: "Outdated WAF rule sets on legacy configs", site: "Existing Sites", classification: "Technical" },
+      { text: "Credential stuffing surge", site: "Existing Sites", classification: "Technical" },
+      { text: "Inventory scraping by competitive bots", site: "Existing Sites", classification: "Technical" },
+      { text: "Carding attempts on checkout APIs", site: "Existing Sites", classification: "Technical" },
+      { text: "Sophisticated evasion: IP rotation, spoofed clients", site: "Existing Sites", classification: "Technical" },
     ],
   },
   {
@@ -41,19 +40,17 @@ const challenges = [
     title: "Scale & Governance",
     color: "bg-akamai-green",
     items: [
-      "Multi-geography resource coordination",
-      "Legacy monolith → microservices migration",
-      "Acquired companies need platform migration",
-      "Cross-team change management at scale",
+      { text: "Multi-geography resource coordination", site: "New Sites", classification: "Governance" },
+      { text: "Legacy monolith → microservices migration", site: "Existing Sites", classification: "Technical" },
+      { text: "Acquired companies need platform migration", site: "Existing Sites", classification: "Governance" },
+      { text: "Cross-team change management at scale", site: "Existing Sites", classification: "Governance" },
     ],
   },
 ];
 
 const ChallengeSlide = () => {
-  const [modalIdx, setModalIdx] = useState<number | null>(null);
-
   return (
-    <SlideLayout id="challenge" variant="alt">
+    <SlideLayout id="challenge" variant="alt" pageNumber={3}>
       <div className="space-y-10">
         <div className="text-center space-y-2">
           <p className="text-primary font-semibold tracking-widest uppercase text-sm">Understanding the Problem</p>
@@ -76,8 +73,7 @@ const ChallengeSlide = () => {
           {challenges.map((c, i) => (
             <div
               key={c.title}
-              onClick={() => setModalIdx(i)}
-              className="callout-badge bg-card rounded-xl p-6 shadow-sm border border-border hover:shadow-lg hover:border-primary/30 transition-all group"
+              className="callout-badge bg-card rounded-xl p-6 shadow-sm border border-border"
             >
               <div className="flex items-center gap-3 mb-4">
                 <div className={`${c.color} w-10 h-10 rounded-lg flex items-center justify-center`}>
@@ -85,19 +81,14 @@ const ChallengeSlide = () => {
                 </div>
                 <h3 className="font-display text-xl font-semibold text-secondary">{c.title}</h3>
               </div>
-              <ul className="space-y-2">
-                {c.items.slice(0, 3).map((item) => (
-                  <li key={item} className="flex items-start gap-2 text-sm text-muted-foreground">
+              <ul className="space-y-3">
+                {c.items.map((item) => (
+                  <li key={item.text} className="flex items-start gap-2 text-sm text-muted-foreground leading-relaxed">
                     <AlertTriangle size={14} className="text-accent mt-0.5 shrink-0" />
-                    {item}
+                    <span className="flex-1">{item.text}</span>
                   </li>
                 ))}
               </ul>
-              {c.items.length > 3 && (
-                <p className="text-primary text-xs mt-3 font-semibold group-hover:underline">
-                  + {c.items.length - 3} more — click to expand
-                </p>
-              )}
             </div>
           ))}
         </div>
@@ -116,20 +107,6 @@ const ChallengeSlide = () => {
           ))}
         </div>
       </div>
-
-      {/* Modals */}
-      {challenges.map((c, i) => (
-        <CalloutModal key={c.title} open={modalIdx === i} onOpenChange={() => setModalIdx(null)} title={`${c.title} Challenges — Deep Dive`}>
-          <ul className="space-y-3">
-            {c.items.map((item) => (
-              <li key={item} className="flex items-start gap-3">
-                <AlertTriangle size={16} className="text-accent mt-1 shrink-0" />
-                <span>{item}</span>
-              </li>
-            ))}
-          </ul>
-        </CalloutModal>
-      ))}
     </SlideLayout>
   );
 };

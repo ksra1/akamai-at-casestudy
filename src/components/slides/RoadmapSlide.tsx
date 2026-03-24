@@ -64,7 +64,7 @@ const laneColors: Record<string, string> = {
 };
 
 const RoadmapSlide = () => (
-  <SlideLayout id="roadmap">
+  <SlideLayout id="roadmap" pageNumber={12}>
     <div className="space-y-6">
       <div className="text-center space-y-2">
         <p className="text-primary font-semibold tracking-widest uppercase text-sm">Execution Plan</p>

@@ -14,7 +14,7 @@ const BotThreatSlide = () => {
   const [detailModal, setDetailModal] = useState(false);
 
   return (
-    <SlideLayout id="bot-threat" variant="alt">
+    <SlideLayout id="bot-threat" variant="alt" pageNumber={11}>
       <div className="space-y-8">
         <div className="text-center space-y-2">
           <p className="text-accent font-semibold tracking-widest uppercase text-sm">Threat Analysis</p>

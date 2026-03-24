@@ -24,7 +24,7 @@ const RiskSlide = () => {
   const [riskModal, setRiskModal] = useState<number | null>(null);
 
   return (
-    <SlideLayout id="risk" variant="alt">
+    <SlideLayout id="risk" variant="alt" pageNumber={13}>
       <div className="space-y-8">
         <div className="text-center space-y-2">
           <p className="text-accent font-semibold tracking-widest uppercase text-sm">Governance</p>

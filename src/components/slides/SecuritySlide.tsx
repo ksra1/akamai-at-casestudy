@@ -54,7 +54,7 @@ const SecuritySlide = () => {
   const [activeLayer, setActiveLayer] = useState<number | null>(null);
 
   return (
-    <SlideLayout id="security">
+    <SlideLayout id="security" pageNumber={10}>
       <div className="space-y-8">
         <div className="text-center space-y-2">
           <p className="text-accent font-semibold tracking-widest uppercase text-sm">Defense in Depth</p>

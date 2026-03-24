@@ -2,7 +2,7 @@ import SlideLayout from "./SlideLayout";
 import { Globe, Shield, Zap } from "lucide-react";
 
 const TitleSlide = () => (
-  <SlideLayout variant="navy" id="title">
+  <SlideLayout variant="navy" id="title" pageNumber={1}>
     <div className="flex flex-col items-center justify-center text-center space-y-8 min-h-[70vh]">
       {/* Akamai-style logo mark */}
       <div className="flex items-center gap-3 mb-4">
@@ -35,10 +35,29 @@ const TitleSlide = () => (
         ))}
       </div>
 
-      <div className="mt-12 pt-8 border-t border-primary-foreground/10 text-primary-foreground/40 text-sm space-y-1">
-        <p className="font-semibold text-primary-foreground/60">Sr. Technology Project Manager — Panel Interview</p>
-        <p>Prepared for the Akamai Interview Panel</p>
-        <p>March 2026</p>
+      <div className="mt-12 pt-8 border-t border-primary-foreground/10 space-y-6 w-full">
+        <div className="space-y-2">
+          <p className="font-semibold text-primary-foreground/60 text-sm">Presented By</p>
+          <p className="text-primary-foreground font-display text-1xl md:text-1xl font-semibold">Sravan Kollapudi</p>
+        </div>
+        
+        <div className="space-y-3">
+          <p className="font-semibold text-primary-foreground/60 text-sm">Presented To</p>
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mt-4 max-w-2xl mx-auto">
+            {[
+              "Mark Agostino",
+              "Mike Buonfiglio",
+              "Yancy Carrasco",
+              "Jose Chaverri",
+              "Danisha Nivas",
+              "Shobhit Bhardwaj",
+            ].map((name) => (
+              <div key={name} className="text-primary-foreground font-display text-xl md:text-2xl font-semibold">
+                {name}
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   </SlideLayout>

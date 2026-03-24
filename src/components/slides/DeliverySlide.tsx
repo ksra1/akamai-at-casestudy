@@ -46,7 +46,7 @@ const DeliverySlide = () => {
   const [bulkModal, setBulkModal] = useState(false);
 
   return (
-    <SlideLayout id="delivery" variant="alt">
+    <SlideLayout id="delivery" variant="alt" pageNumber={9}>
       <div className="space-y-8">
         <div className="text-center space-y-2">
           <p className="text-primary font-semibold tracking-widest uppercase text-sm">Performance & Scale</p>

@@ -2,9 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400;500;600;700;900&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+html {
+  font-size: 18px;
+}
 
 @layer base {
+  @import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400;500;600;700;900&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
   :root {
     --background: 210 20% 98%;
     --foreground: 203 100% 12%;
@@ -182,7 +186,7 @@
     hsl(203, 100%, 10%) 100%
   );
   background-size: 400% 400%;
-  animation: gradientShift 8s ease infinite;
+  animation: gradientShift 20s ease 1 forwards;
 }
 
 /* Flow arrow animation */
@@ -203,6 +207,38 @@
   100% { box-shadow: 0 0 0 0 hsla(18, 100%, 60%, 0); }
 }
 
+/* Print Styles - Each slide on its own page */
+@media print {
+  html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+  }
+
+  .slide-nav {
+    display: none !important;
+  }
+
+  .slide {
+    page-break-after: always;
+    page-break-inside: avoid;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    break-after: page;
+    break-inside: avoid;
+  }
+
+  section {
+    page-break-inside: avoid;
+  }
+}
 .pulse-badge {
   animation: pulse-ring 2s ease-out infinite;
 }

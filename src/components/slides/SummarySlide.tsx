@@ -43,7 +43,7 @@ const SummarySlide = () => {
   const [glossaryOpen, setGlossaryOpen] = useState(false);
 
   return (
-    <SlideLayout id="summary" variant="navy">
+    <SlideLayout id="summary" variant="navy" pageNumber={15}>
       <div className="flex flex-col items-center justify-center space-y-10 min-h-[70vh]">
         <div className="text-center space-y-2">
           <p className="text-primary font-semibold tracking-widest uppercase text-sm">Bringing It All Together</p>

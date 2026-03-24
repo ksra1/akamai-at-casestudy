@@ -1,0 +1,64 @@
+Sr. Technology Project Manager(TPM) Panel Interview — Candidate Scenario
+Your total interview time will be 90 minutes. You will have 45 minutes for your presentation,
+including time for questions during your talk. After your presentation there will be an additional
+30 min for the panel to ask further questions, and then 15 minutes where you are welcome to
+ask us any questions.. You may use PowerPoint or similar tools to support your presentation.
+Scenario Overview
+You have recently been assigned as the Project Manager for AT Retailers, a global e-commerce
+organization undergoing a major digital transformation. AT Retailers operates worldwide, with
+high traffic originating from North America, LATAM, and Europe. The company is moving from a
+legacy monolithic architecture to a modern microservices and API-driven landscape hosted
+across on-prem infrastructure and AWS.
+Over the past several months, AT Retailers has acquired several companies and they need to
+migrate them from their existing cloud provider over to Akamai.
+Additionally their existing sites are seeing security issues with bot attacks that use credential
+stuffing and scraping and the team needs your help addressing those issues.
+In your role as the Project Manager, you are responsible for evaluating the problems, designing
+a high-level architecture, and outlining the delivery and security plan.
+Key Challenges Identified by AT Retailers
+1. Delivery Issues
+Customer has given us 30 days to get 5,000 hostnames onboarded
+New customer teams aren't trained in Akamai products yet will support the new
+onboardings.
+Sites need to be able to handle 5x traffic during peak events
+Existing images are sometimes slow to load
+Customer indicates testing is not necessary, they prefer to push to production then fix
+issues.
+e Handling of customer resources across multiple geographies(Europe, US, Asia) as well
+as managing internal Akamai resources.
+2. Bot Activity and Automated Threats
+DDOS attacks attempting to take down customers origin
+Legacy WAF Rule Sets out of date on some configurations
+Surge in credential stuffing attempts
+Inventory scraping by competitive bots
+Carding attempts targeting checkout APIs
+Bots using sophisticated evasion techniques (IP rotation, spoofed clients)
+Your Task for the Interview Presentation
+You will prepare a 45-minute presentation addressing the following:
+A) Delivery & Project Management Strategy
+Outline how you would lead the end-to-end delivery of this program, including:
+Phases of implementation (assessment, rollout, hardening, optimization)
+Coordination with multiple teams
+Change management
+Risk management and escalation approach
+B) High-Level Security Architecture Using Akamai Products
+Design a solution using Akamai’s delivery and security portfolio. Your proposed architecture
+should show how we can onboard the customers’ hostnames, solve their traffic and load
+problems as well as address the WAF, Bot, and API security challenges for both new and old
+sites.
+C) Security Problem Analysis
+Provide your assessment of the situation, including:
+e Key risks and root causes
+e Impact on the business (operational, financial, security posture)
+e How WAF, Bot, and API security issues interrelate in this environment
+Deliverables for the Interview
+A structured 30-minute presentation with slides
+High-level solution architecture using Akamai Products
+Clear Project Management style roadmap and execution plan
+Mention the competitive advantages of Akamai over other vendors in your proposed
+solution.
+e Mention one Akamai Best Practice per product in your solution. (Akamai Internal
+candidates only)
+Additional Material you may want to review
+1. Akamai Content Delivery, Cybersecurity and Cloud Compute products
+2. OWASP Top 10
