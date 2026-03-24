@@ -2,13 +2,14 @@ import { useEffect, useState } from "react";
 
 const slides = [
   { id: "title", label: "Title" },
-  { id: "challenge", label: "Challenge" },
+  { id: "company-overview", label: "AT Retailers" },
+  { id: "challenge", label: "Challenges" },
   { id: "architecture", label: "Architecture" },
-  { id: "delivery", label: "Delivery" },
-  { id: "security", label: "Security" },
-  { id: "bot-threat", label: "Bot & Threats" },
+  { id: "delivery-solutions", label: "Delivery" },
+  { id: "security-solutions", label: "Security" },
+  { id: "security-analysis", label: "Analysis" },
   { id: "roadmap", label: "Roadmap" },
-  { id: "risk", label: "Risk Mgmt" },
+  { id: "risk", label: "Risk" },
   { id: "competitive", label: "Why Akamai" },
   { id: "summary", label: "Summary" },
 ];

@@ -1,14 +1,10 @@
 import TitleSlide from "@/components/slides/TitleSlide";
 import CompanyOverviewSlide from "@/components/slides/CompanyOverviewSlide";
 import ChallengeSlide from "@/components/slides/ChallengeSlide";
-import ChallengeCategorizationSlide from "@/components/slides/ChallengeCategorizationSlide";
+import ArchitectureSlide from "@/components/slides/ArchitectureSlide";
 import SolutionDesignSlide from "@/components/slides/SolutionDesignSlide";
 import SecuritySolutionsSlide from "@/components/slides/SecuritySolutionsSlide";
-import GovernanceSolutionsSlide from "@/components/slides/GovernanceSolutionsSlide";
-import OutcomesSlide from "@/components/slides/OutcomesSlide";
-import DeliverySlide from "@/components/slides/DeliverySlide";
-import SecuritySlide from "@/components/slides/SecuritySlide";
-import BotThreatSlide from "@/components/slides/BotThreatSlide";
+import SecurityAnalysisSlide from "@/components/slides/SecurityAnalysisSlide";
 import RoadmapSlide from "@/components/slides/RoadmapSlide";
 import RiskSlide from "@/components/slides/RiskSlide";
 import CompetitiveSlide from "@/components/slides/CompetitiveSlide";
@@ -21,14 +17,10 @@ const Index = () => (
     <TitleSlide />
     <CompanyOverviewSlide />
     <ChallengeSlide />
-    <ChallengeCategorizationSlide />
+    <ArchitectureSlide />
     <SolutionDesignSlide />
     <SecuritySolutionsSlide />
-    <GovernanceSolutionsSlide />
-    <OutcomesSlide />
-    <DeliverySlide />
-    <SecuritySlide />
-    <BotThreatSlide />
+    <SecurityAnalysisSlide />
     <RoadmapSlide />
     <RiskSlide />
     <CompetitiveSlide />
