@@ -5,28 +5,29 @@ import akamaiLogo from "@/assets/akamai-logo.png";
 const TitleSlide = () => (
   <SlideLayout variant="navy" id="title" pageNumber={1}>
     <div className="flex flex-col items-center justify-center text-center space-y-8 min-h-[70vh]">
-      {/* Akamai logo */}
       <div className="mb-2">
         <img src={akamaiLogo} alt="Akamai Technologies" className="h-10 brightness-0 invert" />
       </div>
 
       <div className="space-y-4">
         <h1 className="font-display text-5xl md:text-7xl font-bold leading-tight">
-          <span className="text-primary-foreground">AT Retailers</span>
+          <span className="text-primary-foreground">AT Retailers ×</span>
           <br />
-          <span className="text-primary">Digital Transformation</span>
+          <span className="text-primary">Akamai</span>
         </h1>
-        <p className="text-primary-foreground/40 text-lg md:text-xl max-w-2xl mx-auto">
-          Delivery, Security & Scale — End-to-End Solution Architecture
+        <p className="text-primary-foreground/50 text-xl md:text-2xl max-w-2xl mx-auto font-display">
+          5,000 hostnames. 30 days. Zero excuses.
+        </p>
+        <p className="text-primary-foreground/25 text-sm max-w-xl mx-auto">
+          A delivery, security & governance plan for a company that doesn't have time to wait.
         </p>
       </div>
 
-      {/* Three pillars */}
       <div className="flex gap-12 mt-6">
         {[
-          { icon: Zap, label: "Delivery", desc: "5,000 hostnames in 30 days" },
-          { icon: Shield, label: "Security", desc: "WAF, Bot & API protection" },
-          { icon: Globe, label: "Scale", desc: "Multi-region governance" },
+          { icon: Zap, label: "Ship It", desc: "Migrate fast, break nothing" },
+          { icon: Shield, label: "Lock It Down", desc: "Bots, DDoS, carding — handled" },
+          { icon: Globe, label: "Scale It", desc: "3 regions, 1 platform" },
         ].map(({ icon: Icon, label, desc }) => (
           <div key={label} className="flex flex-col items-center gap-2">
             <div className="w-14 h-14 rounded-xl bg-primary/15 flex items-center justify-center">
@@ -38,7 +39,6 @@ const TitleSlide = () => (
         ))}
       </div>
 
-      {/* Panel Members - PROMINENT */}
       <div className="mt-8 pt-6 border-t border-primary-foreground/10 w-full max-w-3xl">
         <p className="text-primary font-semibold tracking-widest uppercase text-xs mb-4">Interview Panel</p>
         <div className="grid grid-cols-3 gap-3 mb-6">

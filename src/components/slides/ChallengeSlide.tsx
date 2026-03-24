@@ -3,32 +3,32 @@ import { Truck, Shield, Clock, Users, Zap, Image, AlertTriangle, Bot, CreditCard
 
 const deliveryChallenges = [
   { icon: Clock, text: "5,000 hostnames in 30 days" },
-  { icon: Users, text: "New teams untrained on Akamai" },
-  { icon: Zap, text: "Handle 5x peak traffic" },
-  { icon: Image, text: "Slow image loading" },
-  { icon: AlertTriangle, text: "No testing — straight to production" },
-  { icon: Globe, text: "Multi-geography resource coordination" },
+  { icon: Users, text: "Teams who've never seen Akamai" },
+  { icon: Zap, text: "5× traffic spikes — origins sweating" },
+  { icon: Image, text: "Images loading like it's 2005" },
+  { icon: AlertTriangle, text: '"Just push it to prod" mentality' },
+  { icon: Globe, text: "3 regions, 3 time zones, 1 deadline" },
 ];
 
 const securityChallenges = [
-  { icon: Shield, text: "DDoS attacks on origin" },
-  { icon: AlertTriangle, text: "Legacy WAF rules outdated" },
-  { icon: UserX, text: "Credential stuffing surge" },
-  { icon: ShoppingCart, text: "Inventory scraping by bots" },
-  { icon: CreditCard, text: "Carding on checkout APIs" },
-  { icon: Bot, text: "Sophisticated bot evasion" },
+  { icon: Shield, text: "DDoS hammering the origin" },
+  { icon: AlertTriangle, text: "WAF rules from the Obama era" },
+  { icon: UserX, text: "Credential stuffing on steroids" },
+  { icon: ShoppingCart, text: "Bots scraping inventory 24/7" },
+  { icon: CreditCard, text: "Carding attacks on checkout" },
+  { icon: Bot, text: "Bots that rotate IPs & spoof everything" },
 ];
 
 const scaleGovChallenges = [
-  { icon: Layers, text: "Legacy monolith → microservices migration" },
-  { icon: GitBranch, text: "Acquired companies need platform migration" },
-  { icon: Users, text: "Cross-team change management at scale" },
+  { icon: Layers, text: "Monolith → microservices mid-flight" },
+  { icon: GitBranch, text: "Acquired companies need to come along" },
+  { icon: Users, text: "Change management across a dozen teams" },
 ];
 
 const traceability = [
-  { label: "Delivery (6)", section: "Section A", slides: "Slides 5, 8", color: "bg-primary" },
-  { label: "Security (6)", section: "Section B", slides: "Slides 4, 6", color: "bg-accent" },
-  { label: "Scale & Gov (3)", section: "Sections A + C", slides: "Slides 7, 8, 9", color: "bg-akamai-green" },
+  { label: "Delivery (6)", section: "Section A", slides: "Slides 5 & 8", color: "bg-primary" },
+  { label: "Security (6)", section: "Section B", slides: "Slides 4 & 6", color: "bg-accent" },
+  { label: "Scale & Gov (3)", section: "Sections A + C", slides: "Slides 7, 8 & 9", color: "bg-akamai-green" },
 ];
 
 const ChallengeSlide = () => {
@@ -36,13 +36,11 @@ const ChallengeSlide = () => {
     <SlideLayout id="challenge" variant="alt" pageNumber={3}>
       <div className="space-y-5">
         <div className="text-center space-y-2">
-          <p className="text-primary font-semibold tracking-widest uppercase text-sm">Understanding the Problem</p>
-          <h2 className="font-display text-4xl md:text-5xl font-bold text-secondary">15 Key Challenges</h2>
-          <p className="text-muted-foreground text-sm">Across delivery, security, and scale & governance</p>
+          <p className="text-primary font-semibold tracking-widest uppercase text-sm">Here's what keeps the team up at night</p>
+          <h2 className="font-display text-4xl md:text-5xl font-bold text-secondary">15 Problems. One Plan.</h2>
         </div>
 
         <div className="grid md:grid-cols-3 gap-6">
-          {/* Delivery */}
           <div className="space-y-3">
             <div className="flex items-center gap-3 mb-1">
               <div className="w-9 h-9 rounded-lg bg-primary flex items-center justify-center">
@@ -50,7 +48,7 @@ const ChallengeSlide = () => {
               </div>
               <div>
                 <h3 className="font-display text-lg font-bold text-secondary">Delivery</h3>
-                <p className="text-xs text-muted-foreground">6 challenges</p>
+                <p className="text-xs text-muted-foreground">6 things that need to ship</p>
               </div>
             </div>
             <div className="space-y-2">
@@ -65,7 +63,6 @@ const ChallengeSlide = () => {
             </div>
           </div>
 
-          {/* Security */}
           <div className="space-y-3">
             <div className="flex items-center gap-3 mb-1">
               <div className="w-9 h-9 rounded-lg bg-accent flex items-center justify-center">
@@ -73,7 +70,7 @@ const ChallengeSlide = () => {
               </div>
               <div>
                 <h3 className="font-display text-lg font-bold text-secondary">Security</h3>
-                <p className="text-xs text-muted-foreground">6 challenges</p>
+                <p className="text-xs text-muted-foreground">6 things trying to break in</p>
               </div>
             </div>
             <div className="space-y-2">
@@ -88,7 +85,6 @@ const ChallengeSlide = () => {
             </div>
           </div>
 
-          {/* Scale & Governance */}
           <div className="space-y-3">
             <div className="flex items-center gap-3 mb-1">
               <div className="w-9 h-9 rounded-lg bg-akamai-green flex items-center justify-center">
@@ -96,7 +92,7 @@ const ChallengeSlide = () => {
               </div>
               <div>
                 <h3 className="font-display text-lg font-bold text-secondary">Scale & Governance</h3>
-                <p className="text-xs text-muted-foreground">3 challenges</p>
+                <p className="text-xs text-muted-foreground">3 things that need structure</p>
               </div>
             </div>
             <div className="space-y-2">
@@ -126,13 +122,12 @@ const ChallengeSlide = () => {
           ))}
         </div>
 
-        {/* Key stats ribbon */}
         <div className="grid grid-cols-4 gap-4">
           {[
-            { value: "5,000", label: "Hostnames to Onboard" },
-            { value: "30", label: "Days Timeline" },
-            { value: "5×", label: "Peak Traffic Surge" },
-            { value: "3+", label: "Regions (NA, LATAM, EU)" },
+            { value: "5,000", label: "Hostnames" },
+            { value: "30", label: "Days" },
+            { value: "5×", label: "Peak Traffic" },
+            { value: "3+", label: "Regions" },
           ].map(s => (
             <div key={s.label} className="bg-secondary text-secondary-foreground rounded-xl p-4 text-center">
               <div className="font-display text-3xl font-bold">{s.value}</div>

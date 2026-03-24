@@ -4,25 +4,25 @@ import { AlertTriangle, Shield, ArrowRight, Server, Zap, Target, Layers, GitBran
 const scaleGovMapping = [
   {
     icon: Layers,
-    challenge: "Legacy monolith → microservices",
-    solution: "API-driven architecture enables AAP/Bot Manager per-service",
+    challenge: "Monolith → microservices",
+    solution: "API-driven architecture lets AAP/Bot Manager protect per-service",
   },
   {
     icon: GitBranch,
-    challenge: "Acquired companies need platform migration",
-    solution: "Security posture standardization via golden config templates",
+    challenge: "Acquired companies joining",
+    solution: "Golden templates standardize security posture from day one",
   },
   {
     icon: Users,
-    challenge: "Cross-team change management at scale",
-    solution: "RACI framework + training program + Config-as-Code workflows",
+    challenge: "Change management at scale",
+    solution: "RACI + training + Config-as-Code = teams move fast safely",
   },
 ];
 
 const impacts = [
-  { area: "Operational", icon: Server, items: ["Origin overload from DDoS/bots", "Manual WAF tuning burden", "No visibility into attack patterns"], color: "primary" },
-  { area: "Revenue & Trust", icon: Target, items: ["Chargeback costs from carding", "Revenue loss during downtime", "Customer trust erosion from ATO"], color: "accent" },
-  { area: "Security Posture", icon: AlertTriangle, items: ["Legacy rules = known vulnerabilities", "No API discovery = shadow APIs", "IP-only blocking = easily evaded"], color: "destructive" },
+  { area: "Ops Pain", icon: Server, items: ["Origin drowning under DDoS/bots", "Manual WAF tuning = full-time job", "Flying blind on attack patterns"], color: "primary" },
+  { area: "Revenue & Trust", icon: Target, items: ["Chargebacks eating margins", "Downtime = $0 revenue", "Account takeovers erode trust"], color: "accent" },
+  { area: "Security Debt", icon: AlertTriangle, items: ["Legacy rules = known gaps", "Shadow APIs nobody tracks", "IP blocking = easily bypassed"], color: "destructive" },
 ];
 
 const SecurityAnalysisSlide = () => {
@@ -30,15 +30,16 @@ const SecurityAnalysisSlide = () => {
     <SlideLayout id="security-analysis" variant="alt" pageNumber={7}>
       <div className="space-y-5">
         <div className="text-center space-y-2">
-          <p className="text-accent font-semibold tracking-widest uppercase text-sm">Section C — Security Analysis</p>
-          <h2 className="font-display text-4xl md:text-5xl font-bold text-secondary">Security & Governance Analysis</h2>
+          <p className="text-accent font-semibold tracking-widest uppercase text-sm">Section C — Why This All Connects</p>
+          <h2 className="font-display text-4xl md:text-5xl font-bold text-secondary">The Domino Effect</h2>
+          <p className="text-sm text-muted-foreground">These aren't 6 separate problems. They're one chain reaction.</p>
         </div>
 
-        {/* Scale & Governance Challenges Addressed */}
+        {/* Scale & Governance */}
         <div className="bg-card rounded-2xl border border-border p-5 shadow-sm">
           <div className="flex items-center gap-2 mb-4">
             <div className="w-3 h-3 rounded-full bg-akamai-green" />
-            <h3 className="font-display font-bold text-secondary text-sm">Scale & Governance Challenges Addressed in This Section</h3>
+            <h3 className="font-display font-bold text-secondary text-sm">Scale & Governance — also addressed here</h3>
           </div>
           <div className="grid md:grid-cols-3 gap-4">
             {scaleGovMapping.map(item => (
@@ -53,7 +54,7 @@ const SecurityAnalysisSlide = () => {
           </div>
         </div>
 
-        {/* Business Impact - 3 columns */}
+        {/* Business Impact */}
         <div className="grid md:grid-cols-3 gap-4">
           {impacts.map(imp => (
             <div key={imp.area} className="bg-card rounded-xl border border-border p-4 shadow-sm">
@@ -73,19 +74,19 @@ const SecurityAnalysisSlide = () => {
           ))}
         </div>
 
-        {/* Interrelation Diagram */}
+        {/* Attack Chain — the story */}
         <div className="bg-card rounded-2xl border border-border p-5 shadow-sm">
           <div className="flex items-center gap-2 mb-4">
             <Zap size={16} className="text-primary" />
-            <h3 className="font-display font-bold text-secondary text-sm">How WAF, Bot & API Security Issues Interrelate</h3>
+            <h3 className="font-display font-bold text-secondary text-sm">Follow the chain: bots → stuffing → carding → revenue loss</h3>
           </div>
 
           <div className="space-y-3">
             {[
-              { steps: ["Bot Networks", "IP rotation + spoofing", "Inventory Scraping", "Catalog enumeration", "Competitive Intel Loss", "Pricing & stock exposed"], fix: "Bot Manager" },
-              { steps: ["Same Bots", "Reuse infra for stuffing", "Credential Stuffing", "Leaked DB passwords", "Account Takeover → Carding", "Fraud + chargebacks"], fix: "Bot Mgr + AAP" },
-              { steps: ["Outdated WAF", "Legacy rules = gaps", "API Abuse", "Shadow APIs discovered", "Data Breach Risk", "PII + compliance"], fix: "AAP + API Sec" },
-              { steps: ["DDoS Attack", "Volumetric + app-layer", "Origin Overload", "Infra can't scale", "Revenue Loss", "Site down = $0 sales"], fix: "Prolexic" },
+              { steps: ["Bot Networks", "rotate IPs, spoof UAs", "Scrape Inventory", "enumerate every product", "Competitive Intel Lost", "pricing & stock exposed"], fix: "Bot Manager" },
+              { steps: ["Same Bots", "reuse infra for stuffing", "Credential Stuffing", "leaked DB passwords", "Account Takeover → Carding", "fraud + chargebacks"], fix: "Bot Mgr + AAP" },
+              { steps: ["Outdated WAF", "legacy rules = blind spots", "API Abuse", "shadow APIs discovered", "Data Breach Risk", "PII exposure + fines"], fix: "AAP + API Sec" },
+              { steps: ["DDoS", "volumetric + app-layer", "Origin Overload", "infra can't scale", "Site Goes Down", "revenue = $0"], fix: "Prolexic" },
             ].map((chain, i) => (
               <div key={i} className="flex items-center gap-2">
                 <div className="flex-1 bg-destructive/8 border border-destructive/15 rounded-lg p-2.5 text-center">
@@ -116,10 +117,10 @@ const SecurityAnalysisSlide = () => {
         <div className="bg-secondary text-secondary-foreground rounded-xl p-4 flex items-start gap-3">
           <Shield size={20} className="text-primary shrink-0 mt-0.5" />
           <div>
-            <p className="font-display font-bold text-sm">These threats are interconnected — they require a unified platform</p>
+            <p className="font-display font-bold text-sm">Point solutions can't fix a chain reaction. You need a platform.</p>
             <p className="text-secondary-foreground/70 text-xs mt-1">
-              Bots that scrape inventory also test stolen credentials. Credential stuffing leads to account takeover which enables carding. 
-              Akamai's integrated platform addresses all vectors at the edge simultaneously.
+              The bots scraping your catalog are the same bots stuffing credentials. The stuffing leads to carding. 
+              Akamai's integrated platform breaks every link in the chain — at the edge, before origin ever sees it.
             </p>
           </div>
         </div>

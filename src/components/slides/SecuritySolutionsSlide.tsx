@@ -7,86 +7,92 @@ const securitySolutions = [
   {
     icon: Shield,
     issue: "DDoS attacks on origin",
+    headline: "20+ Tbps of 'nope.'",
     solution: "Prolexic + Site Shield",
     products: ["Prolexic", "Site Shield"],
     steps: [
-      "Enable Prolexic scrubbing — traffic routes through 300+ scrubbing centers detecting volumetric, protocol, and app-layer attacks",
-      "Activate Site Shield — real origin IPs masked behind Akamai edge. Block non-Akamai traffic via firewall ACLs",
-      "Configure drop thresholds for obvious attacks — >10,000 req/sec from single IP, >1M req/min from single /16 subnet",
-      "mPulse monitors origin health and attack traffic — track dropped traffic, origin response time, incident timeline",
+      "Prolexic scrubbing — 300+ centers detect volumetric, protocol, and app-layer attacks.",
+      "Site Shield hides real origin IPs. Block non-Akamai traffic via firewall ACLs.",
+      "Drop thresholds: >10K req/sec from one IP, >1M req/min from a /16 subnet → auto-blocked.",
+      "mPulse tracks origin health, dropped traffic, and incident timelines.",
     ],
-    result: "10+ Tbps attack capacity absorbed at edge, origin stays online, attackers can't find real infrastructure",
-    bestPractice: "Enable Site Shield Day 1 to hide origin IPs — this single step prevents most direct-to-origin attacks",
+    result: "10+ Tbps absorbed at edge. Origin stays up. Attackers can't even find it.",
+    bestPractice: "Enable Site Shield Day 1 — hiding origin IPs prevents most direct-to-origin attacks immediately.",
   },
   {
     icon: AlertTriangle,
     issue: "Legacy WAF rules outdated",
+    headline: "Rules that update themselves.",
     solution: "App & API Protector (AAP) — Adaptive Security Engine",
     products: ["App & API Protector"],
     steps: [
-      "Audit current WAF rules — identify outdated signatures missing OWASP Top 10 coverage (injection, broken auth, data exposure)",
-      "Enable AAP managed rules — auto-updating daily based on global attack trends, new malware, CVEs, zero-days",
-      "Deploy reputation-based rules — Akamai tracks attacker IP behavior globally and blocks known sources automatically",
-      "7-day tuning window — deploy in Alert mode, review false positives, then switch to Deny mode with confidence",
+      "Audit existing rules — find gaps in OWASP Top 10 coverage (injection, broken auth, data exposure).",
+      "Enable AAP managed rules — auto-updating daily from global attack trends, CVEs, zero-days.",
+      "Reputation-based blocking — Akamai tracks attacker IPs globally. Known bad actors auto-blocked.",
+      "7-day tuning: deploy in Alert mode → review false positives → flip to Deny with confidence.",
     ],
-    result: "Modern attack coverage, zero manual rule updates, 5x fewer false positives vs legacy WAF",
-    bestPractice: "Use Adaptive Security Engine auto-tuning — 7-day alert-only baseline before switching to deny mode",
+    result: "Modern coverage. Zero manual updates. 5× fewer false positives than legacy WAF.",
+    bestPractice: "Adaptive Security Engine auto-tuning — 7 days of learning before enforcement. No guesswork.",
   },
   {
     icon: UserX,
     issue: "Credential stuffing surge",
+    headline: "Bots login 1,000×/sec. Humans don't.",
     solution: "Bot Manager Premier + Rate Limiting",
     products: ["Bot Manager Premier", "AAP"],
     steps: [
-      "Deploy Bot Manager on login endpoints — analyze 100+ behavioral signals: mouse movement, keystroke timing, device fingerprints",
-      "Detect stuffing signatures — rapid-fire failed logins, retry timing patterns identical to bot templates, geographic mismatches",
-      "Enforce adaptive challenges — legitimate users pass once (device fingerprint stored), bot requests get progressively harder challenges",
-      "Integrate with customer's account system — lock accounts after 5 failed attempts, trigger 2FA for suspicious logins",
+      "Bot Manager on login endpoints — 100+ behavioral signals: mouse, keystrokes, device fingerprints.",
+      "Stuffing signatures: rapid failed logins, retry patterns identical to bot templates, geo mismatches.",
+      "Adaptive challenges — legit users pass once (fingerprint stored). Bots get progressively harder challenges.",
+      "Integration: lock after 5 fails, trigger 2FA for suspicious logins.",
     ],
-    result: "99% of credential stuffing blocked before origin sees it, zero legitimate user friction",
-    bestPractice: "Start Bot Manager in monitoring mode for 48-72 hours to classify bot categories before enforcement",
+    result: "99% of stuffing blocked before origin sees it. Zero friction for real users.",
+    bestPractice: "Monitor mode first (48-72h) to classify bot categories before flipping to enforcement.",
   },
   {
     icon: ShoppingCart,
-    issue: "Inventory scraping by competitive bots",
+    issue: "Inventory scraping by bots",
+    headline: "IP blocks don't work when they rotate 10K proxies.",
     solution: "Bot Manager Behavioral Fingerprinting",
     products: ["Bot Manager Premier"],
     steps: [
-      "Enable Bot Manager on catalog endpoints — IP blocks fail because scrapers rotate proxies. Focus on behavior instead",
-      "Identify scraper patterns — perfect request timing, missing headers, identical User-Agent across 100+ IPs, sequential product enumeration",
-      "Fingerprint devices — TLS analysis, JavaScript execution tests, cookie handling. Same fingerprint across 50 IPs = scraper",
-      "Rate limit suspicious fingerprints to 10 req/min vs 1,000 for real users. Force CAPTCHA on first request",
+      "Bot Manager on catalog endpoints — forget IPs, focus on behavior.",
+      "Scraper tells: perfect timing, missing headers, same User-Agent across 100+ IPs, sequential enumeration.",
+      "Device fingerprinting: TLS analysis, JS execution tests, cookie handling. Same fingerprint on 50 IPs = scraper.",
+      "Rate limit suspects to 10 req/min. Real users get 1,000. Force CAPTCHA on first request.",
     ],
-    result: "Scrapers blocked by behavior not IP, competitive intel loss ends, inventory data stays proprietary",
-    bestPractice: "Use crypto challenges instead of CAPTCHAs — invisible to legitimate users, impossible for bots to solve",
+    result: "Scrapers blocked by behavior, not IP. Inventory data stays proprietary.",
+    bestPractice: "Crypto challenges > CAPTCHAs — invisible to humans, impossible for bots.",
   },
   {
     icon: CreditCard,
     issue: "Carding on checkout APIs",
+    headline: "50 cards in 10 seconds? That's not shopping.",
     solution: "AAP Rate Limiting + Bot Manager",
     products: ["AAP", "Bot Manager Premier"],
     steps: [
-      "Instrument checkout endpoints — AAP learns normal API usage: 1 card validation per 30s per user, <5 card attempts per session",
-      "Detect carding patterns — rapid-fire card validations, 50 different cards with same CVV, geographic jumps in seconds",
-      "Block & notify — block transaction immediately, flag account, send fraud signal to payment processor",
-      "Force step-up authentication for flagged transactions — re-enter CVV, OTP verification, blacklist card fingerprints",
+      "Instrument checkout — AAP learns normal: 1 card validation per 30s, <5 attempts per session.",
+      "Carding tells: rapid-fire validations, 50 cards same CVV, geographic jumps in seconds.",
+      "Block + alert — kill transaction, flag account, notify payment processor.",
+      "Step-up auth: re-enter CVV, OTP, blacklist card fingerprints.",
     ],
-    result: "Carding success rate drops to 0.01%, payment processor alerted before chargebacks",
-    bestPractice: "Apply positive security model with schema validation — only allow expected API parameter formats through",
+    result: "Carding success rate → 0.01%. Payment processor alerted before chargebacks.",
+    bestPractice: "Positive security model: only allow expected API parameters through. Everything else is blocked.",
   },
   {
     icon: Bot,
-    issue: "Sophisticated bot evasion (IP rotation, spoofed clients)",
-    solution: "Bot Manager ML Fingerprinting + Behavioral Analysis",
+    issue: "Sophisticated bot evasion",
+    headline: "Spoof one signal? Easy. Spoof 100? Impossible.",
+    solution: "Bot Manager ML + Behavioral Analysis",
     products: ["Bot Manager Premier"],
     steps: [
-      "Build behavioral baseline — track real Chrome behavior: TLS cipher order, JA3 fingerprints, JS engine behavior, cookie handling",
-      "Deploy ML fingerprinting — compare incoming requests against baseline. Spoofed User-Agent with rotating IPs still leaves traces",
-      "Detect spoofed headers — bot spoofs Chrome but missing Chrome-specific header permutations or uses Firefox HTTP/2 SETTINGS",
-      "Escalating enforcement — 1st offense: CAPTCHA, 2nd (same device, different IP): block 1h, 3rd: block 24h",
+      "Behavioral baseline: real Chrome TLS cipher order, JA3 fingerprints, JS engine, cookie handling.",
+      "ML compares incoming requests vs. baseline. Spoofed UA with rotating IPs still leaves traces.",
+      "Header forensics: bot claims Chrome but uses Firefox HTTP/2 SETTINGS. Caught.",
+      "Escalating enforcement: 1st → CAPTCHA, 2nd → 1h block, 3rd → 24h block.",
     ],
-    result: "Spoofing one feature possible; spoofing 100 features across 1000 requests = impossible. Attack ROI becomes negative",
-    bestPractice: "Behavioral analysis catches bots that rotate IPs and spoof User-Agents — signature-based solutions miss these entirely",
+    result: "Attack ROI goes negative. Spoofing 100 features across 1,000 requests = not worth it.",
+    bestPractice: "Behavioral > signature. Signature catches known bots. Behavioral catches the unknown ones.",
   },
 ];
 
@@ -97,12 +103,11 @@ const SecuritySolutionsSlide = () => {
     <SlideLayout id="security-solutions" pageNumber={6}>
       <div className="space-y-6">
         <div className="text-center space-y-2">
-          <p className="text-accent font-semibold tracking-widest uppercase text-sm">Section B — Security Architecture</p>
+          <p className="text-accent font-semibold tracking-widest uppercase text-sm">Section B — How We Lock It Down</p>
           <h2 className="font-display text-4xl md:text-5xl font-bold text-secondary">Security Solutions</h2>
-          <p className="text-muted-foreground text-sm">Click each threat for step-by-step mitigation</p>
+          <p className="text-muted-foreground text-sm">Click any threat for the full mitigation playbook</p>
         </div>
 
-        {/* 2-column layout for breathing room */}
         <div className="grid md:grid-cols-2 gap-5">
           {securitySolutions.map((s, i) => (
             <div
@@ -116,7 +121,7 @@ const SecuritySolutionsSlide = () => {
                 </div>
                 <div className="flex-1 min-w-0">
                   <h3 className="font-display font-bold text-secondary leading-tight">{s.issue}</h3>
-                  <p className="text-xs text-accent font-semibold mt-1">{s.solution}</p>
+                  <p className="text-xs text-muted-foreground mt-0.5 italic">{s.headline}</p>
                   <div className="flex flex-wrap gap-1.5 mt-2">
                     {s.products.map(p => (
                       <span key={p} className="text-[10px] px-2 py-0.5 rounded-full bg-accent/10 text-accent font-semibold">{p}</span>

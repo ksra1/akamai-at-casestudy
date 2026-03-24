@@ -4,39 +4,39 @@ import { Globe, Shield, Brain, Code2, Wrench, BarChart3, Zap } from "lucide-reac
 const advantages = [
   {
     icon: Globe,
-    title: "Largest Edge Network",
+    title: "Biggest Edge Network. Period.",
     stat: "4,200+ PoPs",
-    detail: "More points of presence = lower latency + better cache hit ratios globally. Critical for AT Retailers' multi-region operations.",
+    detail: "More edge = lower latency + higher cache hit ratios. When your users are in 3 regions, this matters.",
   },
   {
     icon: Shield,
-    title: "Integrated Platform",
+    title: "One Vendor, Not Five",
     stat: "Delivery + Security",
-    detail: "WAF, Bot, DDoS, and CDN on one platform. No separate vendors, no traffic tromboning, one pane of glass.",
+    detail: "WAF, Bot, DDoS, and CDN on one platform. No traffic tromboning between vendors. One bill, one dashboard.",
   },
   {
     icon: Brain,
-    title: "Bot Manager — Behavioral AI",
-    stat: "ML-Powered",
-    detail: "Behavioral analysis + ML catches sophisticated evasion that rule-based/signature-only solutions miss entirely.",
+    title: "Bots Can't Fool ML",
+    stat: "Behavioral AI",
+    detail: "Rule-based bot detection catches known patterns. Behavioral ML catches the ones that are actively trying to evade you.",
   },
   {
     icon: Code2,
-    title: "EdgeWorkers",
-    stat: "Edge Compute",
-    detail: "Custom JS/TS at the edge for A/B testing, personalization, header manipulation — no origin round-trips.",
+    title: "Code at the Edge",
+    stat: "EdgeWorkers",
+    detail: "Custom JS/TS at the edge for A/B testing, personalization, header manipulation. No origin round-trips needed.",
   },
   {
     icon: Wrench,
-    title: "Terraform & API-First",
-    stat: "Full Automation",
-    detail: "Terraform provider + Property Manager API = infrastructure-as-code for 5,000 hostnames. No manual portal clicking.",
+    title: "Infrastructure as Code",
+    stat: "Terraform + API-First",
+    detail: "Terraform provider + PAPI = 5,000 hostnames without clicking a single button in a portal.",
   },
   {
     icon: BarChart3,
-    title: "Real-Time Visibility",
+    title: "See Everything. Guess Nothing.",
     stat: "mPulse + DataStream",
-    detail: "RUM for Core Web Vitals + real-time log delivery to SIEM. Actionable insights, not just data.",
+    detail: "Real user monitoring for Core Web Vitals + real-time log delivery to your SIEM. Actionable insights, not just charts.",
   },
 ];
 
@@ -44,8 +44,9 @@ const CompetitiveSlide = () => (
   <SlideLayout id="competitive" variant="navy" pageNumber={10}>
     <div className="space-y-8">
       <div className="text-center space-y-2">
-        <p className="text-primary font-semibold tracking-widest uppercase text-sm">Competitive Advantages</p>
+        <p className="text-primary font-semibold tracking-widest uppercase text-sm">The Honest Answer</p>
         <h2 className="font-display text-4xl md:text-5xl font-bold text-primary-foreground">Why Akamai</h2>
+        <p className="text-primary-foreground/30 text-sm">Other CDNs deliver. We deliver, protect, and adapt — on the same platform.</p>
       </div>
 
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -67,7 +68,7 @@ const CompetitiveSlide = () => (
 
       <div className="text-center">
         <div className="inline-flex items-center gap-2 bg-primary/20 text-primary px-5 py-2.5 rounded-full text-sm font-semibold">
-          <Zap size={16} /> Akamai processes 30%+ of global web traffic daily — unmatched threat intelligence
+          <Zap size={16} /> 30%+ of global web traffic flows through Akamai daily — unmatched threat intelligence
         </div>
       </div>
     </div>

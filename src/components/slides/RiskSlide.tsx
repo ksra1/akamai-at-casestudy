@@ -4,22 +4,22 @@ import CalloutModal from "./CalloutModal";
 import { AlertTriangle, ArrowUpRight, Users } from "lucide-react";
 
 const risks = [
-  { id: 1, risk: "Customer skips testing — production issues", likelihood: 4, impact: 4, mitigation: "Canary deployments via GTM (10% → 50% → 100%). mPulse anomaly alerts trigger auto-rollback. Data shows 3x faster issue detection with staged rollout." },
-  { id: 2, risk: "30-day timeline too aggressive", likelihood: 3, impact: 4, mitigation: "Template-based automation reduces per-hostname effort to minutes. Terraform pipelines for batch operations. Prioritize revenue-critical hostnames in Wave 1." },
-  { id: 3, risk: "New teams cause misconfigurations", likelihood: 4, impact: 3, mitigation: "Locked-down golden templates with limited overrides. Week 1 mandatory training. Code review for template modifications. Role-based access in Property Manager." },
-  { id: 4, risk: "WAF false positives block traffic", likelihood: 3, impact: 5, mitigation: "Alert-only mode first 7 days. Adaptive Security Engine auto-tuning. Per-hostname exception policies. Rapid response runbook for false positive escalation." },
-  { id: 5, risk: "Bot evasion bypasses detection", likelihood: 3, impact: 3, mitigation: "Bot Manager Premier behavioral ML adapts continuously. 48-72h monitoring baseline before enforcement. Crypto challenges for gray-area traffic." },
+  { id: 1, risk: "Customer pushes straight to prod", likelihood: 4, impact: 4, mitigation: "Phased wave rollout — 500 → 1,500 → 3,000 hostnames. mPulse monitors each wave. DNS-based rollback in minutes. No formal QA needed, but safety is built in." },
+  { id: 2, risk: "30-day timeline is too tight", likelihood: 3, impact: 4, mitigation: "Template automation makes per-hostname work take minutes, not hours. Revenue-critical hostnames go first in Wave 1. If timeline slips, the most important properties are already live." },
+  { id: 3, risk: "New teams misconfigure properties", likelihood: 4, impact: 3, mitigation: "Golden templates with locked base rules. Teams extend but can't break the foundation. Week 1 training. Role-based access limits who can do what." },
+  { id: 4, risk: "WAF false positives block real traffic", likelihood: 3, impact: 5, mitigation: "Alert-only mode for 7 days. Adaptive Security Engine learns the traffic pattern. Per-hostname exception policies. Rapid response runbook for escalation." },
+  { id: 5, risk: "Bots evolve around detection", likelihood: 3, impact: 3, mitigation: "Bot Manager Premier uses behavioral ML that adapts continuously. 48-72h monitoring baseline before enforcement. Crypto challenges for gray-area traffic." },
 ];
 
 const raciData = [
-  { activity: "Template Design", r: "Akamai Delivery Team", a: "Akamai TPM (Me)", c: "AT Retailers Technical Lead", i: "AT Dev Teams" },
-  { activity: "Bulk Onboarding", r: "Akamai Delivery Team", a: "Akamai TPM (Me)", c: "AT IT Operations", i: "AT Business Stakeholders" },
-  { activity: "Cert Provisioning", r: "Akamai Delivery Team", a: "Akamai TPM (Me)", c: "AT IT Security", i: "AT Dev Teams" },
-  { activity: "WAF Configuration", r: "Akamai Security Team", a: "Akamai TPM (Me)", c: "AT SecOps Team", i: "AT Dev Teams" },
-  { activity: "Bot Manager Setup", r: "Akamai Security Team", a: "Akamai TPM (Me)", c: "AT E-commerce Team", i: "AT Business Stakeholders" },
-  { activity: "DNS Cutover", r: "AT IT Operations", a: "Akamai TPM (Me)", c: "Akamai Delivery Team", i: "AT Business Owners" },
-  { activity: "Training & Enablement", r: "Akamai TPM (Me)", a: "AT Retailers Technical Lead", c: "Akamai PS Team", i: "All AT Teams" },
-  { activity: "Go-Live Approval", r: "Akamai TPM (Me)", a: "AT Retailers Technical Lead", c: "All Teams", i: "Executive Sponsors" },
+  { activity: "Template Design", r: "Akamai Delivery", a: "TPM (Me)", c: "AT Tech Lead", i: "AT Dev Teams" },
+  { activity: "Bulk Onboarding", r: "Akamai Delivery", a: "TPM (Me)", c: "AT IT Ops", i: "AT Stakeholders" },
+  { activity: "Cert Provisioning", r: "Akamai Delivery", a: "TPM (Me)", c: "AT IT Security", i: "AT Dev Teams" },
+  { activity: "WAF Config", r: "Akamai Security", a: "TPM (Me)", c: "AT SecOps", i: "AT Dev Teams" },
+  { activity: "Bot Manager", r: "Akamai Security", a: "TPM (Me)", c: "AT E-commerce", i: "AT Stakeholders" },
+  { activity: "DNS Cutover", r: "AT IT Ops", a: "TPM (Me)", c: "Akamai Delivery", i: "AT Biz Owners" },
+  { activity: "Training", r: "TPM (Me)", a: "AT Tech Lead", c: "Akamai PS", i: "All AT Teams" },
+  { activity: "Go-Live Approval", r: "TPM (Me)", a: "AT Tech Lead", c: "All Teams", i: "Exec Sponsors" },
 ];
 
 const RiskSlide = () => {
@@ -29,15 +29,16 @@ const RiskSlide = () => {
     <SlideLayout id="risk" variant="alt" pageNumber={9}>
       <div className="space-y-6">
         <div className="text-center space-y-2">
-          <p className="text-accent font-semibold tracking-widest uppercase text-sm">Section A — Governance</p>
-          <h2 className="font-display text-4xl md:text-5xl font-bold text-secondary">Risk & Change Management</h2>
+          <p className="text-accent font-semibold tracking-widest uppercase text-sm">Section A — Being Honest About Risk</p>
+          <h2 className="font-display text-4xl md:text-5xl font-bold text-secondary">What Could Go Wrong</h2>
+          <p className="text-sm text-muted-foreground">And exactly how we'll handle it.</p>
         </div>
 
         <div className="grid md:grid-cols-2 gap-6">
           {/* Risk Matrix */}
           <div className="bg-card rounded-xl p-6 border border-border shadow-sm">
             <h3 className="font-display font-semibold text-secondary mb-4 flex items-center gap-2">
-              <AlertTriangle size={18} className="text-accent" /> Risk Matrix
+              <AlertTriangle size={18} className="text-accent" /> Risk Heat Map
             </h3>
             <div className="relative aspect-square max-w-[280px] mx-auto">
               <div className="absolute inset-0 grid grid-cols-5 grid-rows-5">
@@ -89,7 +90,7 @@ const RiskSlide = () => {
         {/* RACI */}
         <div className="bg-card rounded-xl p-5 border border-border shadow-sm overflow-x-auto">
           <h3 className="font-display font-semibold text-secondary mb-3 flex items-center gap-2">
-            <Users size={16} className="text-primary" /> RACI Matrix
+            <Users size={16} className="text-primary" /> Who Does What — RACI
           </h3>
           <table className="w-full text-sm">
             <thead>
@@ -118,7 +119,7 @@ const RiskSlide = () => {
         {/* Escalation */}
         <div className="flex justify-center">
           <div className="flex items-center gap-2 text-xs">
-            {["Team Lead", "Akamai TPM", "Account Director", "VP Escalation"].map((level, i) => (
+            {["Team Lead", "TPM (Me)", "Account Director", "VP Escalation"].map((level, i) => (
               <div key={level} className="flex items-center gap-2">
                 <div className="bg-secondary text-secondary-foreground px-3 py-1.5 rounded-lg font-semibold">{level}</div>
                 {i < 3 && <ArrowUpRight size={14} className="text-accent" />}
@@ -132,7 +133,7 @@ const RiskSlide = () => {
         <CalloutModal key={r.id} open={riskModal === r.id} onOpenChange={() => setRiskModal(null)} title={`Risk #${r.id}: ${r.risk}`}>
           <div className="space-y-3">
             <div className="bg-primary/8 border border-primary/20 rounded-lg p-4">
-              <p className="text-sm font-semibold text-primary mb-1">Mitigation Strategy</p>
+              <p className="text-sm font-semibold text-primary mb-1">How we handle it</p>
               <p className="text-sm">{r.mitigation}</p>
             </div>
           </div>

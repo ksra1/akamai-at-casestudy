@@ -7,87 +7,93 @@ const deliverySolutions = [
   {
     icon: Clock,
     issue: "5,000 hostnames in 30 days",
+    headline: "Automate everything. Click nothing.",
     solution: "Property Manager API + CPS Automation + Bulk DNS",
     products: ["Property Manager API", "CPS API", "mPulse"],
     steps: [
-      "Define reusable config template — baseline caching, compression, origin health checks, WAF rules bundled as a golden template",
-      "PAPI bulk-creates 5,000 properties from template in parallel — zero manual configuration per hostname",
-      "Automate SSL/TLS certificate provisioning via CPS API — bulk-enroll DV certs (or upload customer's third-party certs) for all 5,000 hostnames. Use SAN certificates to group hostnames (up to 100 SANs per cert) reducing cert count to ~50 managed certificates",
-      "Orchestrate phased DNS cutover — CNAME updates in batches (1,000/week) coordinated with customer's DNS team",
-      "mPulse monitors real-user performance per cohort — page load times, Core Web Vitals, error rates validate each batch",
+      "Golden template — caching, compression, origin health, WAF rules baked in. One template to rule them all.",
+      "PAPI bulk-creates 5,000 properties in parallel. Zero manual config per hostname.",
+      "CPS API auto-provisions SSL certs — SAN grouping (100 per cert) cuts cert management to ~50 certs total.",
+      "Phased DNS cutover — 1,000 hostnames/week, coordinated with customer's DNS team.",
+      "mPulse validates each batch — page load, Core Web Vitals, error rates. Green light → next wave.",
     ],
-    result: "Zero manual Akamai work, automated cert lifecycle, phased risk mitigation per batch, rollback capability, 30-day completion",
-    bestPractice: "Use golden templates with locked-down rules to prevent configuration drift across 5,000 properties. Use SAN grouping in CPS to minimize cert management overhead.",
+    result: "Fully automated pipeline. No portal clicking. 30-day completion with rollback at every step.",
+    bestPractice: "Lock golden template rules to prevent config drift. SAN grouping in CPS minimizes cert overhead.",
   },
   {
     icon: Zap,
-    issue: "Handle 5x peak traffic",
+    issue: "Handle 5× peak traffic",
+    headline: "Let the edge do the heavy lifting.",
     solution: "Ion + SureRoute + GTM Failover",
     products: ["Ion", "GTM", "mPulse"],
     steps: [
-      "Configure aggressive edge caching for static & semi-dynamic content — absorb peak load at CDN before origin",
-      "Enable SureRoute intelligent origin selection — real-time monitoring of origin latency across multiple origins",
-      "Set up GTM failover groups with health checks — if primary origin latency exceeds threshold, traffic auto-routes to secondary",
-      "mPulse tracks cache hit ratio and user experience metrics (LCP, TTFB) to validate offload effectiveness during peaks",
+      "Aggressive edge caching for static & semi-dynamic content — absorb spikes before origin knows it happened.",
+      "SureRoute picks the fastest path to origin in real time. Bad route? Automatically rerouted.",
+      "GTM failover: if primary origin goes slow, traffic auto-shifts to secondary. No human needed.",
+      "mPulse tracks cache hit ratio + user experience during peaks. You see problems before users complain.",
     ],
-    result: "Edge absorbs 5× spikes, origin handles baseline load only — reducing the risk of overload-related 5xx errors",
-    bestPractice: "Enable Tiered Distribution to reduce origin requests by 60-80% through parent cache hierarchy",
+    result: "Edge absorbs 5× spikes. Origin handles baseline only — reducing risk of overload-related 5xx.",
+    bestPractice: "Enable Tiered Distribution — reduces origin requests 60-80% via parent cache hierarchy.",
   },
   {
     icon: Image,
     issue: "Slow image loading",
+    headline: "Stop serving desktop images to phones.",
     solution: "Image & Video Manager (IVM)",
     products: ["Image & Video Manager", "mPulse"],
     steps: [
-      "Enable IVM on all image paths in Property Manager to intercept image requests at edge",
-      "Configure quality thresholds — IVM auto-detects browser and converts to optimal format (WebP/AVIF/JPEG fallback)",
-      "Enable responsive sizing — IVM detects device width and scales images (mobile 480px, tablet 768px, desktop 1920px)",
-      "mPulse measures LCP contribution and conversion metrics — target <200ms image delivery",
+      "Enable IVM on all image paths — intercept at edge, transform on the fly.",
+      "Auto-detect browser → WebP/AVIF/JPEG fallback. Best format, zero developer effort.",
+      "Device-aware sizing — mobile 480px, tablet 768px, desktop 1920px. Automatically.",
+      "mPulse measures LCP impact. Target: <200ms image delivery.",
     ],
-    result: "Images 50-70% smaller, zero origin CPU cost for transformations, faster page loads, improved conversion",
-    bestPractice: "Use perceptual quality tuning instead of fixed quality — maintains visual quality with maximum compression",
+    result: "Images 50-70% smaller. Zero origin CPU. Faster pages. Better conversions.",
+    bestPractice: "Perceptual quality tuning > fixed quality. Looks the same, compresses way more.",
   },
   {
     icon: AlertTriangle,
-    issue: "No testing — straight to production",
-    solution: "Phased Cohort Rollout with Instant Rollback",
+    issue: "No testing — straight to prod",
+    headline: "We don't skip testing. We make it invisible.",
+    solution: "Phased Cohort Rollout + Instant Rollback",
     products: ["Property Manager API", "mPulse", "GTM"],
     steps: [
-      "Onboard hostnames in controlled waves (pilot → scale) — Wave 1 is 500 low-risk hostnames to validate golden template",
-      "DNS cutover per wave: update CNAME from legacy provider to Akamai edge. Rollback = revert CNAME (instant, no Akamai config change needed)",
-      "mPulse monitors real-user performance per wave — error rate, LCP, TTFB. If any metric degrades beyond threshold, wave is paused and CNAME reverted",
-      "Each wave must pass a success checkpoint (error rate <0.5%, performance within 10% of baseline) before the next wave begins",
+      "Onboard in waves — Wave 1 is 500 low-risk hostnames. Prove the template works before scaling.",
+      "DNS cutover per wave: CNAME to Akamai edge. Rollback = revert CNAME. Instant. No config change needed.",
+      "mPulse watches each wave — errors, LCP, TTFB. Threshold breach? Wave pauses, CNAME reverts.",
+      "Success checkpoint per wave (error rate <0.5%, perf within 10%) before next wave begins.",
     ],
-    result: "Production-first approach with built-in safety — no formal QA environment needed, rollback in minutes via DNS",
-    bestPractice: "Keep legacy provider active during migration window — dual-path ensures instant fallback until all waves are validated",
+    result: "Production-first with built-in safety nets. No QA environment needed. Rollback in minutes via DNS.",
+    bestPractice: "Keep legacy provider active during migration — dual-path ensures instant fallback until validated.",
   },
   {
     icon: Globe,
-    issue: "Multi-geography resource management",
+    issue: "Multi-geography coordination",
+    headline: "Three regions. One control plane.",
     solution: "GTM Geographic Routing + DataStream",
     products: ["GTM", "mPulse", "DataStream"],
     steps: [
-      "Define primary/secondary origins per region — EU (Frankfurt + London), US (Virginia + Oregon), LATAM (São Paulo)",
-      "Configure GTM health checks every 60s — when primary origin exceeds latency threshold, traffic auto-routes to secondary",
-      "mPulse tracks real latency per region — if EU origin latency >300ms, GTM auto-reduces traffic allocation",
-      "DataStream provides per-region traffic trends and origin utilization — capacity planning becomes data-driven",
+      "Primary + secondary origins per region — EU (Frankfurt + London), US (Virginia + Oregon), LATAM (São Paulo).",
+      "GTM health checks every 60s — origin too slow? Traffic auto-reroutes. No tickets filed.",
+      "mPulse per-region latency tracking — if EU >300ms, GTM reduces allocation automatically.",
+      "DataStream: per-region traffic trends, origin utilization. Capacity planning becomes data-driven.",
     ],
-    result: "Centralized resource governance, no regional outages, traffic auto-adapts to conditions",
-    bestPractice: "Use GTM performance-based routing (not just geographic) — routes users to fastest origin, not just nearest",
+    result: "Centralized governance. No regional outages. Traffic adapts to conditions automatically.",
+    bestPractice: "Performance-based routing > geographic routing. Route to fastest origin, not just nearest.",
   },
   {
     icon: Users,
-    issue: "New teams untrained on Akamai",
-    solution: "Config-as-Code Templates + Self-Service",
+    issue: "Teams new to Akamai",
+    headline: "Make it so easy they can't mess it up.",
+    solution: "Config-as-Code + Self-Service Dashboards",
     products: ["Property Manager API", "Control Center"],
     steps: [
-      "Build reusable Terraform/IaC templates — baseline caching, compression, WAF rules bundled per use case",
-      "Create property library with pre-built rule bundles — teams select template and deploy via Git push",
-      "Define deployment pipeline — Git push triggers PAPI property activation with automatic rollback on validation failure",
-      "Control Center provides self-service dashboards — teams view cache metrics, origin health without CLI knowledge",
+      "Terraform templates per use case — teams pick a template and deploy via Git push.",
+      "Pre-built rule bundles — static CDN, API acceleration, WAF baseline. Choose your flavor.",
+      "Git push → PAPI activation → auto-rollback on validation failure. CI/CD for CDN configs.",
+      "Control Center dashboards — cache metrics, origin health. No CLI knowledge required.",
     ],
-    result: "Teams onboard hostnames with zero CLI knowledge, consistent configuration, deployment time reduced 80%",
-    bestPractice: "Lock template rules as read-only — teams can extend but not modify baseline security and caching rules",
+    result: "Teams go from zero Akamai knowledge to deploying in production. Safely.",
+    bestPractice: "Lock template base rules as read-only. Teams extend, but can't break the foundation.",
   },
 ];
 
@@ -98,12 +104,11 @@ const SolutionDesignSlide = () => {
     <SlideLayout id="delivery-solutions" variant="alt" pageNumber={5}>
       <div className="space-y-6">
         <div className="text-center space-y-2">
-          <p className="text-primary font-semibold tracking-widest uppercase text-sm">Section A — Delivery Strategy</p>
+          <p className="text-primary font-semibold tracking-widest uppercase text-sm">Section A — How We Ship It</p>
           <h2 className="font-display text-4xl md:text-5xl font-bold text-secondary">Delivery Solutions</h2>
-          <p className="text-muted-foreground text-sm">Click each challenge for step-by-step solution</p>
+          <p className="text-muted-foreground text-sm">Click any card for the full playbook</p>
         </div>
 
-        {/* 2-column layout for more breathing room */}
         <div className="grid md:grid-cols-2 gap-5">
           {deliverySolutions.map((s, i) => (
             <div
@@ -117,7 +122,7 @@ const SolutionDesignSlide = () => {
                 </div>
                 <div className="flex-1 min-w-0">
                   <h3 className="font-display font-bold text-secondary leading-tight">{s.issue}</h3>
-                  <p className="text-xs text-primary font-semibold mt-1">{s.solution}</p>
+                  <p className="text-xs text-muted-foreground mt-0.5 italic">{s.headline}</p>
                   <div className="flex flex-wrap gap-1.5 mt-2">
                     {s.products.map(p => (
                       <span key={p} className="text-[10px] px-2 py-0.5 rounded-full bg-primary/10 text-primary font-semibold">{p}</span>
@@ -133,7 +138,6 @@ const SolutionDesignSlide = () => {
         </div>
       </div>
 
-      {/* Detail modals */}
       {deliverySolutions.map((s, i) => (
         <CalloutModal key={s.issue} open={activeModal === i} onOpenChange={() => setActiveModal(null)} title={s.issue}>
           <div className="space-y-4">

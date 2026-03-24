@@ -6,35 +6,35 @@ import { Zap, Shield, Globe, BookOpen, CheckCircle2 } from "lucide-react";
 const pillars = [
   {
     icon: Zap,
-    title: "Delivery",
+    title: "We ship it",
     color: "bg-primary",
     outcomes: [
-      "5,000 hostnames onboarded in 30 days via PAPI templates",
-      "5x traffic capacity via Ion + GTM failover",
-      "50-70% image optimization via IVM",
-      "Canary deployments = safe production path",
+      "5,000 hostnames automated via PAPI templates",
+      "5× traffic absorbed at edge, origin stays calm",
+      "Images 50-70% lighter via IVM",
+      "Phased waves = safe, fast, reversible",
     ],
   },
   {
     icon: Shield,
-    title: "Security",
+    title: "We lock it down",
     color: "bg-accent",
     outcomes: [
       "4-layer defense: DDoS → WAF → Bot → API",
-      "Behavioral ML stops sophisticated bot evasion",
-      "Adaptive WAF auto-tunes, 5x fewer false positives",
-      "Origin fully shielded via Site Shield",
+      "Behavioral ML catches what signatures miss",
+      "Adaptive WAF auto-tunes — 5× fewer false positives",
+      "Origin hidden behind Site Shield from day 1",
     ],
   },
   {
     icon: Globe,
-    title: "Governance",
+    title: "We make it stick",
     color: "bg-akamai-green",
     outcomes: [
-      "30-day phased roadmap with clear milestones",
-      "RACI & escalation paths defined",
-      "Config-as-code for team autonomy",
-      "Training + handoff for long-term success",
+      "30-day roadmap with weekly checkpoints",
+      "RACI + escalation paths — everyone knows their job",
+      "Config-as-Code for team autonomy",
+      "Training + handoff for long-term ownership",
     ],
   },
 ];
@@ -46,8 +46,8 @@ const SummarySlide = () => {
     <SlideLayout id="summary" variant="navy" pageNumber={11}>
       <div className="flex flex-col items-center justify-center space-y-10 min-h-[70vh]">
         <div className="text-center space-y-2">
-          <p className="text-primary font-semibold tracking-widest uppercase text-sm">Bringing It All Together</p>
-          <h2 className="font-display text-4xl md:text-5xl font-bold text-primary-foreground">Summary</h2>
+          <p className="text-primary font-semibold tracking-widest uppercase text-sm">That's the plan</p>
+          <h2 className="font-display text-4xl md:text-5xl font-bold text-primary-foreground">Let's Build This</h2>
         </div>
 
         <div className="grid md:grid-cols-3 gap-6 w-full max-w-5xl">
@@ -73,7 +73,7 @@ const SummarySlide = () => {
 
         <div className="text-center space-y-3">
           <h3 className="font-display text-3xl font-bold text-primary-foreground">Thank You</h3>
-          <p className="text-primary-foreground/40 text-lg">Questions & Discussion</p>
+          <p className="text-primary-foreground/40 text-lg">Questions? Let's talk.</p>
         </div>
 
         <button
