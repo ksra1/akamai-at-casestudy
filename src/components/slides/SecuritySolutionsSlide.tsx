@@ -94,32 +94,31 @@ const SecuritySolutionsSlide = () => {
   const [activeModal, setActiveModal] = useState<number | null>(null);
 
   return (
-    <SlideLayout id="security-solutions" pageNumber={6}>
+    <SlideLayout id="security-solutions" variant="alt" pageNumber={6}>
       <div className="space-y-6">
         <div className="text-center space-y-2">
-          <p className="text-accent font-semibold tracking-widest uppercase text-sm">Section B — Security Architecture</p>
-          <h2 className="font-display text-4xl md:text-5xl font-bold text-secondary">Security Solutions</h2>
-          <p className="text-muted-foreground text-sm">Click each threat for step-by-step mitigation</p>
+          <p className="text-accent font-semibold tracking-[0.2em] uppercase text-sm">Section B — Security Architecture</p>
+          <h2 className="font-display text-4xl md:text-5xl font-bold text-foreground">Security Solutions</h2>
+          <p className="text-foreground/30 text-sm">Click each threat for step-by-step mitigation</p>
         </div>
 
-        {/* 2-column layout for breathing room */}
         <div className="grid md:grid-cols-2 gap-5">
           {securitySolutions.map((s, i) => (
             <div
               key={s.issue}
               onClick={() => setActiveModal(i)}
-              className="visual-card callout-badge bg-card rounded-xl border border-border p-5 shadow-sm group cursor-pointer"
+              className="glass-card visual-card callout-badge rounded-xl p-5 group cursor-pointer"
             >
               <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center shrink-0">
+                <div className="w-12 h-12 rounded-xl bg-accent/10 border border-accent/20 flex items-center justify-center shrink-0">
                   <s.icon size={24} className="text-accent" />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <h3 className="font-display font-bold text-secondary leading-tight">{s.issue}</h3>
+                  <h3 className="font-display font-bold text-foreground leading-tight">{s.issue}</h3>
                   <p className="text-xs text-accent font-semibold mt-1">{s.solution}</p>
                   <div className="flex flex-wrap gap-1.5 mt-2">
                     {s.products.map(p => (
-                      <span key={p} className="text-[10px] px-2 py-0.5 rounded-full bg-accent/10 text-accent font-semibold">{p}</span>
+                      <span key={p} className="text-[10px] px-2 py-0.5 rounded-full bg-accent/10 border border-accent/20 text-accent font-semibold">{p}</span>
                     ))}
                   </div>
                 </div>
@@ -138,7 +137,6 @@ const SecuritySolutionsSlide = () => {
             <div className="bg-accent/5 border border-accent/15 rounded-lg p-3">
               <p className="text-sm font-semibold text-accent">{s.solution}</p>
             </div>
-
             <div className="space-y-3">
               {s.steps.map((step, idx) => (
                 <div key={idx} className="flex items-start gap-3">
@@ -149,12 +147,10 @@ const SecuritySolutionsSlide = () => {
                 </div>
               ))}
             </div>
-
             <div className="bg-akamai-green/8 border border-akamai-green/20 rounded-lg p-3 flex items-start gap-2">
               <CheckCircle2 size={16} className="text-akamai-green shrink-0 mt-0.5" />
               <p className="text-sm font-semibold text-akamai-green">{s.result}</p>
             </div>
-
             <div className="bg-primary/8 border border-primary/20 rounded-lg p-3">
               <p className="text-xs font-semibold text-primary uppercase tracking-wider mb-1">Best Practice</p>
               <p className="text-sm">{s.bestPractice}</p>

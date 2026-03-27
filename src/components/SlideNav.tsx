@@ -50,10 +50,10 @@ const SlideNav = () => {
           className="group flex items-center gap-2 justify-end"
           title={s.label}
         >
-          <span className={`text-xs font-medium transition-all opacity-0 group-hover:opacity-100 ${active === s.id ? "!opacity-100 text-primary" : "text-muted-foreground"}`}>
+          <span className={`text-xs font-medium transition-all opacity-0 group-hover:opacity-100 ${active === s.id ? "!opacity-100 text-primary" : "text-foreground/40"}`}>
             {s.label}
           </span>
-          <div className={`w-2.5 h-2.5 rounded-full transition-all ${active === s.id ? "bg-primary scale-125" : "bg-muted-foreground/30 hover:bg-muted-foreground/50"}`} />
+          <div className={`w-2 h-2 rounded-full transition-all ${active === s.id ? "bg-primary scale-150 glow-primary" : "bg-foreground/20 hover:bg-foreground/40"}`} />
         </button>
       ))}
     </nav>

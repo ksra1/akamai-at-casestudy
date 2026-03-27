@@ -55,11 +55,11 @@ const laneColors: Record<string, string> = {
 };
 
 const RoadmapSlide = () => (
-  <SlideLayout id="roadmap" pageNumber={8}>
+  <SlideLayout id="roadmap" variant="alt" pageNumber={8}>
     <div className="space-y-6">
       <div className="text-center space-y-2">
-        <p className="text-primary font-semibold tracking-widest uppercase text-sm">Section A — Execution Plan</p>
-        <h2 className="font-display text-4xl md:text-5xl font-bold text-secondary">30-Day Roadmap</h2>
+        <p className="text-primary font-semibold tracking-[0.2em] uppercase text-sm">Section A — Execution Plan</p>
+        <h2 className="font-display text-4xl md:text-5xl font-bold text-foreground">30-Day Roadmap</h2>
       </div>
 
       {/* Swim lane legend */}
@@ -75,10 +75,10 @@ const RoadmapSlide = () => (
       {/* Timeline cards */}
       <div className="grid md:grid-cols-4 gap-4">
         {weeks.map(w => (
-          <div key={w.week} className={`border-t-4 ${w.color} bg-card rounded-xl p-5 shadow-sm space-y-4`}>
+          <div key={w.week} className={`border-t-4 ${w.color} glass-card rounded-xl p-5 space-y-4`}>
             <div>
-              <h3 className="font-display font-bold text-secondary text-lg">{w.week}</h3>
-              <p className="text-xs text-muted-foreground">{w.days} · {w.title}</p>
+              <h3 className="font-display font-bold text-foreground text-lg">{w.week}</h3>
+              <p className="text-xs text-foreground/30">{w.days} · {w.title}</p>
             </div>
 
             {w.items.map(lane => (
@@ -86,7 +86,7 @@ const RoadmapSlide = () => (
                 <p className={`text-xs font-bold ${laneColors[lane.lane]} mb-1.5`}>{lane.lane}</p>
                 <ul className="space-y-1">
                   {lane.tasks.map(task => (
-                    <li key={task} className="flex items-start gap-1.5 text-xs text-muted-foreground">
+                    <li key={task} className="flex items-start gap-1.5 text-xs text-foreground/40">
                       <CheckCircle2 size={11} className="text-primary mt-0.5 shrink-0" />
                       {task}
                     </li>
@@ -103,9 +103,9 @@ const RoadmapSlide = () => (
         <AlertCircle size={20} className="text-accent shrink-0 mt-0.5" />
         <div className="text-sm">
           <p className="font-semibold text-accent">Addressing "No Testing" Preference</p>
-          <p className="text-muted-foreground mt-1">
-            Instead of skipping testing entirely, we use <strong>phased hostname cohorts</strong> — onboarding in controlled waves (500 → 1,500 → 3,000). 
-            Each wave is validated via mPulse before the next begins. If any wave shows errors or performance degradation, 
+          <p className="text-foreground/40 mt-1">
+            Instead of skipping testing entirely, we use <strong className="text-foreground/60">phased hostname cohorts</strong> — onboarding in controlled waves (500 → 1,500 → 3,000).
+            Each wave is validated via mPulse before the next begins. If any wave shows errors or performance degradation,
             the DNS cutover is instantly rolled back to the previous provider. Speed without gambling on stability.
           </p>
         </div>

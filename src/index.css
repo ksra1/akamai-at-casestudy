@@ -8,91 +8,62 @@ html {
 
 @layer base {
   :root {
-    --background: 0 0% 96%;
-    --foreground: 214 100% 21%;
+    /* Dark cinematic palette */
+    --background: 220 20% 6%;
+    --foreground: 210 20% 90%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 214 100% 21%;
+    --card: 220 20% 10%;
+    --card-foreground: 210 20% 90%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 214 100% 21%;
+    --popover: 220 20% 10%;
+    --popover-foreground: 210 20% 90%;
 
-    --primary: 198 100% 46%;
-    --primary-foreground: 0 0% 100%;
+    --primary: 195 100% 50%;
+    --primary-foreground: 220 20% 4%;
 
-    --secondary: 214 100% 21%;
-    --secondary-foreground: 0 0% 100%;
+    --secondary: 210 15% 16%;
+    --secondary-foreground: 210 20% 90%;
 
-    --muted: 0 0% 96%;
-    --muted-foreground: 214 20% 40%;
+    --muted: 220 15% 14%;
+    --muted-foreground: 210 10% 55%;
 
-    --accent: 33 100% 50%;
-    --accent-foreground: 0 0% 100%;
+    --accent: 28 100% 55%;
+    --accent-foreground: 220 20% 4%;
 
-    --destructive: 5 85% 51%;
+    --destructive: 0 72% 55%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 0 0% 88%;
-    --input: 0 0% 88%;
-    --ring: 198 100% 46%;
+    --border: 220 15% 16%;
+    --input: 220 15% 16%;
+    --ring: 195 100% 50%;
 
     --radius: 0.75rem;
 
     /* Akamai Brand - Primary */
-    --akamai-blue: 198 100% 46%;
-    --akamai-navy: 214 100% 21%;
-    --akamai-orange: 33 100% 50%;
+    --akamai-blue: 195 100% 50%;
+    --akamai-navy: 220 40% 12%;
+    --akamai-orange: 28 100% 55%;
 
     /* Akamai Brand - Secondary */
-    --akamai-green: 149 100% 40%;
-    --akamai-lavender: 239 100% 74%;
-    --akamai-violet: 264 52% 18%;
-    --akamai-electric: 221 100% 50%;
-    --akamai-red: 3 89% 53%;
+    --akamai-green: 160 100% 42%;
+    --akamai-lavender: 245 80% 72%;
+    --akamai-violet: 270 50% 30%;
+    --akamai-electric: 220 100% 60%;
+    --akamai-red: 0 72% 55%;
 
     /* Akamai Brand - Tertiary */
-    --akamai-grey1: 240 1% 17%;
-    --akamai-grey5: 0 0% 81%;
-    --akamai-grey6: 0 0% 96%;
+    --akamai-grey1: 220 10% 20%;
+    --akamai-grey5: 220 5% 35%;
+    --akamai-grey6: 220 15% 8%;
 
-    --sidebar-background: 214 100% 15%;
-    --sidebar-foreground: 0 0% 95%;
-    --sidebar-primary: 198 100% 46%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 214 100% 21%;
-    --sidebar-accent-foreground: 0 0% 95%;
-    --sidebar-border: 214 60% 30%;
-    --sidebar-ring: 198 100% 46%;
-  }
-
-  .dark {
-    --background: 214 100% 8%;
-    --foreground: 0 0% 96%;
-    --card: 214 100% 12%;
-    --card-foreground: 0 0% 96%;
-    --popover: 214 100% 12%;
-    --popover-foreground: 0 0% 96%;
-    --primary: 198 100% 46%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 214 100% 21%;
-    --secondary-foreground: 0 0% 100%;
-    --muted: 214 60% 15%;
-    --muted-foreground: 0 0% 65%;
-    --accent: 33 100% 50%;
-    --accent-foreground: 0 0% 100%;
-    --destructive: 5 62% 30%;
-    --destructive-foreground: 0 0% 100%;
-    --border: 214 60% 20%;
-    --input: 214 60% 20%;
-    --ring: 198 100% 46%;
-    --sidebar-background: 214 100% 6%;
-    --sidebar-foreground: 0 0% 90%;
-    --sidebar-primary: 198 100% 46%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 214 100% 12%;
-    --sidebar-accent-foreground: 0 0% 90%;
-    --sidebar-border: 214 60% 15%;
-    --sidebar-ring: 198 100% 46%;
+    --sidebar-background: 220 20% 5%;
+    --sidebar-foreground: 210 20% 85%;
+    --sidebar-primary: 195 100% 50%;
+    --sidebar-primary-foreground: 220 20% 4%;
+    --sidebar-accent: 220 20% 14%;
+    --sidebar-accent-foreground: 210 20% 85%;
+    --sidebar-border: 220 15% 18%;
+    --sidebar-ring: 195 100% 50%;
   }
 }
 
@@ -105,17 +76,13 @@ html {
   }
 }
 
-/* 
- * Font declarations — OUTSIDE @layer so they cannot be overridden by Tailwind.
- * We use the Tailwind utility classes (font-sans / font-display) as the primary
- * mechanism. These global selectors are a fallback safety net only.
- */
+/* Typography — outside @layer for stability */
 html, body, * {
-  font-family: 'Source Sans 3', sans-serif;
+  font-family: 'Source Sans 3', sans-serif !important;
 }
 .font-display,
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Poppins', sans-serif !important;
 }
 
 /* Slide styles */
@@ -126,7 +93,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .slide-alt {
-  background: hsl(var(--akamai-grey6));
+  background: hsl(220, 20%, 8%);
 }
 
 /* Callout badge */
@@ -135,7 +102,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 .callout-badge:hover {
   transform: translateY(-4px);
-  box-shadow: 0 12px 40px -8px hsla(198, 100%, 46%, 0.25);
+  box-shadow: 0 12px 40px -8px hsla(195, 100%, 50%, 0.2);
 }
 
 /* Print styles */
@@ -169,20 +136,20 @@ h1, h2, h3, h4, h5, h6 {
   display: none;
 }
 
-/* Gradient backgrounds */
+/* Gradient backgrounds — cinematic dark */
 .gradient-navy {
-  background: linear-gradient(135deg, hsl(214, 100%, 12%) 0%, hsl(214, 100%, 24%) 100%);
+  background: linear-gradient(160deg, hsl(220, 25%, 4%) 0%, hsl(220, 30%, 10%) 40%, hsl(220, 25%, 6%) 100%);
 }
 
 .gradient-blue {
-  background: linear-gradient(135deg, hsl(198, 100%, 46%) 0%, hsl(198, 100%, 36%) 100%);
+  background: linear-gradient(135deg, hsl(195, 80%, 15%) 0%, hsl(220, 40%, 8%) 100%);
 }
 
 .gradient-mesh {
-  background: 
-    radial-gradient(ellipse at 20% 50%, hsla(198, 100%, 46%, 0.08) 0%, transparent 50%),
-    radial-gradient(ellipse at 80% 20%, hsla(33, 100%, 50%, 0.06) 0%, transparent 50%),
-    radial-gradient(ellipse at 60% 80%, hsla(198, 100%, 46%, 0.05) 0%, transparent 50%);
+  background:
+    radial-gradient(ellipse at 15% 50%, hsla(195, 100%, 50%, 0.04) 0%, transparent 60%),
+    radial-gradient(ellipse at 85% 20%, hsla(28, 100%, 55%, 0.03) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 90%, hsla(195, 100%, 50%, 0.03) 0%, transparent 50%);
 }
 
 /* Animated gradient for title */
@@ -194,12 +161,12 @@ h1, h2, h3, h4, h5, h6 {
 
 .animated-gradient {
   background: linear-gradient(
-    135deg,
-    hsl(214, 100%, 10%) 0%,
-    hsl(214, 100%, 18%) 25%,
-    hsl(214, 100%, 24%) 50%,
-    hsl(214, 100%, 18%) 75%,
-    hsl(214, 100%, 10%) 100%
+    160deg,
+    hsl(220, 30%, 3%) 0%,
+    hsl(220, 35%, 7%) 25%,
+    hsl(220, 40%, 10%) 50%,
+    hsl(220, 35%, 7%) 75%,
+    hsl(220, 30%, 3%) 100%
   );
   background-size: 400% 400%;
   animation: gradientShift 20s ease 1 forwards;
@@ -216,38 +183,65 @@ h1, h2, h3, h4, h5, h6 {
   animation: flowRight 2s ease-in-out infinite;
 }
 
+/* Glass card */
+.glass-card {
+  background: hsla(220, 20%, 12%, 0.6);
+  backdrop-filter: blur(16px);
+  border: 1px solid hsla(195, 100%, 50%, 0.08);
+}
+.glass-card:hover {
+  border-color: hsla(195, 100%, 50%, 0.2);
+  box-shadow: 0 8px 32px -8px hsla(195, 100%, 50%, 0.12);
+}
+
 /* Visual card hover */
 .visual-card {
   @apply transition-all duration-300;
 }
 .visual-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 20px 40px -12px hsla(214, 100%, 21%, 0.15);
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px -12px hsla(195, 100%, 50%, 0.15);
 }
 
-/* Diagram connector line */
+/* Connector line */
 .connector-line {
   background: linear-gradient(90deg, hsl(var(--primary)) 0%, hsl(var(--accent)) 100%);
   height: 2px;
 }
 
-/* Print Styles - Each slide on its own page */
+/* Glow effects */
+.glow-primary {
+  box-shadow: 0 0 20px -4px hsla(195, 100%, 50%, 0.3), 0 0 60px -8px hsla(195, 100%, 50%, 0.1);
+}
+.glow-accent {
+  box-shadow: 0 0 20px -4px hsla(28, 100%, 55%, 0.3), 0 0 60px -8px hsla(28, 100%, 55%, 0.1);
+}
+.glow-green {
+  box-shadow: 0 0 20px -4px hsla(160, 100%, 42%, 0.3), 0 0 60px -8px hsla(160, 100%, 42%, 0.1);
+}
+
+/* Subtle grid pattern */
+.grid-pattern {
+  background-image:
+    linear-gradient(hsla(195, 100%, 50%, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, hsla(195, 100%, 50%, 0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+/* Additional print styles */
 @media print {
   html, body {
     margin: 0;
     padding: 0;
     height: 100%;
   }
-
   body {
     margin: 0;
     padding: 0;
   }
-
   .slide-nav {
     display: none !important;
   }
-
   .slide {
     page-break-after: always;
     page-break-inside: avoid;
@@ -258,7 +252,6 @@ h1, h2, h3, h4, h5, h6 {
     break-after: page;
     break-inside: avoid;
   }
-
   section {
     page-break-inside: avoid;
   }

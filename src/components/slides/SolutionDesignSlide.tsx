@@ -95,32 +95,31 @@ const SolutionDesignSlide = () => {
   const [activeModal, setActiveModal] = useState<number | null>(null);
 
   return (
-    <SlideLayout id="delivery-solutions" variant="alt" pageNumber={5}>
+    <SlideLayout id="delivery-solutions" pageNumber={5}>
       <div className="space-y-6">
         <div className="text-center space-y-2">
-          <p className="text-primary font-semibold tracking-widest uppercase text-sm">Section A — Delivery Strategy</p>
-          <h2 className="font-display text-4xl md:text-5xl font-bold text-secondary">Delivery Solutions</h2>
-          <p className="text-muted-foreground text-sm">Click each challenge for step-by-step solution</p>
+          <p className="text-primary font-semibold tracking-[0.2em] uppercase text-sm">Section A — Delivery Strategy</p>
+          <h2 className="font-display text-4xl md:text-5xl font-bold text-foreground">Delivery Solutions</h2>
+          <p className="text-foreground/30 text-sm">Click each challenge for step-by-step solution</p>
         </div>
 
-        {/* 2-column layout for more breathing room */}
         <div className="grid md:grid-cols-2 gap-5">
           {deliverySolutions.map((s, i) => (
             <div
               key={s.issue}
               onClick={() => setActiveModal(i)}
-              className="visual-card callout-badge bg-card rounded-xl border border-border p-5 shadow-sm group cursor-pointer"
+              className="glass-card visual-card callout-badge rounded-xl p-5 group cursor-pointer"
             >
               <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
+                <div className="w-12 h-12 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center shrink-0">
                   <s.icon size={24} className="text-primary" />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <h3 className="font-display font-bold text-secondary leading-tight">{s.issue}</h3>
+                  <h3 className="font-display font-bold text-foreground leading-tight">{s.issue}</h3>
                   <p className="text-xs text-primary font-semibold mt-1">{s.solution}</p>
                   <div className="flex flex-wrap gap-1.5 mt-2">
                     {s.products.map(p => (
-                      <span key={p} className="text-[10px] px-2 py-0.5 rounded-full bg-primary/10 text-primary font-semibold">{p}</span>
+                      <span key={p} className="text-[10px] px-2 py-0.5 rounded-full bg-primary/10 border border-primary/20 text-primary font-semibold">{p}</span>
                     ))}
                   </div>
                 </div>
@@ -133,14 +132,12 @@ const SolutionDesignSlide = () => {
         </div>
       </div>
 
-      {/* Detail modals */}
       {deliverySolutions.map((s, i) => (
         <CalloutModal key={s.issue} open={activeModal === i} onOpenChange={() => setActiveModal(null)} title={s.issue}>
           <div className="space-y-4">
             <div className="bg-primary/5 border border-primary/15 rounded-lg p-3">
               <p className="text-sm font-semibold text-primary">{s.solution}</p>
             </div>
-
             <div className="space-y-3">
               {s.steps.map((step, idx) => (
                 <div key={idx} className="flex items-start gap-3">
@@ -151,17 +148,14 @@ const SolutionDesignSlide = () => {
                 </div>
               ))}
             </div>
-
             <div className="bg-akamai-green/8 border border-akamai-green/20 rounded-lg p-3 flex items-start gap-2">
               <CheckCircle2 size={16} className="text-akamai-green shrink-0 mt-0.5" />
               <p className="text-sm font-semibold text-akamai-green">{s.result}</p>
             </div>
-
             <div className="bg-accent/8 border border-accent/20 rounded-lg p-3">
               <p className="text-xs font-semibold text-accent uppercase tracking-wider mb-1">Best Practice</p>
               <p className="text-sm">{s.bestPractice}</p>
             </div>
-
             <div className="flex flex-wrap gap-2">
               {s.products.map(p => (
                 <span key={p} className="text-xs font-semibold px-2.5 py-1 bg-primary/10 text-primary rounded-full">{p}</span>
