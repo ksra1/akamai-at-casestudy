@@ -56,28 +56,26 @@ const governanceChallenges = [
   },
 ];
 
-// Parse steps from details string
 const parseSteps = (details: string) => {
   const stepRegex = /Step \d+:|Result:/g;
   const parts = details.split(stepRegex).filter(p => p.trim());
   return parts.map(part => part.trim());
 };
 
-// Beautiful step renderer component
 const StepsRenderer = ({ details }: { details: string }) => {
   const steps = parseSteps(details);
-  
+
   return (
     <div className="space-y-2 mt-3">
       {steps.map((step, idx) => {
         const isResult = idx === steps.length - 1;
         return (
-          <div key={idx} className={`border-l-4 rounded px-3 py-2.5 ${isResult ? 'border-l-green-500 bg-green-50' : 'border-l-akamai-green bg-green-50'}`}>
+          <div key={idx} className={`border-l-4 rounded px-3 py-2.5 ${isResult ? 'border-l-akamai-green bg-akamai-green/5' : 'border-l-primary/30 bg-primary/5'}`}>
             <div className="flex items-start gap-2">
-              <div className={`flex-shrink-0 font-bold text-sm w-6 h-6 rounded-full flex items-center justify-center ${isResult ? 'bg-green-500 text-white' : 'bg-akamai-green text-white'}`}>
+              <div className={`flex-shrink-0 font-bold text-sm w-6 h-6 rounded-full flex items-center justify-center ${isResult ? 'bg-akamai-green text-primary-foreground' : 'bg-primary/20 text-primary'}`}>
                 {isResult ? '✓' : idx + 1}
               </div>
-              <p className="text-xs text-gray-700 leading-relaxed flex-1 pt-0.5">{step}</p>
+              <p className="text-xs text-foreground/50 leading-relaxed flex-1 pt-0.5">{step}</p>
             </div>
           </div>
         );
@@ -88,27 +86,26 @@ const StepsRenderer = ({ details }: { details: string }) => {
 
 const GovernanceSolutionsSlide = () => {
   return (
-    <SlideLayout id="governance-solutions" pageNumber={7}>
+    <SlideLayout id="governance-solutions" variant="alt" pageNumber={7}>
       <div className="space-y-8">
         <div className="text-center space-y-2">
-          <p className="text-akamai-green font-semibold tracking-widest uppercase text-sm">Solution Architecture</p>
-          <h2 className="font-display text-4xl md:text-5xl font-bold text-secondary">Governance & Scale Solutions</h2>
-          <p className="text-muted-foreground">{governanceChallenges.length} governance challenges solved</p>
+          <p className="text-akamai-green font-semibold tracking-[0.2em] uppercase text-sm">Solution Architecture</p>
+          <h2 className="font-display text-4xl md:text-5xl font-bold text-foreground">Governance & Scale Solutions</h2>
+          <p className="text-foreground/30">{governanceChallenges.length} governance challenges solved</p>
         </div>
 
-        {/* Governance Solutions */}
         <div className="space-y-4">
           {governanceChallenges.map((item, idx) => (
-            <div key={idx} className="border-l-4 border-l-akamai-green bg-card rounded-lg p-5 shadow-sm">
+            <div key={idx} className="border-l-4 border-l-akamai-green glass-card rounded-lg p-5">
               <div className="flex items-start gap-3 mb-2">
                 <CheckCircle2 size={20} className="text-akamai-green mt-0.5 shrink-0" />
                 <div className="flex-grow">
-                  <p className="font-semibold text-secondary">{item.issue}</p>
+                  <p className="font-semibold text-foreground/80">{item.issue}</p>
                 </div>
               </div>
               <div className="ml-7 space-y-2">
                 <p className="text-sm font-semibold text-akamai-green">{item.solution}</p>
-                <p className="text-xs text-muted-foreground italic">{item.benefit}</p>
+                <p className="text-xs text-foreground/30 italic">{item.benefit}</p>
                 {item.details && <StepsRenderer details={item.details} />}
                 {item.products && item.products.length > 0 && (
                   <div className="flex flex-wrap gap-2 mt-3">
@@ -118,7 +115,7 @@ const GovernanceSolutionsSlide = () => {
                         href={product.link}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-block text-xs font-semibold px-2 py-1 bg-akamai-green/10 text-akamai-green rounded hover:bg-akamai-green/20 transition-colors"
+                        className="inline-block text-xs font-semibold px-2 py-1 bg-akamai-green/10 border border-akamai-green/20 text-akamai-green rounded hover:bg-akamai-green/20 transition-colors"
                       >
                         📚 {product.name}
                       </a>
