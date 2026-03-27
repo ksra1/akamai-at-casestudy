@@ -30,9 +30,9 @@ const ArchitectureSlide = () => {
         </div>
 
         <div className="clean-card p-6">
-          <div className="flex items-stretch gap-4">
+          <div className="grid grid-cols-[1fr_auto_2fr_auto_1fr] gap-4 items-center">
             {/* End Users */}
-            <div className="flex-1 space-y-2">
+            <div className="space-y-2">
               <p className="text-xs font-semibold text-muted-foreground tracking-[0.15em] uppercase text-center mb-2">End Users</p>
               {[
                 { icon: Users, label: "North America", sub: "Primary" },
@@ -49,12 +49,13 @@ const ArchitectureSlide = () => {
               ))}
             </div>
 
-            <div className="flex items-center px-1">
+            {/* Left Arrow - centered in grid cell */}
+            <div className="flex items-center justify-center">
               <ArrowRight size={20} className="text-primary flow-arrow" />
             </div>
 
             {/* Akamai Edge */}
-            <div className="flex-[2] border-2 border-primary/20 rounded-md p-5 relative bg-primary/[0.02]">
+            <div className="border-2 border-primary/20 rounded-md p-5 relative bg-primary/[0.02]">
               <div className="absolute -top-2.5 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground px-3 py-0.5 rounded text-xs font-bold tracking-wider">
                 AKAMAI EDGE PLATFORM
               </div>
@@ -92,12 +93,13 @@ const ArchitectureSlide = () => {
               </div>
             </div>
 
-            <div className="flex items-center px-1">
+            {/* Right Arrow - centered in grid cell */}
+            <div className="flex items-center justify-center">
               <ArrowRight size={20} className="text-primary flow-arrow" />
             </div>
 
             {/* Origins */}
-            <div className="flex-1 space-y-2">
+            <div className="space-y-2">
               <p className="text-xs font-semibold text-muted-foreground tracking-[0.15em] uppercase text-center mb-2">Origins</p>
               {[
                 { icon: Server, label: "On-Prem DC", sub: "Legacy" },
