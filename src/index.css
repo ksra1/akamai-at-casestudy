@@ -180,7 +180,7 @@ h1, h2, h3, h4, h5, h6 {
     hsla(210, 100%, 70%, 0.08) 60%,
     transparent 100%
   );
-  animation: shimmerSweep 3s ease-in-out 1.5s infinite;
+  animation: shimmerSweep 4s ease-in-out 2s infinite;
   pointer-events: none;
 }
 
