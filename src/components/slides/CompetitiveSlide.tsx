@@ -11,30 +11,30 @@ const advantages = [
 ];
 
 const CompetitiveSlide = () => (
-  <SlideLayout id="competitive" variant="noir" pageNumber={10}>
+  <SlideLayout id="competitive" variant="dark" pageNumber={10}>
     <div className="space-y-6">
       <div>
-        <p className="text-primary font-semibold tracking-[0.2em] uppercase text-[10px] mb-2">Competitive Advantages</p>
-        <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground">Why Akamai</h2>
+        <p className="text-white/50 font-semibold tracking-[0.2em] uppercase text-[10px] mb-2">Competitive Advantages</p>
+        <h2 className="font-display text-3xl md:text-4xl font-bold text-white">Why Akamai</h2>
       </div>
 
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
         {advantages.map(a => (
-          <div key={a.title} className="accent-card p-5 space-y-2">
+          <div key={a.title} className="bg-white/5 border border-white/10 rounded p-5 space-y-2 hover:bg-white/8 transition-colors">
             <div className="flex items-center gap-3">
-              <a.icon size={20} className="text-primary shrink-0" />
+              <a.icon size={20} className="text-white/70 shrink-0" />
               <div>
-                <h3 className="font-display font-semibold text-foreground text-sm">{a.title}</h3>
-                <p className="text-primary text-[10px] font-bold">{a.stat}</p>
+                <h3 className="font-display font-semibold text-white text-sm">{a.title}</h3>
+                <p className="text-white/40 text-[10px] font-bold">{a.stat}</p>
               </div>
             </div>
-            <p className="text-foreground/30 text-sm leading-relaxed">{a.detail}</p>
+            <p className="text-white/30 text-sm leading-relaxed">{a.detail}</p>
           </div>
         ))}
       </div>
 
       <div className="text-center">
-        <div className="inline-flex items-center gap-2 noir-panel text-primary px-4 py-2 text-sm font-semibold" style={{ borderLeftWidth: 3, borderLeftColor: 'hsl(175, 80%, 48%)' }}>
+        <div className="inline-flex items-center gap-2 bg-white/5 border border-white/10 text-white/70 px-4 py-2 rounded text-sm font-semibold">
           <Zap size={14} /> Akamai processes 30%+ of global web traffic daily — unmatched threat intelligence
         </div>
       </div>

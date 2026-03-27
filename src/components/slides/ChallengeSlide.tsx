@@ -32,76 +32,71 @@ const traceability = [
 ];
 
 const ChallengeSlide = () => (
-  <SlideLayout id="challenge" pageNumber={3}>
+  <SlideLayout id="challenge" variant="alt" pageNumber={3}>
     <div className="space-y-5">
       <div>
         <p className="text-primary font-semibold tracking-[0.2em] uppercase text-[10px] mb-2">Understanding the Problem</p>
         <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground">15 Key Challenges</h2>
-        <p className="text-foreground/25 text-sm mt-1">Across delivery, security, and scale & governance</p>
+        <p className="text-muted-foreground text-sm mt-1">Across delivery, security, and scale & governance</p>
       </div>
 
       <div className="grid md:grid-cols-3 gap-5">
-        {/* Delivery */}
         <div className="space-y-2">
           <div className="flex items-center gap-2 mb-2">
             <div className="w-1 h-5 rounded-full bg-primary" />
             <h3 className="font-display text-base font-bold text-foreground">Delivery</h3>
-            <span className="text-[10px] text-foreground/25">6 challenges</span>
+            <span className="text-[10px] text-muted-foreground">6 challenges</span>
           </div>
           {deliveryChallenges.map(({ icon: Icon, text }) => (
-            <div key={text} className="accent-card p-3 flex items-center gap-2.5">
+            <div key={text} className="stripe-card p-3 flex items-center gap-2.5">
               <Icon size={14} className="text-primary shrink-0" />
-              <p className="text-sm text-foreground/60">{text}</p>
+              <p className="text-sm text-foreground/80">{text}</p>
             </div>
           ))}
         </div>
 
-        {/* Security */}
         <div className="space-y-2">
           <div className="flex items-center gap-2 mb-2">
             <div className="w-1 h-5 rounded-full bg-accent" />
             <h3 className="font-display text-base font-bold text-foreground">Security</h3>
-            <span className="text-[10px] text-foreground/25">6 challenges</span>
+            <span className="text-[10px] text-muted-foreground">6 challenges</span>
           </div>
           {securityChallenges.map(({ icon: Icon, text }) => (
-            <div key={text} className="accent-card accent-card-orange p-3 flex items-center gap-2.5">
+            <div key={text} className="stripe-card stripe-card-orange p-3 flex items-center gap-2.5">
               <Icon size={14} className="text-accent shrink-0" />
-              <p className="text-sm text-foreground/60">{text}</p>
+              <p className="text-sm text-foreground/80">{text}</p>
             </div>
           ))}
         </div>
 
-        {/* Scale & Governance */}
         <div className="space-y-2">
           <div className="flex items-center gap-2 mb-2">
             <div className="w-1 h-5 rounded-full bg-akamai-green" />
             <h3 className="font-display text-base font-bold text-foreground">Scale & Governance</h3>
-            <span className="text-[10px] text-foreground/25">3 challenges</span>
+            <span className="text-[10px] text-muted-foreground">3 challenges</span>
           </div>
           {scaleGovChallenges.map(({ icon: Icon, text }) => (
-            <div key={text} className="accent-card accent-card-green p-3 flex items-center gap-2.5">
+            <div key={text} className="stripe-card stripe-card-green p-3 flex items-center gap-2.5">
               <Icon size={14} className="text-akamai-green shrink-0" />
-              <p className="text-sm text-foreground/60">{text}</p>
+              <p className="text-sm text-foreground/80">{text}</p>
             </div>
           ))}
         </div>
       </div>
 
-      {/* Traceability */}
       <div className="flex gap-3">
         {traceability.map(t => (
-          <div key={t.label} className="flex-1 noir-panel flex items-center gap-2 px-3 py-2.5">
+          <div key={t.label} className="flex-1 clean-card flex items-center gap-2 px-3 py-2.5">
             <div className={`w-2 h-2 rounded-full ${t.color} shrink-0`} />
             <div className="flex-1">
-              <p className="text-[11px] font-bold text-foreground/60">{t.label}</p>
-              <p className="text-[9px] text-foreground/25">{t.section} · {t.slides}</p>
+              <p className="text-[11px] font-bold text-foreground/70">{t.label}</p>
+              <p className="text-[9px] text-muted-foreground">{t.section} · {t.slides}</p>
             </div>
-            <ArrowRight size={10} className="text-foreground/15 shrink-0" />
+            <ArrowRight size={10} className="text-muted-foreground/40 shrink-0" />
           </div>
         ))}
       </div>
 
-      {/* Stats */}
       <div className="grid grid-cols-4 gap-3">
         {[
           { value: "5,000", label: "Hostnames to Onboard" },
@@ -109,9 +104,9 @@ const ChallengeSlide = () => (
           { value: "5×", label: "Peak Traffic Surge" },
           { value: "3+", label: "Regions (NA, LATAM, EU)" },
         ].map(s => (
-          <div key={s.label} className="noir-panel p-3 text-center">
+          <div key={s.label} className="clean-card p-3 text-center">
             <div className="font-display text-2xl font-bold text-primary">{s.value}</div>
-            <div className="text-foreground/25 text-[10px] mt-0.5">{s.label}</div>
+            <div className="text-muted-foreground text-[10px] mt-0.5">{s.label}</div>
           </div>
         ))}
       </div>

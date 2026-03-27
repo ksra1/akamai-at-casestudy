@@ -21,29 +21,29 @@ const ArchitectureSlide = () => {
   const [activeProduct, setActiveProduct] = useState<{ label: string; desc: string } | null>(null);
 
   return (
-    <SlideLayout id="architecture" variant="alt" pageNumber={4}>
+    <SlideLayout id="architecture" pageNumber={4}>
       <div className="space-y-5">
         <div>
           <p className="text-primary font-semibold tracking-[0.2em] uppercase text-[10px] mb-2">Section B — Solution Architecture</p>
           <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground">High-Level Architecture</h2>
-          <p className="text-sm text-foreground/25 mt-1">Click any product for details</p>
+          <p className="text-sm text-muted-foreground mt-1">Click any product for details</p>
         </div>
 
-        <div className="noir-panel p-6">
+        <div className="clean-card p-6">
           <div className="flex items-stretch gap-4">
             {/* End Users */}
             <div className="flex-1 space-y-2">
-              <p className="text-[10px] font-semibold text-foreground/25 tracking-[0.15em] uppercase text-center mb-2">End Users</p>
+              <p className="text-[10px] font-semibold text-muted-foreground tracking-[0.15em] uppercase text-center mb-2">End Users</p>
               {[
                 { icon: Users, label: "North America", sub: "Primary" },
                 { icon: Users, label: "LATAM", sub: "Growing" },
                 { icon: Users, label: "Europe", sub: "Expanding" },
               ].map(({ icon: Icon, label, sub }) => (
-                <div key={label} className="accent-card accent-card-green p-2.5 flex items-center gap-2">
+                <div key={label} className="stripe-card stripe-card-green p-2.5 flex items-center gap-2">
                   <Icon size={16} className="text-akamai-green shrink-0" />
                   <div>
-                    <p className="text-xs font-semibold text-foreground/70">{label}</p>
-                    <p className="text-[10px] text-foreground/25">{sub}</p>
+                    <p className="text-xs font-semibold text-foreground">{label}</p>
+                    <p className="text-[10px] text-muted-foreground">{sub}</p>
                   </div>
                 </div>
               ))}
@@ -54,7 +54,7 @@ const ArchitectureSlide = () => {
             </div>
 
             {/* Akamai Edge */}
-            <div className="flex-[2] border border-primary/15 rounded-md p-5 relative bg-primary/[0.02]">
+            <div className="flex-[2] border-2 border-primary/20 rounded-md p-5 relative bg-primary/[0.02]">
               <div className="absolute -top-2.5 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground px-3 py-0.5 rounded text-[10px] font-bold tracking-wider">
                 AKAMAI EDGE PLATFORM
               </div>
@@ -66,10 +66,10 @@ const ArchitectureSlide = () => {
                       <button
                         key={label}
                         onClick={() => setActiveProduct({ label, desc })}
-                        className="noir-panel p-2 text-center hover:border-primary/30 transition-colors cursor-pointer"
+                        className="clean-card p-2 text-center hover:border-primary/40 transition-colors cursor-pointer"
                       >
                         <Icon size={16} className="text-primary mx-auto mb-1" />
-                        <p className="text-[10px] font-semibold text-foreground/60">{label}</p>
+                        <p className="text-[10px] font-semibold text-foreground/70">{label}</p>
                       </button>
                     ))}
                   </div>
@@ -81,10 +81,10 @@ const ArchitectureSlide = () => {
                       <button
                         key={label}
                         onClick={() => setActiveProduct({ label, desc })}
-                        className="noir-panel p-2 text-center hover:border-accent/30 transition-colors cursor-pointer"
+                        className="clean-card p-2 text-center hover:border-accent/40 transition-colors cursor-pointer"
                       >
                         <Icon size={16} className="text-accent mx-auto mb-1" />
-                        <p className="text-[10px] font-semibold text-foreground/60">{label}</p>
+                        <p className="text-[10px] font-semibold text-foreground/70">{label}</p>
                       </button>
                     ))}
                   </div>
@@ -98,17 +98,17 @@ const ArchitectureSlide = () => {
 
             {/* Origins */}
             <div className="flex-1 space-y-2">
-              <p className="text-[10px] font-semibold text-foreground/25 tracking-[0.15em] uppercase text-center mb-2">Origins</p>
+              <p className="text-[10px] font-semibold text-muted-foreground tracking-[0.15em] uppercase text-center mb-2">Origins</p>
               {[
                 { icon: Server, label: "On-Prem DC", sub: "Legacy" },
                 { icon: Cloud, label: "AWS", sub: "Microservices" },
                 { icon: Layers, label: "Acquired Cos.", sub: "Migration" },
               ].map(({ icon: Icon, label, sub }) => (
-                <div key={label} className="accent-card accent-card-orange p-2.5 flex items-center gap-2">
+                <div key={label} className="stripe-card stripe-card-orange p-2.5 flex items-center gap-2">
                   <Icon size={16} className="text-accent shrink-0" />
                   <div>
-                    <p className="text-xs font-semibold text-foreground/70">{label}</p>
-                    <p className="text-[10px] text-foreground/25">{sub}</p>
+                    <p className="text-xs font-semibold text-foreground">{label}</p>
+                    <p className="text-[10px] text-muted-foreground">{sub}</p>
                   </div>
                 </div>
               ))}
@@ -118,22 +118,18 @@ const ArchitectureSlide = () => {
 
         <div className="grid grid-cols-3 gap-3">
           {[
-            { color: "text-primary", border: "border-l-primary", label: "Edge offload reduces origin load — lowers risk of overload-related 5xx" },
-            { color: "text-accent", border: "border-l-accent", label: "Security enforced at edge — attacks stopped before reaching origin" },
-            { color: "text-akamai-green", border: "border-l-akamai-green", label: "Single platform for delivery, security, and observability" },
+            { color: "border-t-primary text-primary", label: "Edge offload reduces origin load — lowers risk of overload-related 5xx" },
+            { color: "border-t-accent text-accent", label: "Security enforced at edge — attacks stopped before reaching origin" },
+            { color: "border-t-akamai-green text-akamai-green", label: "Single platform for delivery, security, and observability" },
           ].map(item => (
-            <div key={item.label} className={`noir-panel p-3 text-sm font-semibold ${item.color}`} style={{ borderLeftWidth: 3, borderLeftColor: 'currentColor' }}>
+            <div key={item.label} className={`clean-card border-t-2 ${item.color} p-3 text-sm font-semibold`}>
               {item.label}
             </div>
           ))}
         </div>
       </div>
 
-      <CalloutModal
-        open={!!activeProduct}
-        onOpenChange={() => setActiveProduct(null)}
-        title={activeProduct?.label || ""}
-      >
+      <CalloutModal open={!!activeProduct} onOpenChange={() => setActiveProduct(null)} title={activeProduct?.label || ""}>
         <p className="text-sm leading-relaxed">{activeProduct?.desc}</p>
       </CalloutModal>
     </SlideLayout>
