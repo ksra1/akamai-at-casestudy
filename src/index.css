@@ -2,9 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-/* 125% zoom */
+/* 112% zoom (reduced 10% from 125%) */
 html {
-  font-size: 22.5px;
+  font-size: 20px;
 }
 
 @layer base {
@@ -143,6 +143,15 @@ h1, h2, h3, h4, h5, h6 {
 }
 .flow-arrow {
   animation: flowRight 2s ease-in-out infinite;
+}
+
+/* Slide fade-in animation */
+@keyframes slideFadeIn {
+  0% { opacity: 0; transform: translateY(24px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+.slide-content-animate {
+  animation: slideFadeIn 0.7s ease-out both;
 }
 
 /* Print styles */

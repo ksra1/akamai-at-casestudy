@@ -35,7 +35,7 @@ const ChallengeSlide = () => (
   <SlideLayout id="challenge" variant="alt" pageNumber={3}>
     <div className="space-y-5">
       <div>
-        <p className="text-primary font-semibold tracking-[0.2em] uppercase text-[10px] mb-2">Understanding the Problem</p>
+        <p className="text-primary font-semibold tracking-[0.2em] uppercase text-xs mb-2">Understanding the Problem</p>
         <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground">15 Key Challenges</h2>
         <p className="text-muted-foreground text-sm mt-1">Across delivery, security, and scale & governance</p>
       </div>
@@ -45,7 +45,7 @@ const ChallengeSlide = () => (
           <div className="flex items-center gap-2 mb-2">
             <div className="w-1 h-5 rounded-full bg-primary" />
             <h3 className="font-display text-base font-bold text-foreground">Delivery</h3>
-            <span className="text-[10px] text-muted-foreground">6 challenges</span>
+            <span className="text-xs text-muted-foreground">6 challenges</span>
           </div>
           {deliveryChallenges.map(({ icon: Icon, text }) => (
             <div key={text} className="stripe-card p-3 flex items-center gap-2.5">
@@ -59,7 +59,7 @@ const ChallengeSlide = () => (
           <div className="flex items-center gap-2 mb-2">
             <div className="w-1 h-5 rounded-full bg-accent" />
             <h3 className="font-display text-base font-bold text-foreground">Security</h3>
-            <span className="text-[10px] text-muted-foreground">6 challenges</span>
+            <span className="text-xs text-muted-foreground">6 challenges</span>
           </div>
           {securityChallenges.map(({ icon: Icon, text }) => (
             <div key={text} className="stripe-card stripe-card-orange p-3 flex items-center gap-2.5">
@@ -73,7 +73,7 @@ const ChallengeSlide = () => (
           <div className="flex items-center gap-2 mb-2">
             <div className="w-1 h-5 rounded-full bg-akamai-green" />
             <h3 className="font-display text-base font-bold text-foreground">Scale & Governance</h3>
-            <span className="text-[10px] text-muted-foreground">3 challenges</span>
+            <span className="text-xs text-muted-foreground">3 challenges</span>
           </div>
           {scaleGovChallenges.map(({ icon: Icon, text }) => (
             <div key={text} className="stripe-card stripe-card-green p-3 flex items-center gap-2.5">
@@ -89,8 +89,8 @@ const ChallengeSlide = () => (
           <div key={t.label} className="flex-1 clean-card flex items-center gap-2 px-3 py-2.5">
             <div className={`w-2 h-2 rounded-full ${t.color} shrink-0`} />
             <div className="flex-1">
-              <p className="text-[11px] font-bold text-foreground/70">{t.label}</p>
-              <p className="text-[9px] text-muted-foreground">{t.section} · {t.slides}</p>
+              <p className="text-xs font-bold text-foreground/70">{t.label}</p>
+              <p className="text-[11px] text-muted-foreground">{t.section} · {t.slides}</p>
             </div>
             <ArrowRight size={10} className="text-muted-foreground/40 shrink-0" />
           </div>
@@ -106,7 +106,7 @@ const ChallengeSlide = () => (
         ].map(s => (
           <div key={s.label} className="clean-card p-3 text-center">
             <div className="font-display text-2xl font-bold text-primary">{s.value}</div>
-            <div className="text-muted-foreground text-[10px] mt-0.5">{s.label}</div>
+            <div className="text-muted-foreground text-xs mt-0.5">{s.label}</div>
           </div>
         ))}
       </div>

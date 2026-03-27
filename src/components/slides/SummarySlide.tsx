@@ -7,7 +7,7 @@ const pillars = [
   {
     icon: Zap, title: "Delivery", borderColor: "hsl(210, 100%, 40%)",
     outcomes: [
-      "5,000 hostnames onboarded in 30 days via PAPI templates",
+      "5,000 hostnames onboarded in 30 days via PAPI (Property API) templates",
       "5x traffic capacity via Ion + GTM failover",
       "50-70% image optimization via IVM",
       "Phased cohort rollout = safe production path",
@@ -16,7 +16,7 @@ const pillars = [
   {
     icon: Shield, title: "Security", borderColor: "hsl(24, 95%, 50%)",
     outcomes: [
-      "4-layer defense: DDoS → WAF → Bot → API",
+      "4-layer defense: DDoS (Prolexic) → WAF (AAP) → Bot → API",
       "Behavioral ML stops sophisticated bot evasion",
       "Adaptive WAF auto-tunes, 5x fewer false positives",
       "Origin fully shielded via Site Shield",
@@ -40,7 +40,7 @@ const SummarySlide = () => {
     <SlideLayout id="summary" variant="dark" pageNumber={11}>
       <div className="flex flex-col items-center justify-center space-y-8 min-h-[70vh]">
         <div className="text-center">
-          <p className="text-white/40 font-semibold tracking-[0.2em] uppercase text-[10px] mb-2">Bringing It All Together</p>
+          <p className="text-white/40 font-semibold tracking-[0.2em] uppercase text-xs mb-2">Bringing It All Together</p>
           <h2 className="font-display text-3xl md:text-4xl font-bold text-white">Summary</h2>
         </div>
 
@@ -53,7 +53,7 @@ const SummarySlide = () => {
               </div>
               <ul className="space-y-2">
                 {p.outcomes.map(o => (
-                  <li key={o} className="flex items-start gap-2 text-sm text-white/35">
+                  <li key={o} className="flex items-start gap-2 text-sm text-white/40">
                     <CheckCircle2 size={12} className="text-white/30 mt-0.5 shrink-0" />
                     {o}
                   </li>
@@ -66,7 +66,7 @@ const SummarySlide = () => {
         <div className="text-center space-y-2 mt-4">
           <h3 className="font-display text-2xl font-bold text-white">Thank You</h3>
           <div className="w-10 h-0.5 bg-white/20 mx-auto" />
-          <p className="text-white/25 text-base">Questions & Discussion</p>
+          <p className="text-white/30 text-base">Questions & Discussion</p>
         </div>
 
         <button

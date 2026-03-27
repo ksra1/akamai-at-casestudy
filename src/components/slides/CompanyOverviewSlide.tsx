@@ -21,7 +21,7 @@ const CompanyOverviewSlide = () => (
   <SlideLayout id="company-overview" pageNumber={2}>
     <div className="space-y-6">
       <div>
-        <p className="text-primary font-semibold tracking-[0.2em] uppercase text-[10px] mb-2">AT Retailers</p>
+        <p className="text-primary font-semibold tracking-[0.2em] uppercase text-xs mb-2">AT Retailers</p>
         <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground">Current State → Target State</h2>
       </div>
 
@@ -33,7 +33,7 @@ const CompanyOverviewSlide = () => (
           </div>
           {currentState.map(({ icon: Icon, text }) => (
             <div key={text} className="flex items-start gap-2.5">
-              <Icon size={14} className="text-accent/70 mt-0.5 shrink-0" />
+              <Icon size={15} className="text-accent/70 mt-0.5 shrink-0" />
               <p className="text-sm text-muted-foreground">{text}</p>
             </div>
           ))}
@@ -46,7 +46,7 @@ const CompanyOverviewSlide = () => (
           </div>
           {targetState.map(({ icon: Icon, text }) => (
             <div key={text} className="flex items-start gap-2.5">
-              <Icon size={14} className="text-primary/70 mt-0.5 shrink-0" />
+              <Icon size={15} className="text-primary/70 mt-0.5 shrink-0" />
               <p className="text-sm text-muted-foreground">{text}</p>
             </div>
           ))}
@@ -54,8 +54,8 @@ const CompanyOverviewSlide = () => (
       </div>
 
       <div className="clean-card p-5 text-center space-y-1 border-t-2 border-t-primary">
-        <p className="text-[10px] font-semibold text-primary tracking-[0.2em] uppercase">Program Objective</p>
-        <p className="font-display text-base md:text-lg font-bold text-foreground">
+        <p className="text-xs font-semibold text-primary tracking-[0.2em] uppercase">Program Objective</p>
+        <p className="font-display text-lg md:text-xl font-bold text-foreground">
           Onboard 5,000 hostnames in 30 days while improving resiliency, performance, and security.
         </p>
       </div>
@@ -68,8 +68,8 @@ const CompanyOverviewSlide = () => (
           { value: "On-Prem + AWS", label: "Infrastructure" },
         ].map(({ value, label }) => (
           <div key={label} className="clean-card p-3 text-center">
-            <p className="font-display font-bold text-foreground text-sm">{value}</p>
-            <p className="text-[10px] text-muted-foreground mt-0.5">{label}</p>
+            <p className="font-display font-bold text-foreground text-base">{value}</p>
+            <p className="text-xs text-muted-foreground mt-0.5">{label}</p>
           </div>
         ))}
       </div>

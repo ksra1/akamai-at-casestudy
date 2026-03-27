@@ -6,7 +6,7 @@ const advantages = [
   { icon: Shield, title: "Integrated Platform", stat: "Delivery + Security", detail: "WAF, Bot, DDoS, and CDN on one platform. No separate vendors, no traffic tromboning, one pane of glass." },
   { icon: Brain, title: "Bot Manager — Behavioral AI", stat: "ML-Powered", detail: "Behavioral analysis + ML catches sophisticated evasion that rule-based/signature-only solutions miss entirely." },
   { icon: Code2, title: "EdgeWorkers", stat: "Edge Compute", detail: "Custom JS/TS at the edge for A/B testing, personalization, header manipulation — no origin round-trips." },
-  { icon: Wrench, title: "Terraform & API-First", stat: "Full Automation", detail: "Terraform provider + Property Manager API = infrastructure-as-code for 5,000 hostnames. No manual portal clicking." },
+  { icon: Wrench, title: "Terraform & API-First", stat: "Full Automation", detail: "Terraform provider + PAPI (Property API) = infrastructure-as-code for 5,000 hostnames. No manual portal clicking." },
   { icon: BarChart3, title: "Real-Time Visibility", stat: "mPulse + DataStream", detail: "RUM for Core Web Vitals + real-time log delivery to SIEM. Actionable insights, not just data." },
 ];
 
@@ -14,7 +14,7 @@ const CompetitiveSlide = () => (
   <SlideLayout id="competitive" variant="dark" pageNumber={10}>
     <div className="space-y-6">
       <div>
-        <p className="text-white/50 font-semibold tracking-[0.2em] uppercase text-[10px] mb-2">Competitive Advantages</p>
+        <p className="text-white/50 font-semibold tracking-[0.2em] uppercase text-xs mb-2">Competitive Advantages</p>
         <h2 className="font-display text-3xl md:text-4xl font-bold text-white">Why Akamai</h2>
       </div>
 
@@ -25,7 +25,7 @@ const CompetitiveSlide = () => (
               <a.icon size={20} className="text-white/70 shrink-0" />
               <div>
                 <h3 className="font-display font-semibold text-white text-sm">{a.title}</h3>
-                <p className="text-white/40 text-[10px] font-bold">{a.stat}</p>
+                <p className="text-white/40 text-xs font-bold">{a.stat}</p>
               </div>
             </div>
             <p className="text-white/30 text-sm leading-relaxed">{a.detail}</p>
