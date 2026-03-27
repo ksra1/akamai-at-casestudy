@@ -145,6 +145,43 @@ h1, h2, h3, h4, h5, h6 {
   animation: flowRight 2s ease-in-out infinite;
 }
 
+/* Panel card shiny entrance */
+@keyframes panelEntrance {
+  0% { opacity: 0; transform: scale(0.85) translateY(12px); }
+  60% { opacity: 1; transform: scale(1.03) translateY(-2px); }
+  100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+.panel-card-shiny {
+  opacity: 0;
+  animation: panelEntrance 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
+}
+.panel-card-shiny:hover {
+  border-color: hsla(210, 100%, 60%, 0.4);
+  box-shadow: 0 0 20px hsla(210, 100%, 60%, 0.15), inset 0 0 20px hsla(210, 100%, 60%, 0.05);
+  transform: translateY(-2px) scale(1.03);
+}
+
+/* Shimmer sweep across panel cards */
+@keyframes shimmerSweep {
+  0% { transform: translateX(-100%) skewX(-15deg); }
+  100% { transform: translateX(250%) skewX(-15deg); }
+}
+.panel-shimmer {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    hsla(210, 100%, 70%, 0.08) 40%,
+    hsla(210, 100%, 80%, 0.15) 50%,
+    hsla(210, 100%, 70%, 0.08) 60%,
+    transparent 100%
+  );
+  animation: shimmerSweep 3s ease-in-out 1.5s infinite;
+  pointer-events: none;
+}
+
 /* Slide fade-in animation */
 @keyframes slideFadeIn {
   0% { opacity: 0; transform: translateY(24px); }

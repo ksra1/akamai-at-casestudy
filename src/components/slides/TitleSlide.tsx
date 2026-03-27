@@ -2,6 +2,8 @@ import SlideLayout from "./SlideLayout";
 import { ChevronDown } from "lucide-react";
 import akamaiLogo from "@/assets/akamai-logo.png";
 
+const panelMembers = ["Mark Agostino", "Mike Buonfiglio", "Yancy Carrasco", "Jose Chaverri", "Danisha Nivas", "Shobhit Bhardwaj"];
+
 const TitleSlide = () => (
   <SlideLayout variant="dark" id="title" pageNumber={1}>
     <div className="flex flex-col items-center justify-center text-center min-h-[70vh] space-y-8 stagger-children">
@@ -20,9 +22,14 @@ const TitleSlide = () => (
       <div className="mt-8 pt-6 border-t border-white/10 w-full max-w-2xl">
         <p className="text-white/40 font-semibold tracking-[0.2em] uppercase text-xs mb-4">Interview Panel</p>
         <div className="grid grid-cols-3 gap-2 mb-5">
-          {["Mark Agostino", "Mike Buonfiglio", "Yancy Carrasco", "Jose Chaverri", "Danisha Nivas", "Shobhit Bhardwaj"].map(name => (
-            <div key={name} className="bg-white/5 border border-white/10 rounded px-3 py-2.5 text-center">
-              <p className="text-white/80 font-display font-semibold text-sm">{name}</p>
+          {panelMembers.map((name, i) => (
+            <div
+              key={name}
+              className="panel-card-shiny relative overflow-hidden bg-white/5 border border-white/10 rounded px-3 py-2.5 text-center"
+              style={{ animationDelay: `${0.6 + i * 0.15}s` }}
+            >
+              <div className="panel-shimmer" />
+              <p className="text-white/80 font-display font-semibold text-sm relative z-10">{name}</p>
             </div>
           ))}
         </div>
