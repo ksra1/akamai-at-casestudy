@@ -22,9 +22,9 @@ const CompanyOverviewSlide = () => {
     <SlideLayout id="company-overview" pageNumber={2}>
       <div className="space-y-8">
         <div className="text-center space-y-2">
-          <p className="text-primary font-semibold tracking-widest uppercase text-sm">The Customer</p>
+          <p className="text-primary font-semibold tracking-widest uppercase text-sm">AT Retailers</p>
           <h2 className="font-display text-4xl md:text-5xl font-bold text-secondary">
-            AT Retailers — Current State → Target State
+            Current State → Target State
           </h2>
         </div>
 
