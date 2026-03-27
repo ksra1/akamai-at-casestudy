@@ -1,7 +1,7 @@
 import { useState } from "react";
 import SlideLayout from "./SlideLayout";
 import CalloutModal from "./CalloutModal";
-import { AlertTriangle, ArrowUpRight, Users } from "lucide-react";
+import { AlertTriangle, ArrowRight, ArrowUpRight, Users } from "lucide-react";
 
 const risks = [
   { id: 1, risk: "Customer skips testing — production issues", likelihood: 4, impact: 4, mitigation: "Phased hostname cohorts via DNS CNAME cutover. mPulse anomaly alerts trigger instant rollback. Each wave validated before next begins." },
@@ -112,7 +112,7 @@ const RiskSlide = () => {
           <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider text-center mb-2">Escalation Path (if risk materializes)</p>
           <div className="flex justify-center items-center gap-2">
             {[
-              { level: "Team Lead", desc: "First response" },
+              { level: "AT Retailers Technical Lead", desc: "First response" },
               { level: "Akamai TPM (Me)", desc: "Coordination" },
               { level: "Account Director", desc: "Commercial decisions" },
               { level: "VP Escalation", desc: "Executive override" },
@@ -122,7 +122,7 @@ const RiskSlide = () => {
                   <div className="clean-card text-foreground/70 px-3 py-1.5 font-semibold text-sm">{item.level}</div>
                   <p className="text-[11px] text-muted-foreground mt-0.5">{item.desc}</p>
                 </div>
-                {i < 3 && <ArrowUpRight size={12} className="text-accent" />}
+                {i < 3 && <ArrowRight size={14} className="text-accent" />}
               </div>
             ))}
           </div>
