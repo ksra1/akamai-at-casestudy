@@ -114,7 +114,7 @@ const RiskSlide = () => {
             {[
               { level: "Akamai TPM (Me)", desc: "First response & coordination" },
               { level: "Account Director", desc: "Commercial decisions" },
-              { level: "VP Escalation", desc: "Executive override" },
+              { level: "VP", desc: "Executive override" },
             ].map((item, i) => (
               <div key={item.level} className="flex items-center gap-3">
                 <div className="text-center">
