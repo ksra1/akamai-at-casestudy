@@ -33,33 +33,33 @@ const traceability = [
 
 const ChallengeSlide = () => {
   return (
-    <SlideLayout id="challenge" variant="alt" pageNumber={3}>
+    <SlideLayout id="challenge" pageNumber={3}>
       <div className="space-y-5">
         <div className="text-center space-y-2">
-          <p className="text-primary font-semibold tracking-widest uppercase text-sm">Understanding the Problem</p>
-          <h2 className="font-display text-4xl md:text-5xl font-bold text-secondary">15 Key Challenges</h2>
-          <p className="text-muted-foreground text-sm">Across delivery, security, and scale & governance</p>
+          <p className="text-primary font-semibold tracking-[0.2em] uppercase text-sm">Understanding the Problem</p>
+          <h2 className="font-display text-4xl md:text-5xl font-bold text-foreground">15 Key Challenges</h2>
+          <p className="text-foreground/30 text-sm">Across delivery, security, and scale & governance</p>
         </div>
 
         <div className="grid md:grid-cols-3 gap-6">
           {/* Delivery */}
           <div className="space-y-3">
             <div className="flex items-center gap-3 mb-1">
-              <div className="w-9 h-9 rounded-lg bg-primary flex items-center justify-center">
-                <Truck size={18} className="text-primary-foreground" />
+              <div className="w-9 h-9 rounded-lg bg-primary/15 border border-primary/20 flex items-center justify-center glow-primary">
+                <Truck size={18} className="text-primary" />
               </div>
               <div>
-                <h3 className="font-display text-lg font-bold text-secondary">Delivery</h3>
-                <p className="text-xs text-muted-foreground">6 challenges</p>
+                <h3 className="font-display text-lg font-bold text-foreground">Delivery</h3>
+                <p className="text-xs text-foreground/30">6 challenges</p>
               </div>
             </div>
             <div className="space-y-2">
               {deliveryChallenges.map(({ icon: Icon, text }) => (
-                <div key={text} className="visual-card bg-card rounded-xl border border-border p-3 flex items-center gap-3 shadow-sm">
+                <div key={text} className="glass-card visual-card rounded-xl p-3 flex items-center gap-3">
                   <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
                     <Icon size={16} className="text-primary" />
                   </div>
-                  <p className="text-sm font-medium text-secondary leading-snug">{text}</p>
+                  <p className="text-sm font-medium text-foreground/80 leading-snug">{text}</p>
                 </div>
               ))}
             </div>
@@ -68,21 +68,21 @@ const ChallengeSlide = () => {
           {/* Security */}
           <div className="space-y-3">
             <div className="flex items-center gap-3 mb-1">
-              <div className="w-9 h-9 rounded-lg bg-accent flex items-center justify-center">
-                <Shield size={18} className="text-accent-foreground" />
+              <div className="w-9 h-9 rounded-lg bg-accent/15 border border-accent/20 flex items-center justify-center glow-accent">
+                <Shield size={18} className="text-accent" />
               </div>
               <div>
-                <h3 className="font-display text-lg font-bold text-secondary">Security</h3>
-                <p className="text-xs text-muted-foreground">6 challenges</p>
+                <h3 className="font-display text-lg font-bold text-foreground">Security</h3>
+                <p className="text-xs text-foreground/30">6 challenges</p>
               </div>
             </div>
             <div className="space-y-2">
               {securityChallenges.map(({ icon: Icon, text }) => (
-                <div key={text} className="visual-card bg-card rounded-xl border border-border p-3 flex items-center gap-3 shadow-sm">
+                <div key={text} className="glass-card visual-card rounded-xl p-3 flex items-center gap-3">
                   <div className="w-8 h-8 rounded-lg bg-accent/10 flex items-center justify-center shrink-0">
                     <Icon size={16} className="text-accent" />
                   </div>
-                  <p className="text-sm font-medium text-secondary leading-snug">{text}</p>
+                  <p className="text-sm font-medium text-foreground/80 leading-snug">{text}</p>
                 </div>
               ))}
             </div>
@@ -91,21 +91,21 @@ const ChallengeSlide = () => {
           {/* Scale & Governance */}
           <div className="space-y-3">
             <div className="flex items-center gap-3 mb-1">
-              <div className="w-9 h-9 rounded-lg bg-akamai-green flex items-center justify-center">
-                <Globe size={18} className="text-primary-foreground" />
+              <div className="w-9 h-9 rounded-lg bg-akamai-green/15 border border-akamai-green/20 flex items-center justify-center glow-green">
+                <Globe size={18} className="text-akamai-green" />
               </div>
               <div>
-                <h3 className="font-display text-lg font-bold text-secondary">Scale & Governance</h3>
-                <p className="text-xs text-muted-foreground">3 challenges</p>
+                <h3 className="font-display text-lg font-bold text-foreground">Scale & Governance</h3>
+                <p className="text-xs text-foreground/30">3 challenges</p>
               </div>
             </div>
             <div className="space-y-2">
               {scaleGovChallenges.map(({ icon: Icon, text }) => (
-                <div key={text} className="visual-card bg-card rounded-xl border border-border p-3 flex items-center gap-3 shadow-sm">
+                <div key={text} className="glass-card visual-card rounded-xl p-3 flex items-center gap-3">
                   <div className="w-8 h-8 rounded-lg bg-akamai-green/10 flex items-center justify-center shrink-0">
                     <Icon size={16} className="text-akamai-green" />
                   </div>
-                  <p className="text-sm font-medium text-secondary leading-snug">{text}</p>
+                  <p className="text-sm font-medium text-foreground/80 leading-snug">{text}</p>
                 </div>
               ))}
             </div>
@@ -115,13 +115,13 @@ const ChallengeSlide = () => {
         {/* Traceability strip */}
         <div className="flex gap-3">
           {traceability.map(t => (
-            <div key={t.label} className="flex-1 flex items-center gap-2 bg-card rounded-xl border border-border px-4 py-3">
+            <div key={t.label} className="flex-1 flex items-center gap-2 glass-card rounded-xl px-4 py-3">
               <div className={`w-3 h-3 rounded-full ${t.color} shrink-0`} />
               <div className="flex-1">
-                <p className="text-xs font-bold text-secondary">{t.label}</p>
-                <p className="text-[10px] text-muted-foreground">{t.section} · {t.slides}</p>
+                <p className="text-xs font-bold text-foreground/80">{t.label}</p>
+                <p className="text-[10px] text-foreground/30">{t.section} · {t.slides}</p>
               </div>
-              <ArrowRight size={12} className="text-muted-foreground shrink-0" />
+              <ArrowRight size={12} className="text-foreground/20 shrink-0" />
             </div>
           ))}
         </div>
@@ -134,9 +134,9 @@ const ChallengeSlide = () => {
             { value: "5×", label: "Peak Traffic Surge" },
             { value: "3+", label: "Regions (NA, LATAM, EU)" },
           ].map(s => (
-            <div key={s.label} className="bg-secondary text-secondary-foreground rounded-xl p-4 text-center">
-              <div className="font-display text-3xl font-bold">{s.value}</div>
-              <div className="text-secondary-foreground/60 text-xs mt-1">{s.label}</div>
+            <div key={s.label} className="bg-primary/8 border border-primary/15 rounded-xl p-4 text-center">
+              <div className="font-display text-3xl font-bold text-primary">{s.value}</div>
+              <div className="text-foreground/30 text-xs mt-1">{s.label}</div>
             </div>
           ))}
         </div>

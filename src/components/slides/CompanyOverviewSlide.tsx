@@ -19,11 +19,11 @@ const targetState = [
 
 const CompanyOverviewSlide = () => {
   return (
-    <SlideLayout id="company-overview" pageNumber={2}>
+    <SlideLayout id="company-overview" variant="alt" pageNumber={2}>
       <div className="space-y-8">
         <div className="text-center space-y-2">
-          <p className="text-primary font-semibold tracking-widest uppercase text-sm">AT Retailers</p>
-          <h2 className="font-display text-4xl md:text-5xl font-bold text-secondary">
+          <p className="text-primary font-semibold tracking-[0.2em] uppercase text-sm">AT Retailers</p>
+          <h2 className="font-display text-4xl md:text-5xl font-bold text-foreground">
             Current State → Target State
           </h2>
         </div>
@@ -31,12 +31,12 @@ const CompanyOverviewSlide = () => {
         {/* Current vs Target columns */}
         <div className="grid md:grid-cols-2 gap-6">
           {/* Current State */}
-          <div className="bg-destructive/5 border-2 border-destructive/20 rounded-2xl p-6 space-y-4">
+          <div className="glass-card rounded-2xl p-6 space-y-4 border-destructive/20">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-xl bg-destructive/15 flex items-center justify-center">
                 <AlertTriangle size={22} className="text-destructive" />
               </div>
-              <h3 className="font-display text-xl font-bold text-secondary">Current State</h3>
+              <h3 className="font-display text-xl font-bold text-foreground">Current State</h3>
             </div>
             <div className="space-y-3">
               {currentState.map(({ icon: Icon, text }) => (
@@ -44,19 +44,19 @@ const CompanyOverviewSlide = () => {
                   <div className="w-7 h-7 rounded-lg bg-destructive/10 flex items-center justify-center shrink-0 mt-0.5">
                     <Icon size={14} className="text-destructive" />
                   </div>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{text}</p>
+                  <p className="text-sm text-foreground/60 leading-relaxed">{text}</p>
                 </div>
               ))}
             </div>
           </div>
 
           {/* Target State */}
-          <div className="bg-primary/5 border-2 border-primary/20 rounded-2xl p-6 space-y-4">
+          <div className="glass-card rounded-2xl p-6 space-y-4 border-primary/20">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-xl bg-primary/15 flex items-center justify-center">
                 <Target size={22} className="text-primary" />
               </div>
-              <h3 className="font-display text-xl font-bold text-secondary">Target State</h3>
+              <h3 className="font-display text-xl font-bold text-foreground">Target State</h3>
             </div>
             <div className="space-y-3">
               {targetState.map(({ icon: Icon, text }) => (
@@ -64,7 +64,7 @@ const CompanyOverviewSlide = () => {
                   <div className="w-7 h-7 rounded-lg bg-primary/10 flex items-center justify-center shrink-0 mt-0.5">
                     <Icon size={14} className="text-primary" />
                   </div>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{text}</p>
+                  <p className="text-sm text-foreground/60 leading-relaxed">{text}</p>
                 </div>
               ))}
             </div>
@@ -77,9 +77,9 @@ const CompanyOverviewSlide = () => {
         </div>
 
         {/* Program Objective banner */}
-        <div className="bg-secondary rounded-2xl p-6 text-center space-y-2">
-          <p className="text-xs font-semibold text-secondary-foreground/60 tracking-widest uppercase">Program Objective</p>
-          <p className="font-display text-lg md:text-xl font-bold text-secondary-foreground">
+        <div className="bg-primary/10 border border-primary/20 rounded-2xl p-6 text-center space-y-2 glow-primary">
+          <p className="text-xs font-semibold text-primary/60 tracking-[0.2em] uppercase">Program Objective</p>
+          <p className="font-display text-lg md:text-xl font-bold text-foreground">
             Onboard 5,000 hostnames in 30 days while improving resiliency, performance, and security during the migration.
           </p>
         </div>
@@ -92,9 +92,9 @@ const CompanyOverviewSlide = () => {
             { value: "Multiple", label: "Acquisitions" },
             { value: "On-Prem + AWS", label: "Infrastructure" },
           ].map(({ value, label }) => (
-            <div key={label} className="bg-card rounded-xl border border-border p-4 text-center">
-              <p className="font-display font-bold text-secondary text-sm">{value}</p>
-              <p className="text-xs text-muted-foreground mt-0.5">{label}</p>
+            <div key={label} className="glass-card rounded-xl p-4 text-center">
+              <p className="font-display font-bold text-foreground text-sm">{value}</p>
+              <p className="text-xs text-foreground/30 mt-0.5">{label}</p>
             </div>
           ))}
         </div>
