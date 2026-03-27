@@ -4,7 +4,7 @@ import akamaiLogo from "@/assets/akamai-logo.png";
 
 const TitleSlide = () => (
   <SlideLayout variant="dark" id="title" pageNumber={1}>
-    <div className="flex flex-col items-center justify-center text-center min-h-[70vh] space-y-8">
+    <div className="flex flex-col items-center justify-center text-center min-h-[70vh] space-y-8 stagger-children">
       <img src={akamaiLogo} alt="Akamai Technologies" className="h-10 brightness-0 invert opacity-70" />
 
       <div className="space-y-4">

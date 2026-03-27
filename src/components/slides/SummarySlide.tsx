@@ -38,7 +38,7 @@ const SummarySlide = () => {
 
   return (
     <SlideLayout id="summary" variant="dark" pageNumber={11}>
-      <div className="flex flex-col items-center justify-center space-y-8 min-h-[70vh]">
+      <div className="flex flex-col items-center justify-center space-y-8 min-h-[70vh] stagger-children">
         <div className="text-center">
           <p className="text-white/40 font-semibold tracking-[0.2em] uppercase text-xs mb-2">Bringing It All Together</p>
           <h2 className="font-display text-3xl md:text-4xl font-bold text-white">Summary</h2>

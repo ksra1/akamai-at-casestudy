@@ -33,7 +33,7 @@ const traceability = [
 
 const ChallengeSlide = () => (
   <SlideLayout id="challenge" variant="alt" pageNumber={3}>
-    <div className="space-y-5">
+    <div className="space-y-5 stagger-children">
       <div>
         <p className="text-primary font-semibold tracking-[0.2em] uppercase text-xs mb-2">Understanding the Problem</p>
         <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground">15 Key Challenges</h2>
