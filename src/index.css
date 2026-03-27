@@ -9,55 +9,55 @@ html {
 
 @layer base {
   :root {
-    /* Noir palette — deep blacks with warm undertones */
-    --background: 225 15% 4%;
-    --foreground: 40 10% 88%;
+    /* Light corporate palette */
+    --background: 220 20% 97%;
+    --foreground: 220 25% 12%;
 
-    --card: 225 12% 8%;
-    --card-foreground: 40 10% 88%;
+    --card: 0 0% 100%;
+    --card-foreground: 220 25% 12%;
 
-    --popover: 225 12% 8%;
-    --popover-foreground: 40 10% 88%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 25% 12%;
 
-    --primary: 175 80% 48%;
-    --primary-foreground: 225 15% 4%;
+    --primary: 210 100% 40%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 225 10% 14%;
-    --secondary-foreground: 40 10% 88%;
+    --secondary: 220 15% 92%;
+    --secondary-foreground: 220 25% 12%;
 
-    --muted: 225 10% 12%;
-    --muted-foreground: 225 8% 45%;
+    --muted: 220 15% 94%;
+    --muted-foreground: 220 10% 45%;
 
-    --accent: 32 95% 55%;
-    --accent-foreground: 225 15% 4%;
+    --accent: 24 95% 50%;
+    --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 65% 52%;
+    --destructive: 0 72% 50%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 225 10% 14%;
-    --input: 225 10% 14%;
-    --ring: 175 80% 48%;
+    --border: 220 15% 88%;
+    --input: 220 15% 88%;
+    --ring: 210 100% 40%;
 
     --radius: 0.5rem;
 
     /* Akamai Brand */
-    --akamai-blue: 175 80% 48%;
-    --akamai-navy: 225 30% 10%;
-    --akamai-orange: 32 95% 55%;
-    --akamai-green: 155 75% 42%;
-    --akamai-lavender: 250 65% 68%;
-    --akamai-violet: 270 45% 30%;
-    --akamai-electric: 220 90% 58%;
-    --akamai-red: 0 65% 52%;
+    --akamai-blue: 210 100% 40%;
+    --akamai-navy: 220 40% 18%;
+    --akamai-orange: 24 95% 50%;
+    --akamai-green: 155 70% 35%;
+    --akamai-lavender: 250 55% 62%;
+    --akamai-violet: 270 40% 35%;
+    --akamai-electric: 220 85% 55%;
+    --akamai-red: 0 72% 50%;
 
-    --sidebar-background: 225 15% 3%;
-    --sidebar-foreground: 40 10% 85%;
-    --sidebar-primary: 175 80% 48%;
-    --sidebar-primary-foreground: 225 15% 4%;
-    --sidebar-accent: 225 12% 12%;
-    --sidebar-accent-foreground: 40 10% 85%;
-    --sidebar-border: 225 10% 16%;
-    --sidebar-ring: 175 80% 48%;
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 220 25% 12%;
+    --sidebar-primary: 210 100% 40%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 220 15% 94%;
+    --sidebar-accent-foreground: 220 25% 12%;
+    --sidebar-border: 220 15% 88%;
+    --sidebar-ring: 210 100% 40%;
   }
 }
 
@@ -87,43 +87,44 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .slide-alt {
-  background: hsl(225, 12%, 6%);
+  background: hsl(220, 15%, 94%);
 }
 
-/* Noir panel — solid dark card with left accent */
-.noir-panel {
-  background: hsl(225, 12%, 7%);
-  border: 1px solid hsl(225, 10%, 13%);
+/* Clean card */
+.clean-card {
+  background: hsl(0, 0%, 100%);
+  border: 1px solid hsl(220, 15%, 88%);
   border-radius: 0.5rem;
+  box-shadow: 0 1px 3px hsla(220, 25%, 12%, 0.04);
 }
-.noir-panel:hover {
-  border-color: hsl(225, 10%, 18%);
+.clean-card:hover {
+  box-shadow: 0 4px 12px hsla(220, 25%, 12%, 0.08);
+  border-color: hsl(220, 15%, 82%);
 }
 
-/* Accent-left card */
-.accent-card {
-  background: hsl(225, 12%, 7%);
-  border: 1px solid hsl(225, 10%, 13%);
+/* Accent stripe card */
+.stripe-card {
+  background: hsl(0, 0%, 100%);
+  border: 1px solid hsl(220, 15%, 88%);
   border-left: 3px solid hsl(var(--primary));
   border-radius: 0.5rem;
-  transition: border-color 0.2s, transform 0.2s;
+  box-shadow: 0 1px 3px hsla(220, 25%, 12%, 0.04);
+  transition: box-shadow 0.2s, transform 0.2s;
 }
-.accent-card:hover {
-  border-left-color: hsl(var(--primary));
-  border-color: hsl(225, 10%, 20%);
-  transform: translateY(-2px);
+.stripe-card:hover {
+  box-shadow: 0 4px 12px hsla(220, 25%, 12%, 0.08);
+  transform: translateY(-1px);
 }
-.accent-card-orange {
+.stripe-card-orange {
   border-left-color: hsl(var(--accent));
 }
-.accent-card-orange:hover {
-  border-left-color: hsl(var(--accent));
-}
-.accent-card-green {
+.stripe-card-green {
   border-left-color: hsl(var(--akamai-green));
 }
-.accent-card-green:hover {
-  border-left-color: hsl(var(--akamai-green));
+
+/* Hero section background */
+.hero-bg {
+  background: linear-gradient(160deg, hsl(220, 40%, 18%) 0%, hsl(210, 50%, 25%) 50%, hsl(220, 35%, 15%) 100%);
 }
 
 /* Callout badge */
@@ -131,7 +132,17 @@ h1, h2, h3, h4, h5, h6 {
   @apply cursor-pointer transition-all duration-200;
 }
 .callout-badge:hover {
-  transform: translateY(-2px);
+  transform: translateY(-1px);
+}
+
+/* Flow arrow animation */
+@keyframes flowRight {
+  0% { transform: translateX(-2px); opacity: 0.5; }
+  50% { transform: translateX(2px); opacity: 1; }
+  100% { transform: translateX(-2px); opacity: 0.5; }
+}
+.flow-arrow {
+  animation: flowRight 2s ease-in-out infinite;
 }
 
 /* Print styles */
@@ -140,12 +151,13 @@ h1, h2, h3, h4, h5, h6 {
     page-break-after: always;
     min-height: 100vh;
     break-after: page;
+    page-break-inside: avoid;
+    break-inside: avoid;
   }
   .slide:last-child {
     page-break-after: auto;
   }
-  .slide-nav,
-  .no-print {
+  .slide-nav, .no-print {
     display: none !important;
   }
   .print-only {
@@ -159,66 +171,12 @@ h1, h2, h3, h4, h5, h6 {
     size: landscape;
     margin: 0;
   }
-}
-
-.print-only {
-  display: none;
-}
-
-/* Subtle gradient for title slides */
-.gradient-noir {
-  background: linear-gradient(170deg, hsl(225, 15%, 3%) 0%, hsl(225, 18%, 7%) 50%, hsl(225, 15%, 4%) 100%);
-}
-
-/* Subtle top-line accent */
-.top-accent {
-  position: relative;
-}
-.top-accent::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 2rem;
-  right: 2rem;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, hsl(var(--primary) / 0.3), transparent);
-}
-
-/* Minimal mesh for depth */
-.noir-mesh {
-  background:
-    radial-gradient(ellipse at 20% 80%, hsla(175, 80%, 48%, 0.02) 0%, transparent 50%),
-    radial-gradient(ellipse at 80% 20%, hsla(32, 95%, 55%, 0.015) 0%, transparent 40%);
-}
-
-/* Flow arrow animation */
-@keyframes flowRight {
-  0% { transform: translateX(-2px); opacity: 0.5; }
-  50% { transform: translateX(2px); opacity: 1; }
-  100% { transform: translateX(-2px); opacity: 0.5; }
-}
-.flow-arrow {
-  animation: flowRight 2s ease-in-out infinite;
-}
-
-/* Additional print styles */
-@media print {
   html, body {
     margin: 0;
     padding: 0;
     height: 100%;
   }
-  .slide-nav {
-    display: none !important;
-  }
-  .slide {
-    page-break-after: always;
-    page-break-inside: avoid;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    break-after: page;
-    break-inside: avoid;
-  }
+}
+.print-only {
+  display: none;
 }

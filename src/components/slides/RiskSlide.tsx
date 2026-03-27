@@ -26,7 +26,7 @@ const RiskSlide = () => {
   const [riskModal, setRiskModal] = useState<number | null>(null);
 
   return (
-    <SlideLayout id="risk" pageNumber={9}>
+    <SlideLayout id="risk" variant="alt" pageNumber={9}>
       <div className="space-y-5">
         <div>
           <p className="text-accent font-semibold tracking-[0.2em] uppercase text-[10px] mb-2">Section A — Governance</p>
@@ -34,8 +34,7 @@ const RiskSlide = () => {
         </div>
 
         <div className="grid md:grid-cols-2 gap-5">
-          {/* Risk Matrix */}
-          <div className="noir-panel p-5">
+          <div className="clean-card p-5">
             <h3 className="font-display font-semibold text-foreground text-sm mb-3 flex items-center gap-2">
               <AlertTriangle size={14} className="text-accent" /> Risk Matrix
             </h3>
@@ -45,15 +44,15 @@ const RiskSlide = () => {
                   const row = Math.floor(i / 5);
                   const col = i % 5;
                   const severity = (4 - row) + col;
-                  const bg = severity >= 6 ? "bg-destructive/8" : severity >= 4 ? "bg-accent/6" : severity >= 2 ? "bg-yellow-500/4" : "bg-akamai-green/4";
-                  return <div key={i} className={`${bg} border border-border/20`} />;
+                  const bg = severity >= 6 ? "bg-destructive/8" : severity >= 4 ? "bg-accent/8" : severity >= 2 ? "bg-yellow-500/5" : "bg-akamai-green/5";
+                  return <div key={i} className={`${bg} border border-border/50`} />;
                 })}
               </div>
               {risks.map(r => (
                 <button
                   key={r.id}
                   onClick={() => setRiskModal(r.id)}
-                  className="absolute w-7 h-7 rounded bg-primary text-primary-foreground flex items-center justify-center text-[10px] font-bold hover:scale-110 transition-transform"
+                  className="absolute w-7 h-7 rounded bg-primary text-primary-foreground flex items-center justify-center text-[10px] font-bold shadow-md hover:scale-110 transition-transform"
                   style={{
                     left: `${(r.likelihood - 0.5) * 20}%`,
                     bottom: `${(r.impact - 0.5) * 20}%`,
@@ -63,38 +62,32 @@ const RiskSlide = () => {
                   {r.id}
                 </button>
               ))}
-              <div className="absolute -bottom-4 left-0 right-0 text-center text-[9px] text-foreground/20">Likelihood →</div>
+              <div className="absolute -bottom-4 left-0 right-0 text-center text-[9px] text-muted-foreground">Likelihood →</div>
               <div className="absolute -left-4 top-0 bottom-0 flex items-center">
-                <span className="text-[9px] text-foreground/20 -rotate-90 whitespace-nowrap">Impact →</span>
+                <span className="text-[9px] text-muted-foreground -rotate-90 whitespace-nowrap">Impact →</span>
               </div>
             </div>
           </div>
 
-          {/* Risk list */}
           <div className="space-y-2">
             {risks.map(r => (
-              <div
-                key={r.id}
-                onClick={() => setRiskModal(r.id)}
-                className="accent-card callout-badge p-3 flex items-center gap-3"
-              >
+              <div key={r.id} onClick={() => setRiskModal(r.id)} className="stripe-card callout-badge p-3 flex items-center gap-3">
                 <div className="bg-primary w-6 h-6 rounded flex items-center justify-center text-primary-foreground text-[10px] font-bold shrink-0">{r.id}</div>
-                <p className="text-sm text-foreground/50 flex-1">{r.risk}</p>
-                <ArrowUpRight size={12} className="text-foreground/15 shrink-0" />
+                <p className="text-sm text-foreground/70 flex-1">{r.risk}</p>
+                <ArrowUpRight size={12} className="text-muted-foreground/30 shrink-0" />
               </div>
             ))}
           </div>
         </div>
 
-        {/* RACI */}
-        <div className="noir-panel p-4 overflow-x-auto">
+        <div className="clean-card p-4 overflow-x-auto">
           <h3 className="font-display font-semibold text-foreground text-sm mb-3 flex items-center gap-2">
             <Users size={14} className="text-primary" /> RACI Matrix
           </h3>
           <table className="w-full text-sm">
             <thead>
               <tr className="border-b border-border">
-                <th className="text-left p-2 text-[10px] font-semibold text-foreground/40">Activity</th>
+                <th className="text-left p-2 text-[10px] font-semibold text-muted-foreground">Activity</th>
                 <th className="p-2 text-center"><span className="bg-primary text-primary-foreground px-1.5 py-0.5 rounded text-[9px] font-bold">R</span></th>
                 <th className="p-2 text-center"><span className="bg-accent text-accent-foreground px-1.5 py-0.5 rounded text-[9px] font-bold">A</span></th>
                 <th className="p-2 text-center"><span className="bg-akamai-green text-primary-foreground px-1.5 py-0.5 rounded text-[9px] font-bold">C</span></th>
@@ -103,24 +96,23 @@ const RiskSlide = () => {
             </thead>
             <tbody>
               {raciData.map(row => (
-                <tr key={row.activity} className="border-b border-border/20">
-                  <td className="p-2 font-medium text-foreground/50 text-[11px]">{row.activity}</td>
-                  <td className="p-2 text-center text-[10px] text-foreground/30">{row.r}</td>
-                  <td className="p-2 text-center text-[10px] text-foreground/30">{row.a}</td>
-                  <td className="p-2 text-center text-[10px] text-foreground/30">{row.c}</td>
-                  <td className="p-2 text-center text-[10px] text-foreground/30">{row.i}</td>
+                <tr key={row.activity} className="border-b border-border/50">
+                  <td className="p-2 font-medium text-foreground/70 text-[11px]">{row.activity}</td>
+                  <td className="p-2 text-center text-[10px] text-muted-foreground">{row.r}</td>
+                  <td className="p-2 text-center text-[10px] text-muted-foreground">{row.a}</td>
+                  <td className="p-2 text-center text-[10px] text-muted-foreground">{row.c}</td>
+                  <td className="p-2 text-center text-[10px] text-muted-foreground">{row.i}</td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
 
-        {/* Escalation */}
         <div className="flex justify-center">
           <div className="flex items-center gap-2 text-[10px]">
             {["Team Lead", "Akamai TPM", "Account Director", "VP Escalation"].map((level, i) => (
               <div key={level} className="flex items-center gap-2">
-                <div className="noir-panel text-foreground/50 px-3 py-1.5 font-semibold">{level}</div>
+                <div className="clean-card text-foreground/60 px-3 py-1.5 font-semibold">{level}</div>
                 {i < 3 && <ArrowUpRight size={12} className="text-accent" />}
               </div>
             ))}
@@ -130,7 +122,7 @@ const RiskSlide = () => {
 
       {risks.map(r => (
         <CalloutModal key={r.id} open={riskModal === r.id} onOpenChange={() => setRiskModal(null)} title={`Risk #${r.id}: ${r.risk}`}>
-          <div className="noir-panel p-4" style={{ borderLeftWidth: 3, borderLeftColor: 'hsl(175, 80%, 48%)' }}>
+          <div className="bg-primary/5 border border-primary/15 rounded p-4">
             <p className="text-sm font-semibold text-primary mb-1">Mitigation Strategy</p>
             <p className="text-sm">{r.mitigation}</p>
           </div>

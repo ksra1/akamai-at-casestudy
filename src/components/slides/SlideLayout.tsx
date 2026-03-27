@@ -5,14 +5,14 @@ interface SlideLayoutProps {
   children: ReactNode;
   className?: string;
   id?: string;
-  variant?: "default" | "noir" | "alt";
+  variant?: "default" | "dark" | "alt";
   pageNumber?: number;
 }
 
 const SlideLayout = ({ children, className, id, variant = "default", pageNumber }: SlideLayoutProps) => {
   const bgClass = {
     default: "bg-background",
-    noir: "gradient-noir",
+    dark: "hero-bg text-white",
     alt: "slide-alt",
   }[variant];
 
@@ -21,10 +21,12 @@ const SlideLayout = ({ children, className, id, variant = "default", pageNumber 
       id={id}
       className={cn("slide flex flex-col justify-center px-6 md:px-12 lg:px-20 py-12 relative", bgClass, className)}
     >
-      <div className="noir-mesh absolute inset-0 pointer-events-none" />
       <div className="relative z-10 max-w-6xl mx-auto w-full">{children}</div>
       {pageNumber !== undefined && (
-        <div className="absolute bottom-3 right-6 text-[10px] font-semibold text-muted-foreground/25 tracking-widest">
+        <div className={cn(
+          "absolute bottom-3 right-6 text-[10px] font-semibold tracking-widest",
+          variant === "dark" ? "text-white/20" : "text-muted-foreground/30"
+        )}>
           {String(pageNumber).padStart(2, "0")}
         </div>
       )}

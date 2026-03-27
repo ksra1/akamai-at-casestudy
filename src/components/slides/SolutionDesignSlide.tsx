@@ -5,9 +5,7 @@ import { Clock, Zap, Image, AlertTriangle, Globe, Users, CheckCircle2, ArrowRigh
 
 const deliverySolutions = [
   {
-    icon: Clock,
-    issue: "5,000 hostnames in 30 days",
-    solution: "Property Manager API + CPS Automation + Bulk DNS",
+    icon: Clock, issue: "5,000 hostnames in 30 days", solution: "Property Manager API + CPS Automation + Bulk DNS",
     products: ["Property Manager API", "CPS API", "mPulse"],
     steps: [
       "Define reusable config template — baseline caching, compression, origin health checks, WAF rules bundled as a golden template",
@@ -20,9 +18,7 @@ const deliverySolutions = [
     bestPractice: "Use golden templates with locked-down rules to prevent configuration drift across 5,000 properties. Use SAN grouping in CPS to minimize cert management overhead.",
   },
   {
-    icon: Zap,
-    issue: "Handle 5x peak traffic",
-    solution: "Ion + SureRoute + GTM Failover",
+    icon: Zap, issue: "Handle 5x peak traffic", solution: "Ion + SureRoute + GTM Failover",
     products: ["Ion", "GTM", "mPulse"],
     steps: [
       "Configure aggressive edge caching for static & semi-dynamic content — absorb peak load at CDN before origin",
@@ -34,9 +30,7 @@ const deliverySolutions = [
     bestPractice: "Enable Tiered Distribution to reduce origin requests by 60-80% through parent cache hierarchy",
   },
   {
-    icon: Image,
-    issue: "Slow image loading",
-    solution: "Image & Video Manager (IVM)",
+    icon: Image, issue: "Slow image loading", solution: "Image & Video Manager (IVM)",
     products: ["Image & Video Manager", "mPulse"],
     steps: [
       "Enable IVM on all image paths in Property Manager to intercept image requests at edge",
@@ -48,9 +42,7 @@ const deliverySolutions = [
     bestPractice: "Use perceptual quality tuning instead of fixed quality — maintains visual quality with maximum compression",
   },
   {
-    icon: AlertTriangle,
-    issue: "No testing — straight to production",
-    solution: "Phased Cohort Rollout with Instant Rollback",
+    icon: AlertTriangle, issue: "No testing — straight to production", solution: "Phased Cohort Rollout with Instant Rollback",
     products: ["Property Manager API", "mPulse", "GTM"],
     steps: [
       "Onboard hostnames in controlled waves (pilot → scale) — Wave 1 is 500 low-risk hostnames to validate golden template",
@@ -62,9 +54,7 @@ const deliverySolutions = [
     bestPractice: "Keep legacy provider active during migration window — dual-path ensures instant fallback until all waves are validated",
   },
   {
-    icon: Globe,
-    issue: "Multi-geography resource management",
-    solution: "GTM Geographic Routing + DataStream",
+    icon: Globe, issue: "Multi-geography resource management", solution: "GTM Geographic Routing + DataStream",
     products: ["GTM", "mPulse", "DataStream"],
     steps: [
       "Define primary/secondary origins per region — EU (Frankfurt + London), US (Virginia + Oregon), LATAM (São Paulo)",
@@ -76,9 +66,7 @@ const deliverySolutions = [
     bestPractice: "Use GTM performance-based routing (not just geographic) — routes users to fastest origin, not just nearest",
   },
   {
-    icon: Users,
-    issue: "New teams untrained on Akamai",
-    solution: "Config-as-Code Templates + Self-Service",
+    icon: Users, issue: "New teams untrained on Akamai", solution: "Config-as-Code Templates + Self-Service",
     products: ["Property Manager API", "Control Center"],
     steps: [
       "Build reusable Terraform/IaC templates — baseline caching, compression, WAF rules bundled per use case",
@@ -95,33 +83,29 @@ const SolutionDesignSlide = () => {
   const [activeModal, setActiveModal] = useState<number | null>(null);
 
   return (
-    <SlideLayout id="delivery-solutions" pageNumber={5}>
+    <SlideLayout id="delivery-solutions" variant="alt" pageNumber={5}>
       <div className="space-y-5">
         <div>
           <p className="text-primary font-semibold tracking-[0.2em] uppercase text-[10px] mb-2">Section A — Delivery Strategy</p>
           <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground">Delivery Solutions</h2>
-          <p className="text-foreground/25 text-sm mt-1">Click each challenge for step-by-step solution</p>
+          <p className="text-muted-foreground text-sm mt-1">Click each challenge for step-by-step solution</p>
         </div>
 
         <div className="grid md:grid-cols-2 gap-4">
           {deliverySolutions.map((s, i) => (
-            <div
-              key={s.issue}
-              onClick={() => setActiveModal(i)}
-              className="accent-card callout-badge p-4 group cursor-pointer"
-            >
+            <div key={s.issue} onClick={() => setActiveModal(i)} className="stripe-card callout-badge p-4 group cursor-pointer">
               <div className="flex items-start gap-3">
                 <s.icon size={20} className="text-primary shrink-0 mt-0.5" />
                 <div className="flex-1 min-w-0">
                   <h3 className="font-display font-bold text-foreground text-sm leading-tight">{s.issue}</h3>
-                  <p className="text-[11px] text-primary/70 font-semibold mt-0.5">{s.solution}</p>
+                  <p className="text-[11px] text-primary font-semibold mt-0.5">{s.solution}</p>
                   <div className="flex flex-wrap gap-1 mt-2">
                     {s.products.map(p => (
                       <span key={p} className="text-[9px] px-1.5 py-0.5 rounded bg-primary/10 text-primary font-semibold">{p}</span>
                     ))}
                   </div>
                 </div>
-                <ArrowRight size={14} className="text-foreground/15 group-hover:text-primary transition-colors shrink-0 mt-1" />
+                <ArrowRight size={14} className="text-muted-foreground/30 group-hover:text-primary transition-colors shrink-0 mt-1" />
               </div>
             </div>
           ))}
@@ -131,24 +115,22 @@ const SolutionDesignSlide = () => {
       {deliverySolutions.map((s, i) => (
         <CalloutModal key={s.issue} open={activeModal === i} onOpenChange={() => setActiveModal(null)} title={s.issue}>
           <div className="space-y-4">
-            <div className="noir-panel p-3" style={{ borderLeftWidth: 3, borderLeftColor: 'hsl(175, 80%, 48%)' }}>
+            <div className="bg-primary/5 border border-primary/15 rounded p-3">
               <p className="text-sm font-semibold text-primary">{s.solution}</p>
             </div>
             <div className="space-y-3">
               {s.steps.map((step, idx) => (
                 <div key={idx} className="flex items-start gap-3">
-                  <div className="w-6 h-6 rounded bg-primary text-primary-foreground flex items-center justify-center text-[10px] font-bold shrink-0 mt-0.5">
-                    {idx + 1}
-                  </div>
+                  <div className="w-6 h-6 rounded bg-primary text-primary-foreground flex items-center justify-center text-[10px] font-bold shrink-0 mt-0.5">{idx + 1}</div>
                   <p className="text-sm text-muted-foreground leading-relaxed">{step}</p>
                 </div>
               ))}
             </div>
-            <div className="noir-panel p-3 flex items-start gap-2" style={{ borderLeftWidth: 3, borderLeftColor: 'hsl(155, 75%, 42%)' }}>
+            <div className="bg-akamai-green/5 border border-akamai-green/20 rounded p-3 flex items-start gap-2">
               <CheckCircle2 size={16} className="text-akamai-green shrink-0 mt-0.5" />
               <p className="text-sm font-semibold text-akamai-green">{s.result}</p>
             </div>
-            <div className="noir-panel p-3" style={{ borderLeftWidth: 3, borderLeftColor: 'hsl(32, 95%, 55%)' }}>
+            <div className="bg-accent/5 border border-accent/15 rounded p-3">
               <p className="text-[10px] font-semibold text-accent uppercase tracking-wider mb-1">Best Practice</p>
               <p className="text-sm">{s.bestPractice}</p>
             </div>

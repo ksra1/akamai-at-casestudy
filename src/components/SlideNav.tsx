@@ -46,10 +46,10 @@ const SlideNav = () => {
           className="group flex items-center gap-2 justify-end"
           title={s.label}
         >
-          <span className={`text-[10px] font-medium transition-opacity opacity-0 group-hover:opacity-100 ${active === s.id ? "!opacity-100 text-primary" : "text-foreground/30"}`}>
+          <span className={`text-[10px] font-medium transition-opacity opacity-0 group-hover:opacity-100 ${active === s.id ? "!opacity-100 text-primary" : "text-foreground/40"}`}>
             {s.label}
           </span>
-          <div className={`h-4 transition-all rounded-sm ${active === s.id ? "w-1 bg-primary" : "w-0.5 bg-foreground/15 group-hover:bg-foreground/30"}`} />
+          <div className={`h-4 transition-all rounded-sm ${active === s.id ? "w-1 bg-primary" : "w-0.5 bg-foreground/15 group-hover:bg-foreground/25"}`} />
         </button>
       ))}
     </nav>
