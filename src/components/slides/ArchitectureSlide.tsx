@@ -6,13 +6,13 @@ import { ArrowRight, Cloud, Shield, Server, Users, Zap, Globe, Bot, Lock, Image,
 const deliveryProducts = [
   { icon: Zap, label: "Ion", desc: "Akamai's flagship CDN product for dynamic site acceleration. Combines intelligent caching, prefetching, SureRoute optimization, and adaptive acceleration to deliver fast, reliable web experiences globally." },
   { icon: Image, label: "Image & Video Manager", desc: "Automatically optimizes images at the edge — converts to WebP/AVIF, resizes for device, adjusts quality. Zero origin processing. Reduces image payload 50-70%." },
-  { icon: Globe, label: "Global Traffic Management", desc: "DNS-based load balancing across origins and regions. Health checks every 60s, automatic failover, geographic and performance-based routing. During migration, keeps legacy provider as fallback for instant rollback via DNS." },
+  { icon: Globe, label: "Global Traffic Management (GTM)", desc: "DNS-based load balancing across origins and regions. Health checks every 60s, automatic failover, geographic and performance-based routing. During migration, keeps legacy provider as fallback for instant rollback via DNS." },
   { icon: BarChart3, label: "mPulse", desc: "Real User Monitoring (RUM) — measures actual end-user page load, Core Web Vitals (LCP, FID, CLS), and business metrics like conversion rate. Anomaly detection triggers alerts." },
 ];
 
 const securityProducts = [
-  { icon: Shield, label: "Prolexic", desc: "Always-on DDoS protection with 20+ Tbps of dedicated scrubbing capacity across 36 global centers. Stops volumetric, protocol, and application-layer attacks before they reach your infrastructure." },
-  { icon: Shield, label: "App & API Protector", desc: "Next-gen WAF with Adaptive Security Engine. Auto-updating rules for OWASP Top 10, API protection, and rate limiting. ML-driven tuning reduces false positives 5x vs legacy WAF." },
+  { icon: Shield, label: "Prolexic", desc: "Akamai's dedicated DDoS protection product. Always-on with 20+ Tbps of scrubbing capacity across 36 global centers. Stops volumetric, protocol, and application-layer attacks before they reach your infrastructure. Different from WAF — Prolexic handles network-layer volumetric floods, while WAF (App & API Protector) handles application-layer attacks like SQL injection." },
+  { icon: Shield, label: "App & API Protector (AAP)", desc: "Akamai's next-gen WAF product (replaces legacy Kona WAF). Features Adaptive Security Engine with auto-updating rules for OWASP Top 10, API protection, and rate limiting. ML-driven tuning reduces false positives 5x vs legacy WAF." },
   { icon: Bot, label: "Bot Manager Premier", desc: "Behavioral bot detection using 100+ signals: device fingerprinting, TLS analysis, mouse/keyboard patterns. Catches sophisticated bots that rotate IPs and spoof User-Agents." },
   { icon: Lock, label: "API Security", desc: "Discovers shadow APIs automatically. Schema validation ensures only expected parameters pass. Detects anomalous API usage patterns — protects against data exfiltration and abuse." },
 ];
@@ -24,7 +24,7 @@ const ArchitectureSlide = () => {
     <SlideLayout id="architecture" pageNumber={4}>
       <div className="space-y-5">
         <div>
-          <p className="text-primary font-semibold tracking-[0.2em] uppercase text-[10px] mb-2">Section B — Solution Architecture</p>
+          <p className="text-primary font-semibold tracking-[0.2em] uppercase text-xs mb-2">Section B — Solution Architecture</p>
           <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground">High-Level Architecture</h2>
           <p className="text-sm text-muted-foreground mt-1">Click any product for details</p>
         </div>
@@ -33,7 +33,7 @@ const ArchitectureSlide = () => {
           <div className="flex items-stretch gap-4">
             {/* End Users */}
             <div className="flex-1 space-y-2">
-              <p className="text-[10px] font-semibold text-muted-foreground tracking-[0.15em] uppercase text-center mb-2">End Users</p>
+              <p className="text-xs font-semibold text-muted-foreground tracking-[0.15em] uppercase text-center mb-2">End Users</p>
               {[
                 { icon: Users, label: "North America", sub: "Primary" },
                 { icon: Users, label: "LATAM", sub: "Growing" },
@@ -42,8 +42,8 @@ const ArchitectureSlide = () => {
                 <div key={label} className="stripe-card stripe-card-green p-2.5 flex items-center gap-2">
                   <Icon size={16} className="text-akamai-green shrink-0" />
                   <div>
-                    <p className="text-xs font-semibold text-foreground">{label}</p>
-                    <p className="text-[10px] text-muted-foreground">{sub}</p>
+                    <p className="text-sm font-semibold text-foreground">{label}</p>
+                    <p className="text-xs text-muted-foreground">{sub}</p>
                   </div>
                 </div>
               ))}
@@ -55,36 +55,36 @@ const ArchitectureSlide = () => {
 
             {/* Akamai Edge */}
             <div className="flex-[2] border-2 border-primary/20 rounded-md p-5 relative bg-primary/[0.02]">
-              <div className="absolute -top-2.5 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground px-3 py-0.5 rounded text-[10px] font-bold tracking-wider">
+              <div className="absolute -top-2.5 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground px-3 py-0.5 rounded text-xs font-bold tracking-wider">
                 AKAMAI EDGE PLATFORM
               </div>
               <div className="space-y-4 mt-2">
                 <div>
-                  <p className="text-[10px] font-semibold text-primary tracking-wider uppercase mb-2">Delivery & Performance</p>
+                  <p className="text-xs font-semibold text-primary tracking-wider uppercase mb-2">Delivery & Performance</p>
                   <div className="grid grid-cols-4 gap-2">
                     {deliveryProducts.map(({ icon: Icon, label, desc }) => (
                       <button
                         key={label}
                         onClick={() => setActiveProduct({ label, desc })}
-                        className="clean-card p-2 text-center hover:border-primary/40 transition-colors cursor-pointer"
+                        className="clean-card p-2.5 text-center hover:border-primary/40 transition-colors cursor-pointer"
                       >
                         <Icon size={16} className="text-primary mx-auto mb-1" />
-                        <p className="text-[10px] font-semibold text-foreground/70">{label}</p>
+                        <p className="text-xs font-semibold text-foreground/70">{label}</p>
                       </button>
                     ))}
                   </div>
                 </div>
                 <div>
-                  <p className="text-[10px] font-semibold text-accent tracking-wider uppercase mb-2">Security</p>
+                  <p className="text-xs font-semibold text-accent tracking-wider uppercase mb-2">Security</p>
                   <div className="grid grid-cols-4 gap-2">
                     {securityProducts.map(({ icon: Icon, label, desc }) => (
                       <button
                         key={label}
                         onClick={() => setActiveProduct({ label, desc })}
-                        className="clean-card p-2 text-center hover:border-accent/40 transition-colors cursor-pointer"
+                        className="clean-card p-2.5 text-center hover:border-accent/40 transition-colors cursor-pointer"
                       >
                         <Icon size={16} className="text-accent mx-auto mb-1" />
-                        <p className="text-[10px] font-semibold text-foreground/70">{label}</p>
+                        <p className="text-xs font-semibold text-foreground/70">{label}</p>
                       </button>
                     ))}
                   </div>
@@ -98,7 +98,7 @@ const ArchitectureSlide = () => {
 
             {/* Origins */}
             <div className="flex-1 space-y-2">
-              <p className="text-[10px] font-semibold text-muted-foreground tracking-[0.15em] uppercase text-center mb-2">Origins</p>
+              <p className="text-xs font-semibold text-muted-foreground tracking-[0.15em] uppercase text-center mb-2">Origins</p>
               {[
                 { icon: Server, label: "On-Prem DC", sub: "Legacy" },
                 { icon: Cloud, label: "AWS", sub: "Microservices" },
@@ -107,8 +107,8 @@ const ArchitectureSlide = () => {
                 <div key={label} className="stripe-card stripe-card-orange p-2.5 flex items-center gap-2">
                   <Icon size={16} className="text-accent shrink-0" />
                   <div>
-                    <p className="text-xs font-semibold text-foreground">{label}</p>
-                    <p className="text-[10px] text-muted-foreground">{sub}</p>
+                    <p className="text-sm font-semibold text-foreground">{label}</p>
+                    <p className="text-xs text-muted-foreground">{sub}</p>
                   </div>
                 </div>
               ))}

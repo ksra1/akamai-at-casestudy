@@ -29,7 +29,7 @@ const RiskSlide = () => {
     <SlideLayout id="risk" variant="alt" pageNumber={9}>
       <div className="space-y-5">
         <div>
-          <p className="text-accent font-semibold tracking-[0.2em] uppercase text-[10px] mb-2">Section A — Governance</p>
+          <p className="text-accent font-semibold tracking-[0.2em] uppercase text-xs mb-2">Section A — Governance</p>
           <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground">Risk & Change Management</h2>
         </div>
 
@@ -52,7 +52,7 @@ const RiskSlide = () => {
                 <button
                   key={r.id}
                   onClick={() => setRiskModal(r.id)}
-                  className="absolute w-7 h-7 rounded bg-primary text-primary-foreground flex items-center justify-center text-[10px] font-bold shadow-md hover:scale-110 transition-transform"
+                  className="absolute w-7 h-7 rounded bg-primary text-primary-foreground flex items-center justify-center text-xs font-bold shadow-md hover:scale-110 transition-transform"
                   style={{
                     left: `${(r.likelihood - 0.5) * 20}%`,
                     bottom: `${(r.impact - 0.5) * 20}%`,
@@ -62,9 +62,9 @@ const RiskSlide = () => {
                   {r.id}
                 </button>
               ))}
-              <div className="absolute -bottom-4 left-0 right-0 text-center text-[9px] text-muted-foreground">Likelihood →</div>
-              <div className="absolute -left-4 top-0 bottom-0 flex items-center">
-                <span className="text-[9px] text-muted-foreground -rotate-90 whitespace-nowrap">Impact →</span>
+              <div className="absolute -bottom-5 left-0 right-0 text-center text-xs text-muted-foreground">Likelihood →</div>
+              <div className="absolute -left-5 top-0 bottom-0 flex items-center">
+                <span className="text-xs text-muted-foreground -rotate-90 whitespace-nowrap">Impact →</span>
               </div>
             </div>
           </div>
@@ -72,7 +72,7 @@ const RiskSlide = () => {
           <div className="space-y-2">
             {risks.map(r => (
               <div key={r.id} onClick={() => setRiskModal(r.id)} className="stripe-card callout-badge p-3 flex items-center gap-3">
-                <div className="bg-primary w-6 h-6 rounded flex items-center justify-center text-primary-foreground text-[10px] font-bold shrink-0">{r.id}</div>
+                <div className="bg-primary w-6 h-6 rounded flex items-center justify-center text-primary-foreground text-xs font-bold shrink-0">{r.id}</div>
                 <p className="text-sm text-foreground/70 flex-1">{r.risk}</p>
                 <ArrowUpRight size={12} className="text-muted-foreground/30 shrink-0" />
               </div>
@@ -87,21 +87,21 @@ const RiskSlide = () => {
           <table className="w-full text-sm">
             <thead>
               <tr className="border-b border-border">
-                <th className="text-left p-2 text-[10px] font-semibold text-muted-foreground">Activity</th>
-                <th className="p-2 text-center"><span className="bg-primary text-primary-foreground px-1.5 py-0.5 rounded text-[9px] font-bold">R</span></th>
-                <th className="p-2 text-center"><span className="bg-accent text-accent-foreground px-1.5 py-0.5 rounded text-[9px] font-bold">A</span></th>
-                <th className="p-2 text-center"><span className="bg-akamai-green text-primary-foreground px-1.5 py-0.5 rounded text-[9px] font-bold">C</span></th>
-                <th className="p-2 text-center"><span className="bg-muted text-muted-foreground px-1.5 py-0.5 rounded text-[9px] font-bold">I</span></th>
+                <th className="text-left p-2 text-xs font-semibold text-muted-foreground">Activity</th>
+                <th className="p-2 text-center"><span className="bg-primary text-primary-foreground px-1.5 py-0.5 rounded text-[11px] font-bold">R</span></th>
+                <th className="p-2 text-center"><span className="bg-accent text-accent-foreground px-1.5 py-0.5 rounded text-[11px] font-bold">A</span></th>
+                <th className="p-2 text-center"><span className="bg-akamai-green text-primary-foreground px-1.5 py-0.5 rounded text-[11px] font-bold">C</span></th>
+                <th className="p-2 text-center"><span className="bg-muted text-muted-foreground px-1.5 py-0.5 rounded text-[11px] font-bold">I</span></th>
               </tr>
             </thead>
             <tbody>
               {raciData.map(row => (
                 <tr key={row.activity} className="border-b border-border/50">
-                  <td className="p-2 font-medium text-foreground/70 text-[11px]">{row.activity}</td>
-                  <td className="p-2 text-center text-[10px] text-muted-foreground">{row.r}</td>
-                  <td className="p-2 text-center text-[10px] text-muted-foreground">{row.a}</td>
-                  <td className="p-2 text-center text-[10px] text-muted-foreground">{row.c}</td>
-                  <td className="p-2 text-center text-[10px] text-muted-foreground">{row.i}</td>
+                  <td className="p-2 font-medium text-foreground/70 text-xs">{row.activity}</td>
+                  <td className="p-2 text-center text-xs text-muted-foreground">{row.r}</td>
+                  <td className="p-2 text-center text-xs text-muted-foreground">{row.a}</td>
+                  <td className="p-2 text-center text-xs text-muted-foreground">{row.c}</td>
+                  <td className="p-2 text-center text-xs text-muted-foreground">{row.i}</td>
                 </tr>
               ))}
             </tbody>
@@ -109,7 +109,7 @@ const RiskSlide = () => {
         </div>
 
         <div className="flex justify-center">
-          <div className="flex items-center gap-2 text-[10px]">
+          <div className="flex items-center gap-2 text-xs">
             {["Team Lead", "Akamai TPM", "Account Director", "VP Escalation"].map((level, i) => (
               <div key={level} className="flex items-center gap-2">
                 <div className="clean-card text-foreground/60 px-3 py-1.5 font-semibold">{level}</div>

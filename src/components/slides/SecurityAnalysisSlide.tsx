@@ -2,7 +2,7 @@ import SlideLayout from "./SlideLayout";
 import { AlertTriangle, Shield, ArrowRight, Server, Zap, Target, Layers, GitBranch, Users } from "lucide-react";
 
 const scaleGovMapping = [
-  { icon: Layers, challenge: "Legacy monolith → microservices", solution: "API-driven architecture enables AAP/Bot Manager per-service" },
+  { icon: Layers, challenge: "Legacy monolith → microservices", solution: "API-driven architecture enables AAP (App & API Protector) / Bot Manager per-service" },
   { icon: GitBranch, challenge: "Acquired companies need platform migration", solution: "Security posture standardization via golden config templates" },
   { icon: Users, challenge: "Cross-team change management at scale", solution: "RACI framework + training program + Config-as-Code workflows" },
 ];
@@ -17,7 +17,7 @@ const SecurityAnalysisSlide = () => (
   <SlideLayout id="security-analysis" variant="alt" pageNumber={7}>
     <div className="space-y-5">
       <div>
-        <p className="text-accent font-semibold tracking-[0.2em] uppercase text-[10px] mb-2">Section C — Security Analysis</p>
+        <p className="text-accent font-semibold tracking-[0.2em] uppercase text-xs mb-2">Section C — Security Analysis</p>
         <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground">Security & Governance Analysis</h2>
       </div>
 
@@ -30,8 +30,8 @@ const SecurityAnalysisSlide = () => (
           {scaleGovMapping.map(item => (
             <div key={item.challenge} className="stripe-card stripe-card-green p-3">
               <item.icon size={14} className="text-akamai-green mb-1" />
-              <p className="text-[11px] font-bold text-foreground">{item.challenge}</p>
-              <p className="text-[10px] text-muted-foreground mt-1">{item.solution}</p>
+              <p className="text-xs font-bold text-foreground">{item.challenge}</p>
+              <p className="text-xs text-muted-foreground mt-1">{item.solution}</p>
             </div>
           ))}
         </div>
@@ -46,8 +46,8 @@ const SecurityAnalysisSlide = () => (
             </div>
             <ul className="space-y-2">
               {imp.items.map(item => (
-                <li key={item} className="flex items-start gap-2 text-xs text-muted-foreground">
-                  <div className={`w-1 h-1 rounded-full bg-${imp.color} mt-1.5 shrink-0`} />
+                <li key={item} className="flex items-start gap-2 text-sm text-muted-foreground">
+                  <div className={`w-1.5 h-1.5 rounded-full bg-${imp.color} mt-1.5 shrink-0`} />
                   {item}
                 </li>
               ))}
@@ -70,22 +70,22 @@ const SecurityAnalysisSlide = () => (
           ].map((chain, i) => (
             <div key={i} className="flex items-center gap-2">
               <div className="flex-1 clean-card p-2 text-center border-l-2 border-l-destructive">
-                <p className="text-[10px] font-bold text-foreground/80">{chain.steps[0]}</p>
-                <p className="text-[8px] text-muted-foreground">{chain.steps[1]}</p>
+                <p className="text-xs font-bold text-foreground/80">{chain.steps[0]}</p>
+                <p className="text-[11px] text-muted-foreground">{chain.steps[1]}</p>
               </div>
               <ArrowRight size={12} className="text-muted-foreground/30 shrink-0" />
               <div className="flex-1 clean-card p-2 text-center border-l-2 border-l-accent">
-                <p className="text-[10px] font-bold text-foreground/80">{chain.steps[2]}</p>
-                <p className="text-[8px] text-muted-foreground">{chain.steps[3]}</p>
+                <p className="text-xs font-bold text-foreground/80">{chain.steps[2]}</p>
+                <p className="text-[11px] text-muted-foreground">{chain.steps[3]}</p>
               </div>
               <ArrowRight size={12} className="text-muted-foreground/30 shrink-0" />
               <div className="flex-1 clean-card p-2 text-center border-l-2 border-l-primary">
-                <p className="text-[10px] font-bold text-foreground/80">{chain.steps[4]}</p>
-                <p className="text-[8px] text-muted-foreground">{chain.steps[5]}</p>
+                <p className="text-xs font-bold text-foreground/80">{chain.steps[4]}</p>
+                <p className="text-[11px] text-muted-foreground">{chain.steps[5]}</p>
               </div>
-              <div className="shrink-0 w-16">
+              <div className="shrink-0 w-20">
                 <div className="bg-accent/10 rounded px-2 py-1 text-center">
-                  <p className="text-[8px] font-bold text-accent">{chain.fix}</p>
+                  <p className="text-[11px] font-bold text-accent">{chain.fix}</p>
                 </div>
               </div>
             </div>
@@ -97,7 +97,7 @@ const SecurityAnalysisSlide = () => (
         <Shield size={18} className="text-primary shrink-0 mt-0.5" />
         <div>
           <p className="font-display font-bold text-sm text-foreground">These threats are interconnected — they require a unified platform</p>
-          <p className="text-muted-foreground text-xs mt-1">
+          <p className="text-muted-foreground text-sm mt-1">
             Bots that scrape inventory also test stolen credentials. Credential stuffing leads to account takeover which enables carding.
             Akamai's integrated platform addresses all vectors at the edge simultaneously.
           </p>

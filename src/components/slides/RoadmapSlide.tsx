@@ -34,13 +34,13 @@ const RoadmapSlide = () => (
   <SlideLayout id="roadmap" pageNumber={8}>
     <div className="space-y-5">
       <div>
-        <p className="text-primary font-semibold tracking-[0.2em] uppercase text-[10px] mb-2">Section A — Execution Plan</p>
+        <p className="text-primary font-semibold tracking-[0.2em] uppercase text-xs mb-2">Section A — Execution Plan</p>
         <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground">30-Day Roadmap</h2>
       </div>
 
       <div className="flex gap-5">
         {Object.entries(laneColors).map(([lane, cls]) => (
-          <span key={lane} className={`${cls} text-[10px] font-bold flex items-center gap-1.5`}>
+          <span key={lane} className={`${cls} text-xs font-bold flex items-center gap-1.5`}>
             <div className={`w-2 h-2 rounded-full ${cls.replace('text-', 'bg-')}`} />
             {lane}
           </span>
@@ -52,15 +52,15 @@ const RoadmapSlide = () => (
           <div key={w.week} className="clean-card p-4 space-y-3">
             <div>
               <h3 className="font-display font-bold text-foreground text-base">{w.week}</h3>
-              <p className="text-[10px] text-muted-foreground">{w.days} · {w.title}</p>
+              <p className="text-xs text-muted-foreground">{w.days} · {w.title}</p>
             </div>
             {w.items.map(lane => (
               <div key={lane.lane}>
-                <p className={`text-[10px] font-bold ${laneColors[lane.lane]} mb-1`}>{lane.lane}</p>
+                <p className={`text-xs font-bold ${laneColors[lane.lane]} mb-1`}>{lane.lane}</p>
                 <ul className="space-y-0.5">
                   {lane.tasks.map(task => (
-                    <li key={task} className="flex items-start gap-1.5 text-[11px] text-muted-foreground">
-                      <CheckCircle2 size={10} className="text-primary/50 mt-0.5 shrink-0" />
+                    <li key={task} className="flex items-start gap-1.5 text-xs text-muted-foreground">
+                      <CheckCircle2 size={11} className="text-primary/50 mt-0.5 shrink-0" />
                       {task}
                     </li>
                   ))}
