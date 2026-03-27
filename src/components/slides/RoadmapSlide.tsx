@@ -3,10 +3,7 @@ import { CheckCircle2, AlertCircle } from "lucide-react";
 
 const weeks = [
   {
-    week: "Week 1",
-    title: "Discovery",
-    days: "Days 1-7",
-    color: "border-t-primary",
+    week: "Week 1", title: "Discovery", days: "Days 1-7",
     items: [
       { lane: "Delivery", tasks: ["Audit hostname inventory", "Create golden templates", "Establish mPulse baseline"] },
       { lane: "Security", tasks: ["Security posture assessment", "Identify WAF rule gaps", "Enable Site Shield"] },
@@ -14,10 +11,7 @@ const weeks = [
     ],
   },
   {
-    week: "Week 2",
-    title: "Foundation",
-    days: "Days 8-14",
-    color: "border-t-akamai-green",
+    week: "Week 2", title: "Foundation", days: "Days 8-14",
     items: [
       { lane: "Delivery", tasks: ["Wave 1: Pilot 500 hostnames", "Validate caching + SSL + Ion", "GTM multi-origin config"] },
       { lane: "Security", tasks: ["AAP deployed in Alert mode", "Bot Manager in Monitoring", "API Discovery on checkout"] },
@@ -25,10 +19,7 @@ const weeks = [
     ],
   },
   {
-    week: "Week 3",
-    title: "Scale",
-    days: "Days 15-21",
-    color: "border-t-accent",
+    week: "Week 3", title: "Scale", days: "Days 15-21",
     items: [
       { lane: "Delivery", tasks: ["Wave 2-3: 3,000 hostnames", "Image Manager activation", "Phased DNS cutover per wave"] },
       { lane: "Security", tasks: ["AAP: Alert → Deny (tuned)", "Bot Manager enforcement", "API rate limiting active"] },
@@ -36,10 +27,7 @@ const weeks = [
     ],
   },
   {
-    week: "Week 4",
-    title: "Hardening",
-    days: "Days 22-30",
-    color: "border-t-akamai-lavender",
+    week: "Week 4", title: "Hardening", days: "Days 22-30",
     items: [
       { lane: "Delivery", tasks: ["Wave 4: Final 1,500 hostnames", "Cache optimization (>85% hit)", "Performance benchmarking"] },
       { lane: "Security", tasks: ["Full security stack tuned", "Pen test validation", "DataStream SIEM integration"] },
@@ -48,46 +36,45 @@ const weeks = [
   },
 ];
 
-const laneColors: Record<string, string> = {
-  Delivery: "text-primary",
-  Security: "text-accent",
-  Governance: "text-akamai-green",
+const laneColors: Record<string, { text: string; border: string }> = {
+  Delivery: { text: "text-primary", border: "hsl(175, 80%, 48%)" },
+  Security: { text: "text-accent", border: "hsl(32, 95%, 55%)" },
+  Governance: { text: "text-akamai-green", border: "hsl(155, 75%, 42%)" },
 };
 
 const RoadmapSlide = () => (
   <SlideLayout id="roadmap" variant="alt" pageNumber={8}>
-    <div className="space-y-6">
-      <div className="text-center space-y-2">
-        <p className="text-primary font-semibold tracking-[0.2em] uppercase text-sm">Section A — Execution Plan</p>
-        <h2 className="font-display text-4xl md:text-5xl font-bold text-foreground">30-Day Roadmap</h2>
+    <div className="space-y-5">
+      <div>
+        <p className="text-primary font-semibold tracking-[0.2em] uppercase text-[10px] mb-2">Section A — Execution Plan</p>
+        <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground">30-Day Roadmap</h2>
       </div>
 
-      {/* Swim lane legend */}
-      <div className="flex justify-center gap-6">
+      {/* Legend */}
+      <div className="flex gap-5">
         {Object.entries(laneColors).map(([lane, cls]) => (
-          <span key={lane} className={`${cls} text-xs font-bold flex items-center gap-1.5`}>
-            <div className={`w-2.5 h-2.5 rounded-full ${cls.replace('text-', 'bg-')}`} />
+          <span key={lane} className={`${cls.text} text-[10px] font-bold flex items-center gap-1.5`}>
+            <div className={`w-2 h-2 rounded-full`} style={{ backgroundColor: cls.border }} />
             {lane}
           </span>
         ))}
       </div>
 
-      {/* Timeline cards */}
-      <div className="grid md:grid-cols-4 gap-4">
+      {/* Timeline */}
+      <div className="grid md:grid-cols-4 gap-3">
         {weeks.map(w => (
-          <div key={w.week} className={`border-t-4 ${w.color} glass-card rounded-xl p-5 space-y-4`}>
+          <div key={w.week} className="noir-panel p-4 space-y-3">
             <div>
-              <h3 className="font-display font-bold text-foreground text-lg">{w.week}</h3>
-              <p className="text-xs text-foreground/30">{w.days} · {w.title}</p>
+              <h3 className="font-display font-bold text-foreground text-base">{w.week}</h3>
+              <p className="text-[10px] text-foreground/25">{w.days} · {w.title}</p>
             </div>
-
             {w.items.map(lane => (
               <div key={lane.lane}>
-                <p className={`text-xs font-bold ${laneColors[lane.lane]} mb-1.5`}>{lane.lane}</p>
-                <ul className="space-y-1">
+                <p className={`text-[10px] font-bold ${laneColors[lane.lane].text} mb-1`}>{lane.lane}</p>
+                <ul className="space-y-0.5">
                   {lane.tasks.map(task => (
-                    <li key={task} className="flex items-start gap-1.5 text-xs text-foreground/40">
-                      <CheckCircle2 size={11} className="text-primary mt-0.5 shrink-0" />
+                    <li key={task} className="flex items-start gap-1.5 text-[11px] text-foreground/35">
+                      <CheckCircle2 size={10} className="text-primary/50 mt-0.5 shrink-0" />
                       {task}
                     </li>
                   ))}
@@ -98,15 +85,15 @@ const RoadmapSlide = () => (
         ))}
       </div>
 
-      {/* "No Testing" callout */}
-      <div className="flex items-start gap-3 bg-accent/8 border border-accent/20 rounded-xl p-4 max-w-3xl mx-auto">
-        <AlertCircle size={20} className="text-accent shrink-0 mt-0.5" />
+      {/* No Testing callout */}
+      <div className="noir-panel flex items-start gap-3 p-4 max-w-3xl mx-auto" style={{ borderLeftWidth: 3, borderLeftColor: 'hsl(32, 95%, 55%)' }}>
+        <AlertCircle size={18} className="text-accent shrink-0 mt-0.5" />
         <div className="text-sm">
           <p className="font-semibold text-accent">Addressing "No Testing" Preference</p>
-          <p className="text-foreground/40 mt-1">
-            Instead of skipping testing entirely, we use <strong className="text-foreground/60">phased hostname cohorts</strong> — onboarding in controlled waves (500 → 1,500 → 3,000).
+          <p className="text-foreground/30 mt-1">
+            Instead of skipping testing entirely, we use <strong className="text-foreground/50">phased hostname cohorts</strong> — onboarding in controlled waves (500 → 1,500 → 3,000).
             Each wave is validated via mPulse before the next begins. If any wave shows errors or performance degradation,
-            the DNS cutover is instantly rolled back to the previous provider. Speed without gambling on stability.
+            the DNS cutover is instantly rolled back to the previous provider.
           </p>
         </div>
       </div>

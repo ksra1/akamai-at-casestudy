@@ -10,12 +10,12 @@ interface CalloutModalProps {
 
 const CalloutModal = ({ open, onOpenChange, title, children }: CalloutModalProps) => (
   <Dialog open={open} onOpenChange={onOpenChange}>
-    <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto border-primary/20">
+    <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto bg-card border-border">
       <DialogHeader>
-        <DialogTitle className="font-display text-xl text-secondary">{title}</DialogTitle>
+        <DialogTitle className="font-display text-lg text-foreground">{title}</DialogTitle>
       </DialogHeader>
       <DialogDescription asChild>
-        <div className="text-foreground space-y-3 text-base leading-relaxed">{children}</div>
+        <div className="text-foreground space-y-3 text-sm leading-relaxed">{children}</div>
       </DialogDescription>
     </DialogContent>
   </Dialog>

@@ -22,69 +22,69 @@ const ArchitectureSlide = () => {
 
   return (
     <SlideLayout id="architecture" variant="alt" pageNumber={4}>
-      <div className="space-y-6">
-        <div className="text-center space-y-2">
-          <p className="text-primary font-semibold tracking-[0.2em] uppercase text-sm">Section B — Solution Architecture</p>
-          <h2 className="font-display text-4xl md:text-5xl font-bold text-foreground">High-Level Architecture</h2>
-          <p className="text-sm text-foreground/30">Click any product for details</p>
+      <div className="space-y-5">
+        <div>
+          <p className="text-primary font-semibold tracking-[0.2em] uppercase text-[10px] mb-2">Section B — Solution Architecture</p>
+          <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground">High-Level Architecture</h2>
+          <p className="text-sm text-foreground/25 mt-1">Click any product for details</p>
         </div>
 
-        <div className="glass-card rounded-2xl p-8">
-          <div className="flex items-stretch gap-6">
-            {/* End Users - LEFT */}
-            <div className="flex-1 space-y-3">
-              <p className="text-xs font-semibold text-foreground/30 tracking-[0.15em] uppercase text-center mb-3">End Users</p>
+        <div className="noir-panel p-6">
+          <div className="flex items-stretch gap-4">
+            {/* End Users */}
+            <div className="flex-1 space-y-2">
+              <p className="text-[10px] font-semibold text-foreground/25 tracking-[0.15em] uppercase text-center mb-2">End Users</p>
               {[
-                { icon: Users, label: "North America", sub: "Primary market" },
-                { icon: Users, label: "LATAM", sub: "Growing market" },
-                { icon: Users, label: "Europe", sub: "Expanding reach" },
+                { icon: Users, label: "North America", sub: "Primary" },
+                { icon: Users, label: "LATAM", sub: "Growing" },
+                { icon: Users, label: "Europe", sub: "Expanding" },
               ].map(({ icon: Icon, label, sub }) => (
-                <div key={label} className="bg-akamai-green/8 border border-akamai-green/15 rounded-lg p-3 flex items-center gap-3">
-                  <Icon size={20} className="text-akamai-green shrink-0" />
+                <div key={label} className="accent-card accent-card-green p-2.5 flex items-center gap-2">
+                  <Icon size={16} className="text-akamai-green shrink-0" />
                   <div>
-                    <p className="text-sm font-semibold text-foreground/80">{label}</p>
-                    <p className="text-xs text-foreground/30">{sub}</p>
+                    <p className="text-xs font-semibold text-foreground/70">{label}</p>
+                    <p className="text-[10px] text-foreground/25">{sub}</p>
                   </div>
                 </div>
               ))}
             </div>
 
-            <div className="flex flex-col items-center justify-center gap-1 px-2">
-              <ArrowRight size={24} className="text-primary flow-arrow" />
+            <div className="flex items-center px-1">
+              <ArrowRight size={20} className="text-primary flow-arrow" />
             </div>
 
-            {/* Akamai Edge - CENTER */}
-            <div className="flex-[2] bg-primary/5 border-2 border-primary/15 rounded-2xl p-6 relative">
-              <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground px-4 py-1 rounded-full text-xs font-bold tracking-wider">
+            {/* Akamai Edge */}
+            <div className="flex-[2] border border-primary/15 rounded-md p-5 relative bg-primary/[0.02]">
+              <div className="absolute -top-2.5 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground px-3 py-0.5 rounded text-[10px] font-bold tracking-wider">
                 AKAMAI EDGE PLATFORM
               </div>
-              <div className="space-y-4 mt-3">
+              <div className="space-y-4 mt-2">
                 <div>
-                  <p className="text-xs font-semibold text-primary tracking-wider uppercase mb-2">Delivery & Performance</p>
+                  <p className="text-[10px] font-semibold text-primary tracking-wider uppercase mb-2">Delivery & Performance</p>
                   <div className="grid grid-cols-4 gap-2">
                     {deliveryProducts.map(({ icon: Icon, label, desc }) => (
                       <button
                         key={label}
                         onClick={() => setActiveProduct({ label, desc })}
-                        className="bg-card/50 rounded-lg p-2.5 text-center border border-primary/10 hover:border-primary/40 hover:shadow-md hover:shadow-primary/10 transition-all cursor-pointer"
+                        className="noir-panel p-2 text-center hover:border-primary/30 transition-colors cursor-pointer"
                       >
-                        <Icon size={18} className="text-primary mx-auto mb-1" />
-                        <p className="text-xs font-semibold text-foreground/70">{label}</p>
+                        <Icon size={16} className="text-primary mx-auto mb-1" />
+                        <p className="text-[10px] font-semibold text-foreground/60">{label}</p>
                       </button>
                     ))}
                   </div>
                 </div>
                 <div>
-                  <p className="text-xs font-semibold text-accent tracking-wider uppercase mb-2">Security</p>
+                  <p className="text-[10px] font-semibold text-accent tracking-wider uppercase mb-2">Security</p>
                   <div className="grid grid-cols-4 gap-2">
                     {securityProducts.map(({ icon: Icon, label, desc }) => (
                       <button
                         key={label}
                         onClick={() => setActiveProduct({ label, desc })}
-                        className="bg-card/50 rounded-lg p-2.5 text-center border border-accent/10 hover:border-accent/40 hover:shadow-md hover:shadow-accent/10 transition-all cursor-pointer"
+                        className="noir-panel p-2 text-center hover:border-accent/30 transition-colors cursor-pointer"
                       >
-                        <Icon size={18} className="text-accent mx-auto mb-1" />
-                        <p className="text-xs font-semibold text-foreground/70">{label}</p>
+                        <Icon size={16} className="text-accent mx-auto mb-1" />
+                        <p className="text-[10px] font-semibold text-foreground/60">{label}</p>
                       </button>
                     ))}
                   </div>
@@ -92,23 +92,23 @@ const ArchitectureSlide = () => {
               </div>
             </div>
 
-            <div className="flex flex-col items-center justify-center gap-1 px-2">
-              <ArrowRight size={24} className="text-primary flow-arrow" />
+            <div className="flex items-center px-1">
+              <ArrowRight size={20} className="text-primary flow-arrow" />
             </div>
 
-            {/* Origins - RIGHT */}
-            <div className="flex-1 space-y-3">
-              <p className="text-xs font-semibold text-foreground/30 tracking-[0.15em] uppercase text-center mb-3">Origins</p>
+            {/* Origins */}
+            <div className="flex-1 space-y-2">
+              <p className="text-[10px] font-semibold text-foreground/25 tracking-[0.15em] uppercase text-center mb-2">Origins</p>
               {[
-                { icon: Server, label: "On-Prem DC", sub: "Legacy monolith" },
+                { icon: Server, label: "On-Prem DC", sub: "Legacy" },
                 { icon: Cloud, label: "AWS", sub: "Microservices" },
-                { icon: Layers, label: "Acquired Cos.", sub: "Platform migration" },
+                { icon: Layers, label: "Acquired Cos.", sub: "Migration" },
               ].map(({ icon: Icon, label, sub }) => (
-                <div key={label} className="bg-destructive/8 border border-destructive/15 rounded-lg p-3 flex items-center gap-3">
-                  <Icon size={20} className="text-destructive shrink-0" />
+                <div key={label} className="accent-card accent-card-orange p-2.5 flex items-center gap-2">
+                  <Icon size={16} className="text-accent shrink-0" />
                   <div>
-                    <p className="text-sm font-semibold text-foreground/80">{label}</p>
-                    <p className="text-xs text-foreground/30">{sub}</p>
+                    <p className="text-xs font-semibold text-foreground/70">{label}</p>
+                    <p className="text-[10px] text-foreground/25">{sub}</p>
                   </div>
                 </div>
               ))}
@@ -116,13 +116,13 @@ const ArchitectureSlide = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid grid-cols-3 gap-3">
           {[
-            { color: "bg-primary/8 border border-primary/15 text-primary", label: "Edge offload reduces origin load — lowers risk of overload-related 5xx" },
-            { color: "bg-accent/8 border border-accent/15 text-accent", label: "Security enforced at edge — attacks stopped before reaching origin" },
-            { color: "bg-akamai-green/8 border border-akamai-green/15 text-akamai-green", label: "Single platform for delivery, security, and observability" },
+            { color: "text-primary", border: "border-l-primary", label: "Edge offload reduces origin load — lowers risk of overload-related 5xx" },
+            { color: "text-accent", border: "border-l-accent", label: "Security enforced at edge — attacks stopped before reaching origin" },
+            { color: "text-akamai-green", border: "border-l-akamai-green", label: "Single platform for delivery, security, and observability" },
           ].map(item => (
-            <div key={item.label} className={`${item.color} rounded-xl p-4 text-center text-sm font-semibold`}>
+            <div key={item.label} className={`noir-panel p-3 text-sm font-semibold ${item.color}`} style={{ borderLeftWidth: 3, borderLeftColor: 'currentColor' }}>
               {item.label}
             </div>
           ))}
@@ -134,9 +134,7 @@ const ArchitectureSlide = () => {
         onOpenChange={() => setActiveProduct(null)}
         title={activeProduct?.label || ""}
       >
-        <div className="space-y-3">
-          <p className="text-sm leading-relaxed">{activeProduct?.desc}</p>
-        </div>
+        <p className="text-sm leading-relaxed">{activeProduct?.desc}</p>
       </CalloutModal>
     </SlideLayout>
   );

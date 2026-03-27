@@ -31,118 +31,92 @@ const traceability = [
   { label: "Scale & Gov (3)", section: "Sections A + C", slides: "Slides 7, 8, 9", color: "bg-akamai-green" },
 ];
 
-const ChallengeSlide = () => {
-  return (
-    <SlideLayout id="challenge" pageNumber={3}>
-      <div className="space-y-5">
-        <div className="text-center space-y-2">
-          <p className="text-primary font-semibold tracking-[0.2em] uppercase text-sm">Understanding the Problem</p>
-          <h2 className="font-display text-4xl md:text-5xl font-bold text-foreground">15 Key Challenges</h2>
-          <p className="text-foreground/30 text-sm">Across delivery, security, and scale & governance</p>
-        </div>
+const ChallengeSlide = () => (
+  <SlideLayout id="challenge" pageNumber={3}>
+    <div className="space-y-5">
+      <div>
+        <p className="text-primary font-semibold tracking-[0.2em] uppercase text-[10px] mb-2">Understanding the Problem</p>
+        <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground">15 Key Challenges</h2>
+        <p className="text-foreground/25 text-sm mt-1">Across delivery, security, and scale & governance</p>
+      </div>
 
-        <div className="grid md:grid-cols-3 gap-6">
-          {/* Delivery */}
-          <div className="space-y-3">
-            <div className="flex items-center gap-3 mb-1">
-              <div className="w-9 h-9 rounded-lg bg-primary/15 border border-primary/20 flex items-center justify-center glow-primary">
-                <Truck size={18} className="text-primary" />
-              </div>
-              <div>
-                <h3 className="font-display text-lg font-bold text-foreground">Delivery</h3>
-                <p className="text-xs text-foreground/30">6 challenges</p>
-              </div>
-            </div>
-            <div className="space-y-2">
-              {deliveryChallenges.map(({ icon: Icon, text }) => (
-                <div key={text} className="glass-card visual-card rounded-xl p-3 flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
-                    <Icon size={16} className="text-primary" />
-                  </div>
-                  <p className="text-sm font-medium text-foreground/80 leading-snug">{text}</p>
-                </div>
-              ))}
-            </div>
+      <div className="grid md:grid-cols-3 gap-5">
+        {/* Delivery */}
+        <div className="space-y-2">
+          <div className="flex items-center gap-2 mb-2">
+            <div className="w-1 h-5 rounded-full bg-primary" />
+            <h3 className="font-display text-base font-bold text-foreground">Delivery</h3>
+            <span className="text-[10px] text-foreground/25">6 challenges</span>
           </div>
-
-          {/* Security */}
-          <div className="space-y-3">
-            <div className="flex items-center gap-3 mb-1">
-              <div className="w-9 h-9 rounded-lg bg-accent/15 border border-accent/20 flex items-center justify-center glow-accent">
-                <Shield size={18} className="text-accent" />
-              </div>
-              <div>
-                <h3 className="font-display text-lg font-bold text-foreground">Security</h3>
-                <p className="text-xs text-foreground/30">6 challenges</p>
-              </div>
-            </div>
-            <div className="space-y-2">
-              {securityChallenges.map(({ icon: Icon, text }) => (
-                <div key={text} className="glass-card visual-card rounded-xl p-3 flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-lg bg-accent/10 flex items-center justify-center shrink-0">
-                    <Icon size={16} className="text-accent" />
-                  </div>
-                  <p className="text-sm font-medium text-foreground/80 leading-snug">{text}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Scale & Governance */}
-          <div className="space-y-3">
-            <div className="flex items-center gap-3 mb-1">
-              <div className="w-9 h-9 rounded-lg bg-akamai-green/15 border border-akamai-green/20 flex items-center justify-center glow-green">
-                <Globe size={18} className="text-akamai-green" />
-              </div>
-              <div>
-                <h3 className="font-display text-lg font-bold text-foreground">Scale & Governance</h3>
-                <p className="text-xs text-foreground/30">3 challenges</p>
-              </div>
-            </div>
-            <div className="space-y-2">
-              {scaleGovChallenges.map(({ icon: Icon, text }) => (
-                <div key={text} className="glass-card visual-card rounded-xl p-3 flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-lg bg-akamai-green/10 flex items-center justify-center shrink-0">
-                    <Icon size={16} className="text-akamai-green" />
-                  </div>
-                  <p className="text-sm font-medium text-foreground/80 leading-snug">{text}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* Traceability strip */}
-        <div className="flex gap-3">
-          {traceability.map(t => (
-            <div key={t.label} className="flex-1 flex items-center gap-2 glass-card rounded-xl px-4 py-3">
-              <div className={`w-3 h-3 rounded-full ${t.color} shrink-0`} />
-              <div className="flex-1">
-                <p className="text-xs font-bold text-foreground/80">{t.label}</p>
-                <p className="text-[10px] text-foreground/30">{t.section} · {t.slides}</p>
-              </div>
-              <ArrowRight size={12} className="text-foreground/20 shrink-0" />
+          {deliveryChallenges.map(({ icon: Icon, text }) => (
+            <div key={text} className="accent-card p-3 flex items-center gap-2.5">
+              <Icon size={14} className="text-primary shrink-0" />
+              <p className="text-sm text-foreground/60">{text}</p>
             </div>
           ))}
         </div>
 
-        {/* Key stats ribbon */}
-        <div className="grid grid-cols-4 gap-4">
-          {[
-            { value: "5,000", label: "Hostnames to Onboard" },
-            { value: "30", label: "Days Timeline" },
-            { value: "5×", label: "Peak Traffic Surge" },
-            { value: "3+", label: "Regions (NA, LATAM, EU)" },
-          ].map(s => (
-            <div key={s.label} className="bg-primary/8 border border-primary/15 rounded-xl p-4 text-center">
-              <div className="font-display text-3xl font-bold text-primary">{s.value}</div>
-              <div className="text-foreground/30 text-xs mt-1">{s.label}</div>
+        {/* Security */}
+        <div className="space-y-2">
+          <div className="flex items-center gap-2 mb-2">
+            <div className="w-1 h-5 rounded-full bg-accent" />
+            <h3 className="font-display text-base font-bold text-foreground">Security</h3>
+            <span className="text-[10px] text-foreground/25">6 challenges</span>
+          </div>
+          {securityChallenges.map(({ icon: Icon, text }) => (
+            <div key={text} className="accent-card accent-card-orange p-3 flex items-center gap-2.5">
+              <Icon size={14} className="text-accent shrink-0" />
+              <p className="text-sm text-foreground/60">{text}</p>
+            </div>
+          ))}
+        </div>
+
+        {/* Scale & Governance */}
+        <div className="space-y-2">
+          <div className="flex items-center gap-2 mb-2">
+            <div className="w-1 h-5 rounded-full bg-akamai-green" />
+            <h3 className="font-display text-base font-bold text-foreground">Scale & Governance</h3>
+            <span className="text-[10px] text-foreground/25">3 challenges</span>
+          </div>
+          {scaleGovChallenges.map(({ icon: Icon, text }) => (
+            <div key={text} className="accent-card accent-card-green p-3 flex items-center gap-2.5">
+              <Icon size={14} className="text-akamai-green shrink-0" />
+              <p className="text-sm text-foreground/60">{text}</p>
             </div>
           ))}
         </div>
       </div>
-    </SlideLayout>
-  );
-};
+
+      {/* Traceability */}
+      <div className="flex gap-3">
+        {traceability.map(t => (
+          <div key={t.label} className="flex-1 noir-panel flex items-center gap-2 px-3 py-2.5">
+            <div className={`w-2 h-2 rounded-full ${t.color} shrink-0`} />
+            <div className="flex-1">
+              <p className="text-[11px] font-bold text-foreground/60">{t.label}</p>
+              <p className="text-[9px] text-foreground/25">{t.section} · {t.slides}</p>
+            </div>
+            <ArrowRight size={10} className="text-foreground/15 shrink-0" />
+          </div>
+        ))}
+      </div>
+
+      {/* Stats */}
+      <div className="grid grid-cols-4 gap-3">
+        {[
+          { value: "5,000", label: "Hostnames to Onboard" },
+          { value: "30", label: "Days Timeline" },
+          { value: "5×", label: "Peak Traffic Surge" },
+          { value: "3+", label: "Regions (NA, LATAM, EU)" },
+        ].map(s => (
+          <div key={s.label} className="noir-panel p-3 text-center">
+            <div className="font-display text-2xl font-bold text-primary">{s.value}</div>
+            <div className="text-foreground/25 text-[10px] mt-0.5">{s.label}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </SlideLayout>
+);
 
 export default ChallengeSlide;

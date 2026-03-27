@@ -17,90 +17,70 @@ const targetState = [
   { icon: Check, text: "Repeatable operating model across all geographies" },
 ];
 
-const CompanyOverviewSlide = () => {
-  return (
-    <SlideLayout id="company-overview" variant="alt" pageNumber={2}>
-      <div className="space-y-8">
-        <div className="text-center space-y-2">
-          <p className="text-primary font-semibold tracking-[0.2em] uppercase text-sm">AT Retailers</p>
-          <h2 className="font-display text-4xl md:text-5xl font-bold text-foreground">
-            Current State → Target State
-          </h2>
-        </div>
+const CompanyOverviewSlide = () => (
+  <SlideLayout id="company-overview" variant="alt" pageNumber={2}>
+    <div className="space-y-6">
+      <div>
+        <p className="text-primary font-semibold tracking-[0.2em] uppercase text-[10px] mb-2">AT Retailers</p>
+        <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground">
+          Current State → Target State
+        </h2>
+      </div>
 
-        {/* Current vs Target columns */}
-        <div className="grid md:grid-cols-2 gap-6">
-          {/* Current State */}
-          <div className="glass-card rounded-2xl p-6 space-y-4 border-destructive/20">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-destructive/15 flex items-center justify-center">
-                <AlertTriangle size={22} className="text-destructive" />
-              </div>
-              <h3 className="font-display text-xl font-bold text-foreground">Current State</h3>
-            </div>
-            <div className="space-y-3">
-              {currentState.map(({ icon: Icon, text }) => (
-                <div key={text} className="flex items-start gap-3">
-                  <div className="w-7 h-7 rounded-lg bg-destructive/10 flex items-center justify-center shrink-0 mt-0.5">
-                    <Icon size={14} className="text-destructive" />
-                  </div>
-                  <p className="text-sm text-foreground/60 leading-relaxed">{text}</p>
-                </div>
-              ))}
-            </div>
+      <div className="grid md:grid-cols-2 gap-5">
+        {/* Current */}
+        <div className="accent-card accent-card-orange p-5 space-y-3">
+          <div className="flex items-center gap-2">
+            <AlertTriangle size={18} className="text-accent" />
+            <h3 className="font-display text-lg font-bold text-foreground">Current State</h3>
           </div>
+          {currentState.map(({ icon: Icon, text }) => (
+            <div key={text} className="flex items-start gap-2.5">
+              <Icon size={14} className="text-accent/60 mt-0.5 shrink-0" />
+              <p className="text-sm text-foreground/50">{text}</p>
+            </div>
+          ))}
+        </div>
 
-          {/* Target State */}
-          <div className="glass-card rounded-2xl p-6 space-y-4 border-primary/20">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-primary/15 flex items-center justify-center">
-                <Target size={22} className="text-primary" />
-              </div>
-              <h3 className="font-display text-xl font-bold text-foreground">Target State</h3>
-            </div>
-            <div className="space-y-3">
-              {targetState.map(({ icon: Icon, text }) => (
-                <div key={text} className="flex items-start gap-3">
-                  <div className="w-7 h-7 rounded-lg bg-primary/10 flex items-center justify-center shrink-0 mt-0.5">
-                    <Icon size={14} className="text-primary" />
-                  </div>
-                  <p className="text-sm text-foreground/60 leading-relaxed">{text}</p>
-                </div>
-              ))}
-            </div>
+        {/* Target */}
+        <div className="accent-card p-5 space-y-3">
+          <div className="flex items-center gap-2">
+            <Target size={18} className="text-primary" />
+            <h3 className="font-display text-lg font-bold text-foreground">Target State</h3>
           </div>
-        </div>
-
-        {/* Arrow between */}
-        <div className="flex justify-center">
-          <ArrowRight size={32} className="text-primary flow-arrow" />
-        </div>
-
-        {/* Program Objective banner */}
-        <div className="bg-primary/10 border border-primary/20 rounded-2xl p-6 text-center space-y-2 glow-primary">
-          <p className="text-xs font-semibold text-primary/60 tracking-[0.2em] uppercase">Program Objective</p>
-          <p className="font-display text-lg md:text-xl font-bold text-foreground">
-            Onboard 5,000 hostnames in 30 days while improving resiliency, performance, and security during the migration.
-          </p>
-        </div>
-
-        {/* Quick facts */}
-        <div className="grid grid-cols-4 gap-4">
-          {[
-            { value: "Enterprise", label: "Global E-Commerce" },
-            { value: "NA · LATAM · EU", label: "Regions" },
-            { value: "Multiple", label: "Acquisitions" },
-            { value: "On-Prem + AWS", label: "Infrastructure" },
-          ].map(({ value, label }) => (
-            <div key={label} className="glass-card rounded-xl p-4 text-center">
-              <p className="font-display font-bold text-foreground text-sm">{value}</p>
-              <p className="text-xs text-foreground/30 mt-0.5">{label}</p>
+          {targetState.map(({ icon: Icon, text }) => (
+            <div key={text} className="flex items-start gap-2.5">
+              <Icon size={14} className="text-primary/60 mt-0.5 shrink-0" />
+              <p className="text-sm text-foreground/50">{text}</p>
             </div>
           ))}
         </div>
       </div>
-    </SlideLayout>
-  );
-};
+
+      {/* Program Objective */}
+      <div className="noir-panel p-5 border-l-3 border-l-primary text-center space-y-1" style={{ borderLeftWidth: 3, borderLeftColor: 'hsl(175, 80%, 48%)' }}>
+        <p className="text-[10px] font-semibold text-primary/50 tracking-[0.2em] uppercase">Program Objective</p>
+        <p className="font-display text-base md:text-lg font-bold text-foreground">
+          Onboard 5,000 hostnames in 30 days while improving resiliency, performance, and security.
+        </p>
+      </div>
+
+      {/* Quick facts */}
+      <div className="grid grid-cols-4 gap-3">
+        {[
+          { value: "Enterprise", label: "Global E-Commerce" },
+          { value: "NA · LATAM · EU", label: "Regions" },
+          { value: "Multiple", label: "Acquisitions" },
+          { value: "On-Prem + AWS", label: "Infrastructure" },
+        ].map(({ value, label }) => (
+          <div key={label} className="noir-panel p-3 text-center">
+            <p className="font-display font-bold text-foreground text-sm">{value}</p>
+            <p className="text-[10px] text-foreground/25 mt-0.5">{label}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </SlideLayout>
+);
 
 export default CompanyOverviewSlide;
