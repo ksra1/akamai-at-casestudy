@@ -27,7 +27,7 @@ const RiskSlide = () => {
 
   return (
     <SlideLayout id="risk" variant="alt" pageNumber={9}>
-      <div className="space-y-5">
+      <div className="space-y-5 stagger-children">
         <div>
           <p className="text-accent font-semibold tracking-[0.2em] uppercase text-xs mb-2">Section A — Governance</p>
           <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground">Risk & Change Management</h2>

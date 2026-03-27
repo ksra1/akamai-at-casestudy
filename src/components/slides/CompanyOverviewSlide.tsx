@@ -19,7 +19,7 @@ const targetState = [
 
 const CompanyOverviewSlide = () => (
   <SlideLayout id="company-overview" pageNumber={2}>
-    <div className="space-y-6">
+    <div className="space-y-6 stagger-children">
       <div>
         <p className="text-primary font-semibold tracking-[0.2em] uppercase text-xs mb-2">AT Retailers</p>
         <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground">Current State → Target State</h2>

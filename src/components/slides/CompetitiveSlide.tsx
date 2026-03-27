@@ -12,13 +12,13 @@ const advantages = [
 
 const CompetitiveSlide = () => (
   <SlideLayout id="competitive" variant="dark" pageNumber={10}>
-    <div className="space-y-6">
+    <div className="space-y-6 stagger-children">
       <div>
         <p className="text-white/50 font-semibold tracking-[0.2em] uppercase text-xs mb-2">Competitive Advantages</p>
         <h2 className="font-display text-3xl md:text-4xl font-bold text-white">Why Akamai</h2>
       </div>
 
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 stagger-grid">
         {advantages.map(a => (
           <div key={a.title} className="bg-white/5 border border-white/10 rounded p-5 space-y-2 hover:bg-white/8 transition-colors">
             <div className="flex items-center gap-3">
