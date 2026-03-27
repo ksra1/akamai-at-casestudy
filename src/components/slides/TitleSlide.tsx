@@ -12,10 +12,9 @@ const TitleSlide = () => (
           AT Retailers
         </h1>
         <div className="w-16 h-0.5 bg-white/30 mx-auto" />
-        <p className="text-white/60 text-lg md:text-xl max-w-xl mx-auto font-light">
+        <p className="text-white/60 font-display text-base mt-1">
           Digital Transformation
         </p>
-        <p className="text-white/35 text-sm">Delivery · Security · Scale</p>
       </div>
 
       <div className="mt-8 pt-6 border-t border-white/10 w-full max-w-2xl">
