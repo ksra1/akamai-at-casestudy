@@ -18,16 +18,17 @@ const deliverySolutions = [
     bestPractice: "Use golden templates with locked-down rules to prevent configuration drift across 5,000 properties. Use SAN grouping in CPS to minimize cert management overhead.",
   },
   {
-    icon: Zap, issue: "Handle 5x peak traffic", solution: "Ion + SureRoute + GTM Failover",
-    products: ["Ion", "GTM", "mPulse"],
+    icon: Zap, issue: "Handle 5x peak traffic", solution: "Ion + SureRoute + GTM Failover + Visitor Waiting Room",
+    products: ["Ion", "GTM", "Visitor Waiting Room", "mPulse"],
     steps: [
       "Configure aggressive edge caching for static & semi-dynamic content (e.g. product catalog pages that update every few hours — cached at edge with short TTLs or cache keys for variation)",
       "Enable SureRoute intelligent origin selection — real-time monitoring of origin latency across multiple paths",
       "Set up GTM (Global Traffic Manager) failover groups with health checks — if primary origin is degraded, traffic auto-routes to secondary origin (when available)",
+      "Deploy Visitor Waiting Room on high-demand pages (checkout, flash sales) — when traffic exceeds origin capacity, users enter a branded queue with estimated wait times instead of seeing errors. Automatically drains queue as capacity frees up",
       "mPulse tracks cache hit ratio and user experience metrics (LCP, TTFB) to validate offload effectiveness during peaks",
     ],
-    result: "Edge absorbs 5× spikes, origin handles baseline load only — reducing the risk of overload-related 5xx errors",
-    bestPractice: "Enable Tiered Distribution to reduce origin requests by 60-80% through parent cache hierarchy",
+    result: "Edge absorbs 5× spikes, waiting room protects origin during extreme bursts, zero 5xx errors for end users",
+    bestPractice: "Enable Tiered Distribution to reduce origin requests by 60-80% through parent cache hierarchy. Pre-configure Visitor Waiting Room thresholds before peak events",
   },
   {
     icon: Image, issue: "Slow image loading", solution: "Image & Video Manager (IVM)",

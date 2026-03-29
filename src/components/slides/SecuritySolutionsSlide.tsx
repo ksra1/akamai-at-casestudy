@@ -27,9 +27,10 @@ const securitySolutions = [
     bestPractice: "Use Adaptive Security Engine auto-tuning — 7-day alert-only baseline before switching to deny mode",
   },
   {
-    icon: UserX, issue: "Credential stuffing surge", solution: "Bot Manager Premier + Rate Limiting", products: ["Bot Manager Premier", "AAP"],
+    icon: UserX, issue: "Credential stuffing surge", solution: "Bot Manager Premier + EdgeWorkers + Rate Limiting", products: ["Bot Manager Premier", "EdgeWorkers", "AAP"],
     steps: [
       "Deploy Bot Manager on login endpoints — it analyzes 100+ behavioral signals to distinguish bots from humans. Examples: mouse movement patterns (bots move in straight lines or don't move at all), keystroke timing (bots type at inhuman speed with zero variance), device fingerprints (bots often have mismatched browser/OS combinations)",
+      "Use EdgeWorkers to inject custom challenge logic at the edge — run JavaScript that validates request signatures, enforces proof-of-work challenges, or injects honeypot fields before requests ever reach origin",
       "Detect stuffing signatures — rapid-fire failed logins (e.g. 50 attempts/second), retry timing patterns identical to known bot frameworks, geographic mismatches (same account attempted from 10 countries in 1 minute)",
       "Enforce adaptive challenges — legitimate users pass once (device fingerprint stored), bot requests get progressively harder challenges",
       "Integrate with customer's account system — lock accounts after 5 failed attempts, trigger 2FA for suspicious logins",

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import SlideLayout from "./SlideLayout";
 import CalloutModal from "./CalloutModal";
-import { Zap, Image, Globe, Code2, BarChart3, ArrowRight, CheckCircle2, Layers } from "lucide-react";
+import { Zap, Image, Globe, Code2, BarChart3, ArrowRight, CheckCircle2, Layers, Clock, Terminal } from "lucide-react";
 
 const solutions = [
   {
@@ -39,6 +39,20 @@ const solutions = [
     description: "Real User Monitoring for measuring actual end-user performance. Core Web Vitals tracking, geographic breakdowns, and alerting.",
     highlights: ["Core Web Vitals dashboard", "Geographic performance heatmaps", "Business KPI correlation", "Anomaly detection & alerts"],
   },
+  {
+    icon: Terminal,
+    title: "EdgeWorkers",
+    subtitle: "Serverless Edge Compute",
+    description: "Run custom JavaScript/TypeScript at the Akamai edge for microservices routing during monolith migration, and custom bot challenge logic — all without origin round-trips.",
+    highlights: ["Microservices traffic routing at edge during migration", "Custom bot challenge logic (proof-of-work, honeypots)", "Zero origin round-trips for edge decisions", "A/B testing and feature flags at edge"],
+  },
+  {
+    icon: Clock,
+    title: "Visitor Waiting Room",
+    subtitle: "Peak Traffic Queue Management",
+    description: "When traffic exceeds origin capacity during flash sales or peak events, users enter a branded queue with estimated wait times instead of seeing errors.",
+    highlights: ["Branded queue page with estimated wait times", "Automatic queue drain as capacity frees up", "Pre-configurable thresholds per event", "Protects checkout and high-demand pages"],
+  },
 ];
 
 const DeliverySlide = () => {
@@ -53,7 +67,7 @@ const DeliverySlide = () => {
           <h2 className="font-display text-4xl md:text-5xl font-bold text-foreground">Delivery Strategy</h2>
         </div>
 
-        <div className="grid md:grid-cols-3 lg:grid-cols-5 gap-4">
+        <div className="grid md:grid-cols-4 lg:grid-cols-7 gap-4">
           {solutions.map((s, i) => (
             <div
               key={s.title}

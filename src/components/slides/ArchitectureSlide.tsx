@@ -1,12 +1,13 @@
 import { useState } from "react";
 import SlideLayout from "./SlideLayout";
 import CalloutModal from "./CalloutModal";
-import { ArrowRight, Cloud, Shield, Server, Users, Zap, Globe, Bot, Lock, Image, BarChart3, Layers } from "lucide-react";
+import { ArrowRight, Cloud, Shield, Server, Users, Zap, Globe, Bot, Lock, Image, BarChart3, Layers, Code2 } from "lucide-react";
 
 const deliveryProducts = [
   { icon: Zap, label: "Ion", desc: "Akamai's flagship CDN product for dynamic site acceleration. Combines intelligent caching, prefetching, SureRoute optimization, and adaptive acceleration to deliver fast, reliable web experiences globally." },
   { icon: Image, label: "Image & Video Manager", desc: "Automatically optimizes images at the edge — converts to WebP/AVIF, resizes for device, adjusts quality. Zero origin processing. Reduces image payload 50-70%." },
   { icon: Globe, label: "Global Traffic Management (GTM)", desc: "DNS-based load balancing across origins and regions. Health checks every 60s, automatic failover, geographic and performance-based routing. During migration, keeps legacy provider as fallback for instant rollback via DNS." },
+  { icon: Code2, label: "EdgeWorkers", desc: "Serverless compute at the Akamai edge. Run JavaScript/TypeScript for custom logic without origin round-trips. Key use cases: microservices traffic routing during monolith-to-microservices migration, and custom bot challenge logic at the edge before requests reach origin." },
   { icon: BarChart3, label: "mPulse", desc: "Real User Monitoring (RUM) — measures actual end-user page load, Core Web Vitals (LCP, FID, CLS), and business metrics like conversion rate. Anomaly detection triggers alerts." },
 ];
 
@@ -119,7 +120,7 @@ const ArchitectureSlide = () => {
               <div className="space-y-4 mt-2">
                 <div>
                   <p className="text-xs font-semibold text-primary tracking-wider uppercase mb-2">Delivery & Performance</p>
-                  <div className="grid grid-cols-4 gap-2">
+                  <div className="grid grid-cols-5 gap-2">
                     {deliveryProducts.map(({ icon: Icon, label, desc }) => (
                       <button key={label} onClick={() => setActiveProduct({ label, desc })} className="clean-card p-2.5 text-center hover:border-primary/40 transition-colors cursor-pointer">
                         <Icon size={16} className="text-primary mx-auto mb-1" />

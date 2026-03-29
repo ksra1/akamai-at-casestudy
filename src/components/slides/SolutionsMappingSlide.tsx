@@ -9,7 +9,7 @@ const mappingTable = [
     color: "primary",
     items: [
       { challenge: "5,000 hostnames in 30 days", solutions: ["Ion", "GTM", "Bulk API"] },
-      { challenge: "5x traffic surge handling", solutions: ["Ion (SureRoute)", "GTM (Failover)"] },
+      { challenge: "5x traffic surge handling", solutions: ["Ion (SureRoute)", "GTM (Failover)", "Visitor Waiting Room"] },
       { challenge: "Slow image loading", solutions: ["Image & Video Manager"] },
       { challenge: "Production without testing", solutions: ["mPulse (RUM)", "A/B Testing"] },
     ],
@@ -20,7 +20,7 @@ const mappingTable = [
     color: "accent",
     items: [
       { challenge: "DDoS attacks", solutions: ["Prolexic", "Site Shield"] },
-      { challenge: "Credential stuffing", solutions: ["Bot Manager", "API Protector"] },
+      { challenge: "Credential stuffing", solutions: ["Bot Manager", "EdgeWorkers", "API Protector"] },
       { challenge: "Sophisticated bots", solutions: ["Bot Manager Premier (ML)"] },
       { challenge: "Legacy WAF rule sets", solutions: ["App & API Protector (Adaptive)"] },
     ],
@@ -31,7 +31,7 @@ const mappingTable = [
     color: "akamai-green",
     items: [
       { challenge: "Multi-geography coordination", solutions: ["GTM (Central)", "DataStream"] },
-      { challenge: "Legacy to microservices", solutions: ["Ion (Hybrid)", "Config Templates"] },
+      { challenge: "Legacy to microservices", solutions: ["Ion (Hybrid)", "EdgeWorkers", "Config Templates"] },
       { challenge: "Acquired companies migration", solutions: ["API Automation", "Rapid Provisioning"] },
       { challenge: "Cross-team change mgmt", solutions: ["Workflow Automation", "Audit Logs"] },
     ],
