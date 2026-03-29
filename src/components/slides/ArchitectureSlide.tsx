@@ -13,7 +13,7 @@ const deliveryProducts = [
 
 const securityProducts = [
   { icon: Shield, label: "Prolexic", desc: "Akamai's dedicated DDoS protection product. Always-on with 20+ Tbps of scrubbing capacity across 36 global centers. Stops volumetric, protocol, and application-layer attacks before they reach your infrastructure. Different from WAF — Prolexic handles network-layer volumetric floods, while WAF (App & API Protector) handles application-layer attacks like SQL injection." },
-  { icon: Shield, label: "App & API Protector (AAP)", desc: "Akamai's next-gen WAF product (replaces legacy Kona WAF). Features Adaptive Security Engine with auto-updating rules for OWASP Top 10, API protection, and rate limiting. ML-driven tuning reduces false positives 5x vs legacy WAF." },
+  { icon: Shield, label: "WAF (AAP)", desc: "Akamai's next-gen WAF product — App & API Protector (replaces legacy Kona WAF). Features Adaptive Security Engine with auto-updating rules for OWASP Top 10, API protection, and rate limiting. ML-driven tuning reduces false positives 5x vs legacy WAF." },
   { icon: Bot, label: "Bot Manager Premier", desc: "Behavioral bot detection using 100+ signals: device fingerprinting, TLS analysis, mouse/keyboard patterns. Catches sophisticated bots that rotate IPs and spoof User-Agents." },
   { icon: Lock, label: "API Security", desc: "Discovers shadow APIs automatically. Schema validation ensures only expected parameters pass. Detects anomalous API usage patterns — protects against data exfiltration and abuse." },
 ];
