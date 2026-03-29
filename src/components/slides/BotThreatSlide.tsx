@@ -25,7 +25,7 @@ const BotThreatSlide = () => {
         {/* Threat cards */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {threats.map((t) => (
-            <div key={t.title} className="bg-card rounded-xl p-5 border border-border shadow-sm text-center space-y-3">
+            <div key={t.key} className="bg-card rounded-xl p-5 border border-border shadow-sm text-center space-y-3">
               <div className="bg-destructive/10 w-12 h-12 rounded-full flex items-center justify-center mx-auto">
                 <t.icon size={22} className="text-destructive" />
               </div>
