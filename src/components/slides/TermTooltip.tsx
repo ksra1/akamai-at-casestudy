@@ -6,6 +6,7 @@ const terms: Record<string, string> = {
   "carding": "Stolen credit card numbers are tested in small transactions against checkout APIs to verify which cards are still active before making large fraudulent purchases.",
   "ddos": "Distributed Denial-of-Service — thousands of compromised machines flood servers with traffic simultaneously, overwhelming capacity and taking the site offline.",
   "waf": "Web Application Firewall — inspects HTTP traffic and blocks requests matching known attack patterns (SQL injection, XSS, etc.) before they reach the application.",
+  "adaptive acceleration": "An Akamai Ion feature that uses real user monitoring (RUM) data to automatically preconnect to third-party origins, server-push critical resources, and preload fonts/scripts — continuously adapting as traffic patterns change.",
   "inventory scraping": "Competitor bots systematically crawl product pages to extract pricing, stock levels, and catalog data for competitive intelligence.",
   "ip rotation": "Bots cycle through thousands of IP addresses (often from residential proxies) to avoid rate-limiting and IP-based blocking.",
   "spoofed clients": "Bots forge their User-Agent headers and browser fingerprints to impersonate legitimate browsers like Chrome or Safari.",

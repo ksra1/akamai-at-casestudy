@@ -16,6 +16,7 @@ const glossary = [
   { term: "Tiered Distribution", def: "Caching hierarchy feature that reduces origin load by serving content from parent cache servers before reaching origin." },
   { term: "Adaptive Security Engine", def: "AAP's ML-powered engine that auto-tunes WAF rules based on traffic patterns, reducing false positives by up to 5x." },
   { term: "Terraform Provider", def: "Official Akamai Terraform provider for infrastructure-as-code management of CDN, DNS, and security configurations." },
+  { term: "Adaptive Acceleration", def: "An Akamai Ion feature that uses real user monitoring (RUM) data to automatically preconnect to third-party origins, server-push critical resources, and preload fonts/scripts — continuously adapting as traffic patterns change." },
   { term: "OWASP Top 10", def: "Industry-standard list of the 10 most critical web application security risks. AAP provides out-of-the-box protection for all categories." },
 ];
 
