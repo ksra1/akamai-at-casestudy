@@ -1,4 +1,5 @@
 import SlideLayout from "./SlideLayout";
+import TermTooltip from "./TermTooltip";
 import { Truck, Shield, Clock, Users, Zap, Image, AlertTriangle, Bot, CreditCard, ShoppingCart, UserX, Globe, Layers, GitBranch, ArrowRight } from "lucide-react";
 
 const deliveryChallenges = [
