@@ -12,12 +12,12 @@ const deliveryChallenges = [
 ];
 
 const securityChallenges = [
-  { icon: Shield, text: "DDoS attacks on origin" },
-  { icon: AlertTriangle, text: "Legacy WAF rules outdated" },
-  { icon: UserX, text: "Credential stuffing surge" },
-  { icon: ShoppingCart, text: "Inventory scraping by bots" },
-  { icon: CreditCard, text: "Carding on checkout APIs" },
-  { icon: Bot, text: "Sophisticated bot evasion" },
+  { icon: Shield, text: <><TermTooltip term="DDoS" /> attacks on <TermTooltip term="origin" /></> },
+  { icon: AlertTriangle, text: <>Legacy <TermTooltip term="WAF" /> rules outdated</> },
+  { icon: UserX, text: <><TermTooltip term="Credential stuffing" /> surge</> },
+  { icon: ShoppingCart, text: <><TermTooltip term="Inventory scraping" /> by bots</> },
+  { icon: CreditCard, text: <><TermTooltip term="Carding">Carding</TermTooltip> on checkout APIs</> },
+  { icon: Bot, text: <>Sophisticated bot evasion (<TermTooltip term="IP rotation" />, <TermTooltip term="spoofed clients" />)</> },
 ];
 
 const scaleGovChallenges = [
