@@ -84,7 +84,7 @@ const ChallengeSlide = () => (
         </div>
       </div>
 
-      <div className="flex gap-3">
+      <div className="grid grid-cols-1 md:flex gap-3">
         {traceability.map(t => (
           <div key={t.label} className="flex-1 clean-card flex items-center gap-2 px-3 py-2.5">
             <div className={`w-2 h-2 rounded-full ${t.color} shrink-0`} />
@@ -97,7 +97,7 @@ const ChallengeSlide = () => (
         ))}
       </div>
 
-      <div className="grid grid-cols-4 gap-3">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         {[
           { value: "5,000", label: "Hostnames to Onboard" },
           { value: "30", label: "Days Timeline" },

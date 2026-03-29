@@ -38,7 +38,7 @@ const SlideNav = () => {
   };
 
   return (
-    <nav className="slide-nav fixed right-3 top-1/2 -translate-y-1/2 z-50 flex flex-col gap-1.5">
+    <nav className="slide-nav fixed right-2 md:right-3 top-1/2 -translate-y-1/2 z-50 hidden md:flex flex-col gap-1.5">
       {slides.map((s) => (
         <button
           key={s.id}

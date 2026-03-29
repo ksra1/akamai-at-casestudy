@@ -110,37 +110,21 @@ const RiskSlide = () => {
 
         <div className="clean-card p-3">
           <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider text-center mb-3">Akamai Escalation Path</p>
-          <div className="grid grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)_auto_minmax(0,1fr)] items-start gap-x-3 gap-y-1">
+          <div className="flex flex-col md:flex-row items-center gap-2 md:justify-center">
             {[
               { level: "Akamai TPM (Me)", desc: "First response & coordination" },
               { level: "Account Director", desc: "Commercial decisions" },
               { level: "VP", desc: "Executive override" },
             ].map((item, i) => (
-              <>
-                <div key={`${item.level}-card`} className="text-center">
-                  <div className="clean-card text-foreground/70 px-3 py-1.5 font-semibold text-sm min-h-12 flex items-center justify-center">
+              <div key={item.level} className="flex flex-col md:flex-row items-center gap-2">
+                <div className="text-center">
+                  <div className="clean-card text-foreground/70 px-3 py-1.5 font-semibold text-sm">
                     {item.level}
                   </div>
+                  <p className="text-[11px] text-muted-foreground mt-1">{item.desc}</p>
                 </div>
-                {i < 2 && (
-                  <div key={`${item.level}-arrow`} className="flex h-12 items-center justify-center">
-                    <ArrowRight size={14} className="text-accent" />
-                  </div>
-                )}
-              </>
-            ))}
-
-            {[
-              { level: "Akamai TPM (Me)", desc: "First response & coordination" },
-              { level: "Account Director", desc: "Commercial decisions" },
-              { level: "VP", desc: "Executive override" },
-            ].map((item, i) => (
-              <>
-                <p key={`${item.level}-desc`} className="text-[11px] text-muted-foreground text-center">
-                  {item.desc}
-                </p>
-                {i < 2 && <div key={`${item.level}-spacer`} />}
-              </>
+                {i < 2 && <ArrowRight size={14} className="text-accent shrink-0 rotate-90 md:rotate-0" />}
+              </div>
             ))}
           </div>
         </div>

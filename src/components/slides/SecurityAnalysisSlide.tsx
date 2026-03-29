@@ -49,15 +49,15 @@ const SecurityAnalysisSlide = () => (
         <p className="text-sm text-muted-foreground mt-1">Each row shows how one threat escalates — and which Akamai product stops it</p>
       </div>
 
-      {/* Attack Chain Visualization — the core of this slide */}
-      <div className="clean-card p-6">
+      {/* Attack Chain Visualization */}
+      <div className="clean-card p-4 md:p-6">
         <div className="flex items-center gap-2 mb-5">
           <Zap size={16} className="text-primary" />
           <h3 className="font-display font-bold text-foreground text-base">Attack Chain → Product Mapping</h3>
         </div>
 
-        {/* Column headers */}
-        <div className="grid grid-cols-[1fr_auto_1fr_auto_1fr_auto_120px] items-center gap-2 mb-3 px-1">
+        {/* Desktop headers */}
+        <div className="hidden md:grid grid-cols-[1fr_auto_1fr_auto_1fr_auto_120px] items-center gap-2 mb-3 px-1">
           <p className="text-xs font-semibold text-destructive uppercase tracking-wider">Threat Source</p>
           <div />
           <p className="text-xs font-semibold text-accent uppercase tracking-wider">Attack Vector</p>
@@ -69,24 +69,47 @@ const SecurityAnalysisSlide = () => (
 
         <div className="space-y-3">
           {attackChains.map((chain, i) => (
-            <div key={i} className="grid grid-cols-[1fr_auto_1fr_auto_1fr_auto_120px] items-center gap-2">
-              <div className="clean-card p-3 border-l-2 border-l-destructive">
-                <p className="text-sm font-bold text-foreground">{chain.threat}</p>
-                <p className="text-xs text-muted-foreground">{chain.detail}</p>
+            <div key={i}>
+              {/* Mobile: stacked card */}
+              <div className="block md:hidden clean-card p-3 space-y-2 border-l-2 border-l-destructive">
+                <div>
+                  <p className="text-xs font-semibold text-destructive uppercase">Threat</p>
+                  <p className="text-sm font-bold text-foreground">{chain.threat} — <span className="text-muted-foreground font-normal">{chain.detail}</span></p>
+                </div>
+                <div className="flex items-center gap-1 text-muted-foreground/40"><ArrowRight size={12} /></div>
+                <div>
+                  <p className="text-xs font-semibold text-accent uppercase">Attack</p>
+                  <p className="text-sm font-bold text-foreground">{chain.attack} — <span className="text-muted-foreground font-normal">{chain.attackDetail}</span></p>
+                </div>
+                <div className="flex items-center gap-1 text-muted-foreground/40"><ArrowRight size={12} /></div>
+                <div>
+                  <p className="text-xs font-semibold text-primary uppercase">Impact</p>
+                  <p className="text-sm font-bold text-foreground">{chain.impact}</p>
+                </div>
+                <div className="bg-akamai-green/10 border border-akamai-green/20 rounded p-2 text-center mt-1">
+                  <p className="text-sm font-bold text-akamai-green">{chain.fix}</p>
+                </div>
               </div>
-              <ArrowRight size={14} className="text-muted-foreground/40 shrink-0" />
-              <div className="clean-card p-3 border-l-2 border-l-accent">
-                <p className="text-sm font-bold text-foreground">{chain.attack}</p>
-                <p className="text-xs text-muted-foreground">{chain.attackDetail}</p>
-              </div>
-              <ArrowRight size={14} className="text-muted-foreground/40 shrink-0" />
-              <div className="clean-card p-3 border-l-2 border-l-primary">
-                <p className="text-sm font-bold text-foreground">{chain.impact}</p>
-                <p className="text-xs text-muted-foreground">{chain.impactDetail}</p>
-              </div>
-              <ArrowRight size={14} className="text-akamai-green shrink-0" />
-              <div className="bg-akamai-green/10 border border-akamai-green/20 rounded-lg p-3 text-center">
-                <p className="text-sm font-bold text-akamai-green">{chain.fix}</p>
+              {/* Desktop: horizontal */}
+              <div className="hidden md:grid grid-cols-[1fr_auto_1fr_auto_1fr_auto_120px] items-center gap-2">
+                <div className="clean-card p-3 border-l-2 border-l-destructive">
+                  <p className="text-sm font-bold text-foreground">{chain.threat}</p>
+                  <p className="text-xs text-muted-foreground">{chain.detail}</p>
+                </div>
+                <ArrowRight size={14} className="text-muted-foreground/40 shrink-0" />
+                <div className="clean-card p-3 border-l-2 border-l-accent">
+                  <p className="text-sm font-bold text-foreground">{chain.attack}</p>
+                  <p className="text-xs text-muted-foreground">{chain.attackDetail}</p>
+                </div>
+                <ArrowRight size={14} className="text-muted-foreground/40 shrink-0" />
+                <div className="clean-card p-3 border-l-2 border-l-primary">
+                  <p className="text-sm font-bold text-foreground">{chain.impact}</p>
+                  <p className="text-xs text-muted-foreground">{chain.impactDetail}</p>
+                </div>
+                <ArrowRight size={14} className="text-akamai-green shrink-0" />
+                <div className="bg-akamai-green/10 border border-akamai-green/20 rounded-lg p-3 text-center">
+                  <p className="text-sm font-bold text-akamai-green">{chain.fix}</p>
+                </div>
               </div>
             </div>
           ))}

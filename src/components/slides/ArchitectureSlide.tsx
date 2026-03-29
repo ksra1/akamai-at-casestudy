@@ -29,9 +29,72 @@ const ArchitectureSlide = () => {
           <p className="text-sm text-muted-foreground mt-1">Click any product for details</p>
         </div>
 
-        <div className="clean-card p-6">
-          <div className="grid grid-cols-[1fr_auto_2fr_auto_1fr] gap-4 items-center">
-            {/* End Users */}
+        <div className="clean-card p-4 md:p-6">
+          {/* Mobile: stacked layout */}
+          <div className="block md:hidden space-y-4">
+            <div className="space-y-2">
+              <p className="text-xs font-semibold text-muted-foreground tracking-[0.15em] uppercase mb-2">End Users</p>
+              <div className="grid grid-cols-3 gap-2">
+                {[
+                  { icon: Users, label: "NA", sub: "Primary" },
+                  { icon: Users, label: "LATAM", sub: "Growing" },
+                  { icon: Users, label: "EU", sub: "Expanding" },
+                ].map(({ icon: Icon, label, sub }) => (
+                  <div key={label} className="stripe-card stripe-card-green p-2 text-center">
+                    <Icon size={14} className="text-akamai-green mx-auto mb-1" />
+                    <p className="text-xs font-semibold text-foreground">{label}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="flex justify-center"><ArrowRight size={16} className="text-primary rotate-90 flow-arrow" /></div>
+            <div className="border-2 border-primary/20 rounded-md p-4 relative bg-primary/[0.02]">
+              <div className="bg-primary text-primary-foreground px-3 py-0.5 rounded text-xs font-bold tracking-wider text-center mb-3">AKAMAI EDGE PLATFORM</div>
+              <div className="space-y-3">
+                <div>
+                  <p className="text-xs font-semibold text-primary tracking-wider uppercase mb-2">Performance</p>
+                  <div className="grid grid-cols-2 gap-2">
+                    {deliveryProducts.map(({ icon: Icon, label, desc }) => (
+                      <button key={label} onClick={() => setActiveProduct({ label, desc })} className="clean-card p-2 text-center hover:border-primary/40 transition-colors cursor-pointer">
+                        <Icon size={14} className="text-primary mx-auto mb-1" />
+                        <p className="text-[11px] font-semibold text-foreground/70">{label}</p>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+                <div>
+                  <p className="text-xs font-semibold text-accent tracking-wider uppercase mb-2">Security</p>
+                  <div className="grid grid-cols-2 gap-2">
+                    {securityProducts.map(({ icon: Icon, label, desc }) => (
+                      <button key={label} onClick={() => setActiveProduct({ label, desc })} className="clean-card p-2 text-center hover:border-accent/40 transition-colors cursor-pointer">
+                        <Icon size={14} className="text-accent mx-auto mb-1" />
+                        <p className="text-[11px] font-semibold text-foreground/70">{label}</p>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="flex justify-center"><ArrowRight size={16} className="text-primary rotate-90 flow-arrow" /></div>
+            <div className="space-y-2">
+              <p className="text-xs font-semibold text-muted-foreground tracking-[0.15em] uppercase mb-2">Origins</p>
+              <div className="grid grid-cols-3 gap-2">
+                {[
+                  { icon: Server, label: "On-Prem", sub: "Legacy" },
+                  { icon: Cloud, label: "AWS", sub: "Micro" },
+                  { icon: Layers, label: "Acquired", sub: "Migration" },
+                ].map(({ icon: Icon, label, sub }) => (
+                  <div key={label} className="stripe-card stripe-card-orange p-2 text-center">
+                    <Icon size={14} className="text-accent mx-auto mb-1" />
+                    <p className="text-xs font-semibold text-foreground">{label}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Desktop: horizontal flow */}
+          <div className="hidden md:grid grid-cols-[1fr_auto_2fr_auto_1fr] gap-4 items-center">
             <div className="space-y-2">
               <p className="text-xs font-semibold text-muted-foreground tracking-[0.15em] uppercase text-center mb-2">End Users</p>
               {[
@@ -48,27 +111,17 @@ const ArchitectureSlide = () => {
                 </div>
               ))}
             </div>
-
-            {/* Left Arrow - centered in grid cell */}
             <div className="flex items-center justify-center">
               <ArrowRight size={20} className="text-primary flow-arrow" />
             </div>
-
-            {/* Akamai Edge */}
             <div className="border-2 border-primary/20 rounded-md p-5 relative bg-primary/[0.02]">
-              <div className="absolute -top-2.5 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground px-3 py-0.5 rounded text-xs font-bold tracking-wider">
-                AKAMAI EDGE PLATFORM
-              </div>
+              <div className="absolute -top-2.5 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground px-3 py-0.5 rounded text-xs font-bold tracking-wider">AKAMAI EDGE PLATFORM</div>
               <div className="space-y-4 mt-2">
                 <div>
                   <p className="text-xs font-semibold text-primary tracking-wider uppercase mb-2">Delivery & Performance</p>
                   <div className="grid grid-cols-4 gap-2">
                     {deliveryProducts.map(({ icon: Icon, label, desc }) => (
-                      <button
-                        key={label}
-                        onClick={() => setActiveProduct({ label, desc })}
-                        className="clean-card p-2.5 text-center hover:border-primary/40 transition-colors cursor-pointer"
-                      >
+                      <button key={label} onClick={() => setActiveProduct({ label, desc })} className="clean-card p-2.5 text-center hover:border-primary/40 transition-colors cursor-pointer">
                         <Icon size={16} className="text-primary mx-auto mb-1" />
                         <p className="text-xs font-semibold text-foreground/70">{label}</p>
                       </button>
@@ -79,11 +132,7 @@ const ArchitectureSlide = () => {
                   <p className="text-xs font-semibold text-accent tracking-wider uppercase mb-2">Security</p>
                   <div className="grid grid-cols-4 gap-2">
                     {securityProducts.map(({ icon: Icon, label, desc }) => (
-                      <button
-                        key={label}
-                        onClick={() => setActiveProduct({ label, desc })}
-                        className="clean-card p-2.5 text-center hover:border-accent/40 transition-colors cursor-pointer"
-                      >
+                      <button key={label} onClick={() => setActiveProduct({ label, desc })} className="clean-card p-2.5 text-center hover:border-accent/40 transition-colors cursor-pointer">
                         <Icon size={16} className="text-accent mx-auto mb-1" />
                         <p className="text-xs font-semibold text-foreground/70">{label}</p>
                       </button>
@@ -92,13 +141,9 @@ const ArchitectureSlide = () => {
                 </div>
               </div>
             </div>
-
-            {/* Right Arrow - centered in grid cell */}
             <div className="flex items-center justify-center">
               <ArrowRight size={20} className="text-primary flow-arrow" />
             </div>
-
-            {/* Origins */}
             <div className="space-y-2">
               <p className="text-xs font-semibold text-muted-foreground tracking-[0.15em] uppercase text-center mb-2">Origins</p>
               {[
@@ -118,7 +163,7 @@ const ArchitectureSlide = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-3 gap-3">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
           {[
             { color: "border-t-primary text-primary", label: "Edge offload reduces origin load — lowers risk of overload-related 5xx" },
             { color: "border-t-accent text-accent", label: "Security enforced at edge — attacks stopped before reaching origin" },

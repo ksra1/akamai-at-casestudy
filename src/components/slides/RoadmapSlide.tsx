@@ -47,7 +47,7 @@ const RoadmapSlide = () => (
         ))}
       </div>
 
-      <div className="grid md:grid-cols-4 gap-3">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         {weeks.map(w => (
           <div key={w.week} className="clean-card p-4 space-y-3">
             <div>

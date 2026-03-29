@@ -34,7 +34,7 @@ const SlideLayout = ({ children, className, id, variant = "default", pageNumber 
     <section
       id={id}
       ref={ref}
-      className={cn("slide flex flex-col justify-center px-6 md:px-12 lg:px-20 py-12 relative", bgClass, className)}
+      className={cn("slide flex flex-col justify-center px-4 md:px-12 lg:px-20 py-8 md:py-12 relative", bgClass, className)}
     >
       <div className={cn("relative z-10 max-w-6xl mx-auto w-full", visible ? "slide-content-animate" : "opacity-0")}>
         {children}
