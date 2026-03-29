@@ -11,6 +11,8 @@ const terms: Record<string, string> = {
   "ip rotation": "Bots cycle through thousands of IP addresses (often from residential proxies) to avoid rate-limiting and IP-based blocking.",
   "spoofed clients": "Bots forge their User-Agent headers and browser fingerprints to impersonate legitimate browsers like Chrome or Safari.",
   "origin": "The actual backend servers (on-prem or cloud) where the application runs — as opposed to edge/CDN servers closer to end users.",
+  "edgeworkers": "Akamai's serverless edge compute platform. Run JavaScript/TypeScript at the edge for custom logic like microservices routing, bot challenges, and request manipulation — without origin round-trips.",
+  "visitor waiting room": "Akamai product that queues excess traffic during peak events. Users see a branded waiting page with estimated wait times instead of errors, and are automatically admitted as capacity frees up.",
 };
 
 interface TermTooltipProps {

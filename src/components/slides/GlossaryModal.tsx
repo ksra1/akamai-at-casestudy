@@ -18,6 +18,7 @@ const glossary = [
   { term: "Terraform Provider", def: "Official Akamai Terraform provider for infrastructure-as-code management of CDN, DNS, and security configurations." },
   { term: "Adaptive Acceleration", def: "An Akamai Ion feature that uses real user monitoring (RUM) data to automatically preconnect to third-party origins, server-push critical resources, and preload fonts/scripts — continuously adapting as traffic patterns change." },
   { term: "OWASP Top 10", def: "Industry-standard list of the 10 most critical web application security risks. AAP provides out-of-the-box protection for all categories." },
+  { term: "Visitor Waiting Room", def: "Akamai product that queues excess traffic during peak events (flash sales, product drops). Users see a branded waiting page with estimated wait times instead of errors, and are automatically admitted as capacity frees up." },
 ];
 
 interface GlossaryModalProps {
