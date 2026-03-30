@@ -41,23 +41,29 @@ const BulkDVProvisioningSlide = () => {
               <PhaseBox>
                 <Terminal size={16} className="mx-auto mb-1 text-accent" />
                 <div className="font-semibold">AT Retailers</div>
-                <div className="text-white/50 text-[10px]">generates Root CA<br/>via internal PKI</div>
+                <div className="text-white/50 text-[10px]">generates 1 Root CA<br/>via internal PKI</div>
               </PhaseBox>
               <PhaseArrow />
               <PhaseBox>
-                <Key size={16} className="mx-auto mb-1 text-primary" />
-                <div className="font-semibold">Uploads Root CA</div>
-                <div className="text-white/50 text-[10px]">to Akamai CPS API<br/>(Trust Set)</div>
+                <Key size={16} className="mx-auto mb-1 text-cyan-400" />
+                <div className="font-semibold">Signs Leaf Certs</div>
+                <div className="text-white/50 text-[10px]">from Root CA for<br/>each origin server</div>
               </PhaseBox>
               <PhaseArrow />
               <PhaseBox>
                 <Server size={16} className="mx-auto mb-1 text-green-400" />
-                <div className="font-semibold">Leaf Certs</div>
-                <div className="text-white/50 text-[10px]">installed on all<br/>500+ origin servers</div>
+                <div className="font-semibold">Install on Origins</div>
+                <div className="text-white/50 text-[10px]">leaf certs on all<br/>500+ origin servers</div>
+              </PhaseBox>
+              <PhaseArrow />
+              <PhaseBox>
+                <Shield size={16} className="mx-auto mb-1 text-primary" />
+                <div className="font-semibold">Upload Root CA</div>
+                <div className="text-white/50 text-[10px]">to Akamai CPS API<br/>(Trust Set)</div>
               </PhaseBox>
             </div>
             <div className="text-[10px] text-white/30 mt-1 italic">
-              All origins now have internal SSL — edge can validate origin identity
+              Edge now trusts origins — validates leaf certs against the uploaded Root CA
             </div>
           </div>
 
