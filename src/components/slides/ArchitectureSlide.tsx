@@ -94,19 +94,19 @@ const ArchitectureSlide = () => {
           </div>
 
           {/* Desktop: horizontal flow */}
-          <div className="hidden md:grid grid-cols-[1fr_auto_2fr_auto_1fr] gap-4 items-center">
+          <div className="hidden md:grid grid-cols-[0.8fr_auto_3fr_auto_0.8fr] gap-3 items-center">
             <div className="space-y-2">
               <p className="text-xs font-semibold text-muted-foreground tracking-[0.15em] uppercase text-center mb-2">End Users</p>
               {[
-                { icon: Users, label: "North America", sub: "Primary" },
+                { icon: Users, label: "NA", sub: "Primary" },
                 { icon: Users, label: "LATAM", sub: "Growing" },
-                { icon: Users, label: "Europe", sub: "Expanding" },
+                { icon: Users, label: "EU", sub: "Expanding" },
               ].map(({ icon: Icon, label, sub }) => (
-                <div key={label} className="stripe-card stripe-card-green p-2.5 flex items-center gap-2">
-                  <Icon size={16} className="text-akamai-green shrink-0" />
+                <div key={label} className="stripe-card stripe-card-green p-2 flex items-center gap-2">
+                  <Icon size={14} className="text-akamai-green shrink-0" />
                   <div>
-                    <p className="text-sm font-semibold text-foreground">{label}</p>
-                    <p className="text-xs text-muted-foreground">{sub}</p>
+                    <p className="text-xs font-semibold text-foreground">{label}</p>
+                    <p className="text-[10px] text-muted-foreground">{sub}</p>
                   </div>
                 </div>
               ))}
@@ -147,15 +147,15 @@ const ArchitectureSlide = () => {
             <div className="space-y-2">
               <p className="text-xs font-semibold text-muted-foreground tracking-[0.15em] uppercase text-center mb-2">Origins</p>
               {[
-                { icon: Server, label: "On-Prem DC", sub: "Legacy" },
-                { icon: Cloud, label: "AWS", sub: "Microservices" },
-                { icon: Layers, label: "Acquired Cos.", sub: "Migration" },
+                { icon: Server, label: "On-Prem", sub: "Legacy" },
+                { icon: Cloud, label: "AWS", sub: "Micro" },
+                { icon: Layers, label: "Acquired", sub: "Migration" },
               ].map(({ icon: Icon, label, sub }) => (
-                <div key={label} className="stripe-card stripe-card-orange p-2.5 flex items-center gap-2">
-                  <Icon size={16} className="text-accent shrink-0" />
+                <div key={label} className="stripe-card stripe-card-orange p-2 flex items-center gap-2">
+                  <Icon size={14} className="text-accent shrink-0" />
                   <div>
-                    <p className="text-sm font-semibold text-foreground">{label}</p>
-                    <p className="text-xs text-muted-foreground">{sub}</p>
+                    <p className="text-xs font-semibold text-foreground">{label}</p>
+                    <p className="text-[10px] text-muted-foreground">{sub}</p>
                   </div>
                 </div>
               ))}
