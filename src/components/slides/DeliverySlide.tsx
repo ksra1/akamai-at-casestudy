@@ -125,8 +125,8 @@ const DeliverySlide = () => {
           {[
             { phase: "Days 1-3", title: "Golden Template Creation", desc: "Build 3-5 configuration templates (e-commerce, content, API) covering 90%+ of hostname patterns. Include Ion, AAP, and Bot Manager baseline." },
             { phase: "Days 4-7", title: "Wave 1 — Pilot (500 hostnames)", desc: "Bulk API onboarding of first 500 hostnames using templates. Validate caching, SSL, and WAF behavior. Establish monitoring baseline with mPulse." },
-            { phase: "Days 8-14", title: "Wave 2 — Scale (2,000 hostnames)", desc: "Automated bulk onboarding via Terraform pipelines. Phased DNS CNAME cutover per batch with mPulse validation." },
-            { phase: "Days 15-21", title: "Wave 3 — Remaining (2,500 hostnames)", desc: "Final batch onboarding. Address edge cases and custom configurations. Run performance validation against mPulse baselines." },
+            { phase: "Days 11-21", title: "Wave 2 — Scale (2,500 hostnames)", desc: "Automated bulk onboarding via Terraform pipelines. Phased DNS CNAME cutover with mPulse validation." },
+            { phase: "Days 22-30", title: "Wave 3 — Final (1,250 hostnames)", desc: "Final batch onboarding. Address edge cases and custom configurations. Run performance validation against mPulse baselines." },
             { phase: "Days 22-30", title: "Hardening & Optimization", desc: "Cache hit ratio optimization, WAF rule tuning (alert → deny), Bot Manager policy refinement, documentation and training handoff." },
           ].map((p) => (
             <div key={p.phase} className="border-l-4 border-primary pl-4">

@@ -5,8 +5,10 @@ import ArchitectureSlide from "@/components/slides/ArchitectureSlide";
 import BulkDVProvisioningSlide from "@/components/slides/BulkDVProvisioningSlide";
 import SolutionDesignSlide from "@/components/slides/SolutionDesignSlide";
 import SecuritySolutionsSlide from "@/components/slides/SecuritySolutionsSlide";
-import SecurityAnalysisSlide from "@/components/slides/SecurityAnalysisSlide";
+import GovernanceSlide from "@/components/slides/GovernanceSlide";
+// import SecurityAnalysisSlide from "@/components/slides/SecurityAnalysisSlide"; // HIDDEN - How Threats Interconnect
 import RoadmapSlide from "@/components/slides/RoadmapSlide";
+import ResourcePlanSlide from "@/components/slides/ResourcePlanSlide";
 import RiskSlide from "@/components/slides/RiskSlide";
 import CompetitiveSlide from "@/components/slides/CompetitiveSlide";
 import SummarySlide from "@/components/slides/SummarySlide";
@@ -21,8 +23,10 @@ const Index = () => (
     <ArchitectureSlide />
     <SolutionDesignSlide />
     <SecuritySolutionsSlide />
-    <SecurityAnalysisSlide />
+    <GovernanceSlide />
+    {/* <SecurityAnalysisSlide /> HIDDEN - How Threats Interconnect slide removed */}
     <RoadmapSlide />
+    <ResourcePlanSlide />
     <RiskSlide />
     <BulkDVProvisioningSlide />
     <CompetitiveSlide />

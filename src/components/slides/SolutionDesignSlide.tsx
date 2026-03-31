@@ -1,6 +1,12 @@
 import { useState } from "react";
 import SlideLayout from "./SlideLayout";
 import CalloutModal from "./CalloutModal";
+import MigrationPhaseViewer from "./MigrationPhaseViewer";
+import HostnamesOnboardingViewer from "./HostnamesOnboardingViewer";
+import PhasedRolloutViewer from "./PhasedRolloutViewer";
+import PeakTrafficViewer from "./PeakTrafficViewer";
+import ImageOptimizationViewer from "./ImageOptimizationViewer";
+import TeamOnboardingViewer from "./TeamOnboardingViewer";
 import { Clock, Zap, Image, AlertTriangle, Globe, Users, CheckCircle2, ArrowRight, Layers } from "lucide-react";
 
 const deliverySolutions = [
@@ -10,12 +16,12 @@ const deliverySolutions = [
     steps: [
       "Define reusable config template — baseline caching, compression, origin health checks, WAF rules bundled as a golden template",
       "PAPI (Property API) bulk-creates 5,000 properties from template in parallel — zero manual configuration per hostname",
-      "Automate SSL/TLS certificate provisioning via CPS (Certificate Provisioning System) API — bulk-enroll Domain Validation (DV) certs for all 5,000 hostnames. Use SAN certificates to group hostnames (up to 100 SANs per cert) reducing cert count to ~50 managed certificates",
-      "Orchestrate phased DNS cutover — CNAME updates in batches (1,000/week) coordinated with customer's DNS team",
-      "mPulse monitors real-user performance per cohort — page load times, Core Web Vitals, error rates validate each batch",
+      "Automate cert provisioning via CPS — Akamai: CPS generates CSRs for all 5,000 domains, submits to CA, receives certs, deploys ~50 SAN certs to edge servers. AT Retailers: approve domain validation when CA sends requests (email/DNS TXT challenge). Target <24 hours approval turnaround.",
+      "Orchestrate phased DNS cutover — Week 2: Wave 1 (1,250 CNAMEs) | Week 3: Wave 2 (2,500 CNAMEs) | Week 4: Wave 3 (1,250 CNAMEs). Akamai: monitor edge health and provide instant rollback if issues arise (revert CNAME).",
+      "Validate per wave via mPulse — measure real-user performance (LCP, TTFB, error rate) per hostname cohort. Success checkpoint: error rate <0.5%, performance within 10% baseline. If any metric fails, revert CNAME (instant rollback).",
     ],
-    result: "Zero manual Akamai work, automated cert lifecycle, phased risk mitigation per batch, rollback capability, 30-day completion",
-    bestPractice: "Use golden templates with locked-down rules to prevent configuration drift across 5,000 properties. Use SAN grouping in CPS to minimize cert management overhead.",
+    result: "5,000 hostnames live in 30 days, zero manual Akamai configuration work, automated cert lifecycle, phased risk mitigation per wave, instant rollback capability per DNS cutover",
+    bestPractice: "Use golden templates with locked-down rules to prevent configuration drift across 5,000 properties. Use SAN grouping in CPS to minimize cert management (50 certs vs 5,000). **CRITICAL:** Your domain validation team must approve CA requests within 24 hours—this is the longest bottleneck. Delayed approvals will delay the entire 30-day timeline.",
   },
   {
     icon: Zap, issue: "Handle 5x peak traffic", solution: "Ion + SureRoute + GTM Failover + EdgeWorkers Waiting Room",
@@ -55,18 +61,6 @@ const deliverySolutions = [
     bestPractice: "Keep legacy provider active during migration window — dual-path ensures instant fallback until all waves are validated",
   },
   {
-    icon: Globe, issue: "Multi-geography resource management", solution: "GTM Geographic Routing + DataStream",
-    products: ["GTM", "mPulse", "DataStream"],
-    steps: [
-      "Define primary/secondary origins per region — EU (Frankfurt + London), US (Virginia + Oregon), LATAM (São Paulo)",
-      "Configure GTM (Global Traffic Manager) health checks every 60s — when primary origin exceeds latency threshold, traffic auto-routes to secondary",
-      "mPulse tracks real latency per region — if EU origin latency >300ms, GTM auto-reduces traffic allocation",
-      "DataStream (Akamai's real-time log streaming product) delivers per-region traffic trends and origin utilization to your SIEM — capacity planning becomes data-driven",
-    ],
-    result: "Centralized resource governance, no regional outages, traffic auto-adapts to conditions",
-    bestPractice: "Use GTM performance-based routing (not just geographic) — routes users to fastest origin, not just nearest",
-  },
-  {
     icon: Users, issue: "New teams untrained on Akamai", solution: "Config-as-Code Templates + Self-Service",
     products: ["PAPI (Property API)", "Control Center"],
     steps: [
@@ -79,17 +73,17 @@ const deliverySolutions = [
     bestPractice: "Lock template rules as read-only — teams can extend but not modify baseline security and caching rules",
   },
   {
-    icon: Layers, issue: "Monolith-to-microservices migration", solution: "EdgeWorkers Traffic Routing + GTM",
+    icon: Layers, issue: "Monolith-to-microservices migration", solution: "EdgeWorkers Orchestrates Dual Migration (UI + Services)",
     products: ["EdgeWorkers", "GTM", "PAPI"],
     steps: [
-      "Define migration phases — Phase 1 routes legacy monolith tenants via GTM to on-prem origin. Phase 2 routes new microservice tenants to containerized services in AWS",
-      "Deploy EdgeWorkers request interceptor — examines tenant ID and feature flags to determine routing destination without exposing internal architecture",
-      "Implement canary routing — EdgeWorkers routes 5% of monolith traffic to new microservices to validate behavior and performance before full migration",
-      "Request transformation at edge — EdgeWorkers translates legacy monolith API contracts into new microservice format (header injection, payload mapping) and transforms responses back to legacy format for client compatibility",
-      "Gradual tenant migration — each tenant migrates from monolith→microservices via feature flag in EdgeWorkers, no origin config changes needed. Instant rollback available by resetting feature flag",
+      "On-board both UI and microservices to Akamai — route all traffic through EdgeWorkers. EdgeWorkers becomes the central orchestrator for both UI server routing and microservice call routing.",
+      "Route legacy UIs and legacy APIs — existing websites continue serving from on-prem monolith (both UI layer and API layer). New UIs and microservices ready in AWS.",
+      "Define canary for mixed versions — 95% traffic gets legacy UI calling legacy APIs, 5% gets new UI calling new microservices. Both layers migrate in tandem.",
+      "Progressive tenant migration — feature flags control tenant versions. Each tenant transitions: legacy UI→legacy API → new UI→new microservices. All decisions made at edge.",
+      "Instant rollback for either layer — if UI has issues, revert UI routing without touching microservices. If microservices have issues, revert API routing independently. Or rollback both simultaneously.",
     ],
-    result: "Zero downtime migration, traffic routing decoupled from origin infrastructure, instant per-tenant rollback capability, coexistence of legacy and new services during transition",
-    bestPractice: "Store tenant-to-service routing rules in EdgeWorkers KV storage — centralized, versioned, instant updates without code deployment. Canary phase persists 2-4 weeks to catch edge cases in production traffic",
+    result: "Zero downtime dual migration, UI and microservice versions orchestrated independently, instant per-layer rollback capability, legacy and new UI+API combinations coexist during transition",
+    bestPractice: "Store UI and microservice routing rules in EdgeWorkers KV storage — decoupled control for each layer. Optional: Use EdgeWorkers for API contract translation (adds 2-4 weeks). Alternative: require UI code updates to call new microservice endpoints (faster).",
   },
 ];
 
@@ -130,27 +124,48 @@ const SolutionDesignSlide = () => {
 
       {deliverySolutions.map((s, i) => (
         <CalloutModal key={s.issue} open={activeModal === i} onOpenChange={() => setActiveModal(null)} title={s.issue}>
-          <div className="space-y-4">
-            <div className="bg-primary/5 border border-primary/15 rounded p-3">
-              <p className="text-sm font-semibold text-primary">{s.solution}</p>
+          {i === 0 ? (
+            // Hostnames onboarding gets timeline viewer
+            <HostnamesOnboardingViewer />
+          ) : i === 1 ? (
+            // Handle 5x peak traffic gets peak traffic viewer
+            <PeakTrafficViewer />
+          ) : i === 2 ? (
+            // Slow image loading gets image optimization viewer
+            <ImageOptimizationViewer />
+          ) : i === 3 ? (
+            // Phased rollout testing strategy gets interactive viewer
+            <PhasedRolloutViewer />
+          ) : i === 4 ? (
+            // New teams untrained gets team onboarding viewer
+            <TeamOnboardingViewer />
+          ) : i === 5 ? (
+            // Migration solution gets interactive phase viewer
+            <MigrationPhaseViewer />
+          ) : (
+            // Other solutions get standard step-by-step layout
+            <div className="space-y-4">
+              <div className="bg-primary/5 border border-primary/15 rounded p-3">
+                <p className="text-sm font-semibold text-primary">{s.solution}</p>
+              </div>
+              <div className="space-y-3">
+                {s.steps.map((step, idx) => (
+                  <div key={idx} className="flex items-start gap-3">
+                    <div className="w-6 h-6 rounded bg-primary text-primary-foreground flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">{idx + 1}</div>
+                    <p className="text-sm text-muted-foreground leading-relaxed">{step}</p>
+                  </div>
+                ))}
+              </div>
+              <div className="bg-akamai-green/5 border border-akamai-green/20 rounded p-3 flex items-start gap-2">
+                <CheckCircle2 size={16} className="text-akamai-green shrink-0 mt-0.5" />
+                <p className="text-sm font-semibold text-akamai-green">{s.result}</p>
+              </div>
+              <div className="bg-accent/5 border border-accent/15 rounded p-3">
+                <p className="text-xs font-semibold text-accent uppercase tracking-wider mb-1">Best Practice</p>
+                <p className="text-sm">{s.bestPractice}</p>
+              </div>
             </div>
-            <div className="space-y-3">
-              {s.steps.map((step, idx) => (
-                <div key={idx} className="flex items-start gap-3">
-                  <div className="w-6 h-6 rounded bg-primary text-primary-foreground flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">{idx + 1}</div>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{step}</p>
-                </div>
-              ))}
-            </div>
-            <div className="bg-akamai-green/5 border border-akamai-green/20 rounded p-3 flex items-start gap-2">
-              <CheckCircle2 size={16} className="text-akamai-green shrink-0 mt-0.5" />
-              <p className="text-sm font-semibold text-akamai-green">{s.result}</p>
-            </div>
-            <div className="bg-accent/5 border border-accent/15 rounded p-3">
-              <p className="text-xs font-semibold text-accent uppercase tracking-wider mb-1">Best Practice</p>
-              <p className="text-sm">{s.bestPractice}</p>
-            </div>
-          </div>
+          )}
         </CalloutModal>
       ))}
     </SlideLayout>

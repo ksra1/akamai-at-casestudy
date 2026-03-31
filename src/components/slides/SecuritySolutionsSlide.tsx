@@ -1,87 +1,56 @@
 import { useState } from "react";
 import SlideLayout from "./SlideLayout";
 import CalloutModal from "./CalloutModal";
-import { Shield, Bot, UserX, ShoppingCart, CreditCard, AlertTriangle, CheckCircle2, ArrowRight } from "lucide-react";
+import { Shield, Bot, UserX, AlertTriangle, CheckCircle2, ArrowRight } from "lucide-react";
+import DDoSProtectionViewer from "./DDoSProtectionViewer";
+import LegacyWAFViewer from "./LegacyWAFViewer";
+import CredentialStuffingViewer from "./CredentialStuffingViewer";
+import BotThreatViewer from "./BotThreatViewer";
 
 const securitySolutions = [
   {
     icon: Shield, issue: "DDoS attacks on origin", solution: "Prolexic + Site Shield", products: ["Prolexic", "Site Shield"],
     steps: [
-      "Enable Prolexic (Akamai's dedicated DDoS protection product) — traffic routes through Akamai's scrubbing centers that detect and filter volumetric, protocol, and app-layer attacks. Unlike WAF which handles application-layer threats like SQL injection, Prolexic specifically handles large-scale network floods (e.g. 10+ Tbps volumetric attacks)",
-      "Activate Site Shield — real origin IPs masked behind Akamai edge. Block non-Akamai traffic via firewall ACLs",
-      "Configure drop thresholds for obvious attacks — >10,000 req/sec from single IP, >1M req/min from single /16 subnet",
-      "mPulse monitors origin health and attack traffic — track dropped traffic, origin response time, incident timeline",
+      "Volumetric Attacks (UDP/SYN floods, 10+ Tbps): Prolexic scrubbing centers absorb at edge, drop malicious traffic before reaching origin",
+      "Protocol Attacks (malformed packets, TCP RST floods): Prolexic validates 3-way handshake + connection state, blocks anomalies",
+      "Application-Layer Attacks (HTTP floods, Slowloris): Rate limiting + behavioral analysis detects and blocks attack patterns",
+      "Direct-to-Origin Attacks (attacker finds your IP): Site Shield masks real origin IPs, block non-Akamai traffic at your firewall",
     ],
-    result: "10+ Tbps attack capacity absorbed at edge, origin stays online, attackers can't find real infrastructure",
-    bestPractice: "Enable Site Shield Day 1 to hide origin IPs — this single step prevents most direct-to-origin attacks",
+    result: "10+ Tbps attack capacity absorbed at edge. Origin stays online and hidden behind Akamai IP mask.",
+    bestPractice: "Site Shield prevents origin IP discovery — enables instant failover without DDoS exposure",
   },
   {
-    icon: AlertTriangle, issue: "Legacy WAF rules outdated", solution: "App & API Protector (AAP) — Adaptive Security Engine", products: ["App & API Protector (AAP)"],
+    icon: AlertTriangle, issue: "Legacy WAF rules outdated", solution: "App & API Protector (AAP) — Auto-updating rules", products: ["App & API Protector (AAP)"],
     steps: [
-      "Audit current WAF rules — identify outdated signatures missing OWASP Top 10 coverage (injection, broken authentication [e.g. session hijacking, weak password policies], data exposure)",
-      "Enable AAP (App & API Protector — Akamai's next-gen WAF) managed rules — auto-updating daily based on global attack trends, new malware, CVEs, zero-days",
-      "Deploy reputation-based rules — Akamai tracks attacker IP behavior globally and blocks known sources automatically",
-      "7-day tuning window — deploy AAP in Alert mode first (logs threats but doesn't block), review flagged requests for false positives, then switch to Deny mode once confident rules won't block legitimate traffic",
+      "Audit current WAF rules — identify gaps in OWASP Top 10 coverage (injection, broken auth, data exposure)",
+      "Deploy AAP managed rules — auto-updates daily based on new threats, CVEs, zero-days",
+      "Enable reputation-based blocking — Akamai tracks attacker IPs globally",
+      "7-day alert mode — log threats before blocking to avoid false positives",
     ],
-    result: "Modern attack coverage, zero manual rule updates, 5x fewer false positives vs legacy WAF",
-    bestPractice: "Use Adaptive Security Engine auto-tuning — 7-day alert-only baseline before switching to deny mode",
+    result: "Modern attack coverage with zero manual rule updates. 5x fewer false positives.",
+    bestPractice: "Use Adaptive Security Engine auto-tuning — 7-day alert baseline before deny mode",
   },
   {
-    icon: UserX, issue: "Credential stuffing surge", solution: "Bot Manager Premier + EdgeWorkers + Rate Limiting", products: ["Bot Manager Premier", "EdgeWorkers", "AAP"],
+    icon: UserX, issue: "Credential stuffing surge", solution: "Bot Manager — Automated login defense", products: ["Bot Manager Premier"],
     steps: [
-      "Deploy Bot Manager on login endpoints — it analyzes 100+ behavioral signals to distinguish bots from humans. Examples: mouse movement patterns (bots move in straight lines or don't move at all), keystroke timing (bots type at inhuman speed with zero variance), device fingerprints (bots often have mismatched browser/OS combinations)",
-      "Use EdgeWorkers to inject custom challenge logic at the edge — run JavaScript that validates request signatures, enforces proof-of-work challenges, or injects honeypot fields before requests ever reach origin",
-      "Detect stuffing signatures — rapid-fire failed logins (e.g. 50 attempts/second), retry timing patterns identical to known bot frameworks, geographic mismatches (same account attempted from 10 countries in 1 minute)",
-      "Enforce adaptive challenges — legitimate users pass once (device fingerprint stored), bot requests get progressively harder challenges",
-      "Integrate with customer's account system — lock accounts after 5 failed attempts, trigger 2FA for suspicious logins",
+      "Bot Manager detects login attack patterns — 50+ attempts/second vs normal 1-2/minute",
+      "Blocks at edge before reaching origin — stops attackers instantly, no server strain",
+      "Legitimate users see zero friction — real login behavior passes through automatically",
+      "Account lockout integration — locks account for 30 minutes after blocked attempts",
     ],
-    result: "99% of credential stuffing blocked before origin sees it, zero legitimate user friction",
-    bestPractice: "Start Bot Manager in monitoring mode for 48-72 hours to classify bot categories before enforcement",
+    result: "99% of credential stuffing blocked. Attackers' automation becomes useless.",
+    bestPractice: "Start in monitoring mode (1-2 days) to establish baseline before blocking",
   },
   {
-    icon: ShoppingCart, issue: "Inventory scraping by competitive bots", solution: "Bot Manager Behavioral Fingerprinting", products: ["Bot Manager Premier"],
+    icon: Bot, issue: "Scraping, carding & bot evasion", solution: "Bot Manager — Behavioral ML detection", products: ["Bot Manager Premier"],
     steps: [
-      "Enable Bot Manager on catalog endpoints — IP blocks fail because scrapers rotate proxies. Focus on behavior instead",
-      "Identify scraper patterns — perfect request timing, missing headers, identical User-Agent across 100+ IPs, sequential product enumeration",
-      "Fingerprint devices — TLS analysis, JavaScript execution tests, cookie handling. Same fingerprint across 50 IPs = scraper",
-      "Rate limit suspicious fingerprints to 10 req/min vs 1,000 for real users. Force CAPTCHA on first request",
+      "Bot Manager detects all bot attack patterns — scraping (sequential lookups), carding (100 cards/min), evasion (same device across IPs)",
+      "Multi-signal defense — analyzes request rate, timing, device fingerprint, IP rotation, abnormal headers",
+      "Escalating response — challenge → rate-limit → block based on confidence",
+      "Zero friction for legitimate users — real behavior passes through automatically",
     ],
-    result: "Scrapers blocked by behavior not IP, competitive intel loss ends, inventory data stays proprietary",
-    bestPractice: "Use crypto challenges instead of CAPTCHAs — invisible to legitimate users, impossible for bots to solve",
-  },
-  {
-    icon: CreditCard, issue: "Carding on checkout APIs", solution: "AAP Rate Limiting + Bot Manager", products: ["AAP", "Bot Manager Premier"],
-    steps: [
-      "Instrument checkout endpoints — AAP learns normal API usage: 1 card validation per 30s per user, <5 card attempts per session",
-      "Detect carding patterns — rapid-fire card validations, 50 different cards with same CVV, geographic jumps in seconds",
-      "Block & notify — block transaction immediately, flag account, send fraud signal to payment processor",
-      "Force step-up authentication for flagged transactions — re-enter CVV, OTP verification, blacklist card fingerprints",
-    ],
-    result: "Carding success rate drops to 0.01%, payment processor alerted before chargebacks",
-    bestPractice: "Apply positive security model with schema validation — only allow expected API parameter formats through",
-  },
-  {
-    icon: Bot, issue: "Sophisticated bot evasion (IP rotation, spoofed clients)", solution: "Bot Manager ML Fingerprinting + Behavioral Analysis", products: ["Bot Manager Premier"],
-    steps: [
-      "Build behavioral baseline — track real Chrome behavior: TLS cipher order, JA3 fingerprints, JS engine behavior, cookie handling",
-      "Deploy ML fingerprinting — compare incoming requests against baseline. Spoofed User-Agent with rotating IPs still leaves traces",
-      "Detect spoofed headers — bot spoofs Chrome but missing Chrome-specific header permutations or uses Firefox HTTP/2 SETTINGS",
-      "Escalating enforcement — 1st offense: CAPTCHA, 2nd (same device, different IP): block 1h, 3rd: block 24h",
-    ],
-    result: "Spoofing one feature possible; spoofing 100 features across 1000 requests = impossible. Attack ROI becomes negative",
-    bestPractice: "Behavioral analysis catches bots that rotate IPs and spoof User-Agents — signature-based solutions miss these entirely",
-  },
-  {
-    icon: Shield, issue: "Bot API attacks on checkout endpoints", solution: "EdgeWorkers + Bot Manager Custom Logic", products: ["EdgeWorkers", "Bot Manager Premier"],
-    steps: [
-      "Deploy custom EdgeWorkers on high-risk API endpoints (checkout, payments, login) — intercept requests at edge before they reach origin",
-      "Implement custom validation logic — verify request signatures, validate expected headers, check for API schema compliance",
-      "Inject challenge logic at edge — for suspicious requests (missing expected headers, unusual patterns), inject CAPTCHA verification or proof-of-work challenges",
-      "Bot Manager integration — EdgeWorkers evaluates Bot Manager risk scores and gates high-risk requests (scores 75+) with challenges before origin processes",
-      "Fast-path legitimate traffic — verified requests bypass challenges and proceed directly to origin without CAPTCHA friction",
-    ],
-    result: "Checkout API protected from bot attacks at edge, zero origin CPU impact from malicious requests, legitimate users experience no friction",
-    bestPractice: "Use proof-of-work challenges instead of CAPTCHAs for APIs — JavaScript-based challenges are solvable by APIs but add friction to bot scaling economics",
+    result: "Blocks 99%+ of scraping, carding, and evasion attacks without impacting real customers.",
+    bestPractice: "Start in monitoring mode to establish baseline patterns before enforcement",
   },
 ];
 
@@ -120,31 +89,18 @@ const SecuritySolutionsSlide = () => {
         </div>
       </div>
 
-      {securitySolutions.map((s, i) => (
-        <CalloutModal key={s.issue} open={activeModal === i} onOpenChange={() => setActiveModal(null)} title={s.issue}>
-          <div className="space-y-4">
-            <div className="bg-accent/5 border border-accent/15 rounded p-3">
-              <p className="text-sm font-semibold text-accent">{s.solution}</p>
-            </div>
-            <div className="space-y-3">
-              {s.steps.map((step, idx) => (
-                <div key={idx} className="flex items-start gap-3">
-                  <div className="w-6 h-6 rounded bg-accent text-accent-foreground flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">{idx + 1}</div>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{step}</p>
-                </div>
-              ))}
-            </div>
-            <div className="bg-akamai-green/5 border border-akamai-green/20 rounded p-3 flex items-start gap-2">
-              <CheckCircle2 size={16} className="text-akamai-green shrink-0 mt-0.5" />
-              <p className="text-sm font-semibold text-akamai-green">{s.result}</p>
-            </div>
-            <div className="bg-primary/5 border border-primary/15 rounded p-3">
-              <p className="text-xs font-semibold text-primary uppercase tracking-wider mb-1">Best Practice</p>
-              <p className="text-sm">{s.bestPractice}</p>
-            </div>
-          </div>
-        </CalloutModal>
-      ))}
+      <CalloutModal open={activeModal === 0} onOpenChange={() => setActiveModal(null)} title={securitySolutions[0].issue}>
+        <DDoSProtectionViewer />
+      </CalloutModal>
+      <CalloutModal open={activeModal === 1} onOpenChange={() => setActiveModal(null)} title={securitySolutions[1].issue}>
+        <LegacyWAFViewer />
+      </CalloutModal>
+      <CalloutModal open={activeModal === 2} onOpenChange={() => setActiveModal(null)} title={securitySolutions[2].issue}>
+        <CredentialStuffingViewer />
+      </CalloutModal>
+      <CalloutModal open={activeModal === 3} onOpenChange={() => setActiveModal(null)} title={securitySolutions[3].issue}>
+        <BotThreatViewer />
+      </CalloutModal>
     </SlideLayout>
   );
 };

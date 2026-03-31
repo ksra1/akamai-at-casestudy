@@ -1,6 +1,6 @@
 import SlideLayout from "./SlideLayout";
 import TermTooltip from "./TermTooltip";
-import { Truck, Shield, Clock, Users, Zap, Image, AlertTriangle, Bot, CreditCard, ShoppingCart, UserX, Globe, Layers, GitBranch, ArrowRight } from "lucide-react";
+import { Truck, Shield, Clock, Users, Zap, Image, AlertTriangle, Bot, UserX, Globe, Layers, ArrowRight } from "lucide-react";
 
 const deliveryChallenges = [
   { icon: Clock, text: "5,000 hostnames in 30 days" },
@@ -8,28 +8,26 @@ const deliveryChallenges = [
   { icon: Zap, text: "Handle 5x peak traffic" },
   { icon: Image, text: "Slow image loading" },
   { icon: AlertTriangle, text: "No testing — straight to production" },
-  { icon: Globe, text: "Multi-geography resource coordination" },
+  { icon: Layers, text: "Legacy monolith → microservices migration" },
 ];
 
 const securityChallenges = [
   { icon: Shield, key: "ddos", text: <><TermTooltip term="DDoS" /> attacks on <TermTooltip term="origin" /></> },
   { icon: AlertTriangle, key: "waf", text: <>Legacy <TermTooltip term="WAF" /> rules outdated</> },
   { icon: UserX, key: "cred", text: <><TermTooltip term="Credential stuffing" /> surge</> },
-  { icon: ShoppingCart, key: "scrape", text: <><TermTooltip term="Inventory scraping" /> by bots</> },
-  { icon: CreditCard, key: "card", text: <><TermTooltip term="Carding">Carding</TermTooltip> on checkout APIs</> },
-  { icon: Bot, key: "evasion", text: <>Sophisticated bot evasion (<TermTooltip term="IP rotation" />, <TermTooltip term="spoofed clients" />)</> },
+  { icon: Bot, key: "bots", text: <>Scraping, carding & bot <TermTooltip term="evasion" /></> },
 ];
 
 const scaleGovChallenges = [
-  { icon: Layers, text: "Legacy monolith → microservices migration" },
-  { icon: GitBranch, text: "Acquired companies need platform migration" },
-  { icon: Users, text: "Cross-team change management at scale" },
+  { icon: Globe, text: "Multi-geography resource coordination (Europe, US, Asia)" },
+  { icon: Users, text: "Team coordination & change management at scale" },
+  { icon: AlertTriangle, text: "Risk management & stakeholder escalation" },
 ];
 
 const traceability = [
-  { label: "Delivery (6)", section: "Section A", slides: "Slides 5, 8", color: "bg-primary" },
-  { label: "Security (6)", section: "Section B", slides: "Slides 4, 6", color: "bg-accent" },
-  { label: "Scale & Gov (3)", section: "Sections A + C", slides: "Slides 7, 8, 9", color: "bg-akamai-green" },
+  { label: "Delivery (6)", section: "", slides: "Slide 5", color: "bg-primary" },
+  { label: "Security (4)", section: "", slides: "Slide 6", color: "bg-accent" },
+  { label: "Scale & Gov (3)", section: "", slides: "Slide 7", color: "bg-akamai-green" },
 ];
 
 const ChallengeSlide = () => (
@@ -37,7 +35,7 @@ const ChallengeSlide = () => (
     <div className="space-y-5 stagger-children">
       <div>
         <p className="text-primary font-semibold tracking-[0.2em] uppercase text-xs mb-2">Understanding the Problem</p>
-        <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground">15 Key Challenges</h2>
+        <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground">13 Key Challenges</h2>
         <p className="text-muted-foreground text-sm mt-1">Across delivery, security, and scale & governance</p>
       </div>
 
@@ -60,7 +58,7 @@ const ChallengeSlide = () => (
           <div className="flex items-center gap-2 mb-2">
             <div className="w-1 h-5 rounded-full bg-accent" />
             <h3 className="font-display text-base font-bold text-foreground">Security</h3>
-            <span className="text-xs text-muted-foreground">6 challenges</span>
+            <span className="text-xs text-muted-foreground">4 challenges</span>
           </div>
           {securityChallenges.map(({ icon: Icon, text, key }) => (
             <div key={key} className="stripe-card stripe-card-orange p-3 flex items-center gap-2.5">

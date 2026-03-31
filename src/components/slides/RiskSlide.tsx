@@ -12,14 +12,14 @@ const risks = [
 ];
 
 const raciData = [
-  { activity: "Template Design", r: "Akamai Delivery Team", a: "Akamai TPM (Me)", c: "AT Retailers Technical Lead", i: "AT Dev Teams" },
-  { activity: "Bulk Onboarding", r: "Akamai Delivery Team", a: "Akamai TPM (Me)", c: "AT IT Operations", i: "AT Business Stakeholders" },
-  { activity: "Cert Provisioning", r: "Akamai Delivery Team", a: "Akamai TPM (Me)", c: "AT IT Security", i: "AT Dev Teams" },
-  { activity: "WAF Configuration", r: "Akamai Security Team", a: "Akamai TPM (Me)", c: "AT SecOps Team", i: "AT Dev Teams" },
-  { activity: "Bot Manager Setup", r: "Akamai Security Team", a: "Akamai TPM (Me)", c: "AT E-commerce Team", i: "AT Business Stakeholders" },
-  { activity: "DNS Cutover", r: "AT IT Operations", a: "Akamai TPM (Me)", c: "Akamai Delivery Team", i: "AT Business Owners" },
-  { activity: "Training & Enablement", r: "Akamai TPM (Me)", a: "AT Retailers Technical Lead", c: "Akamai PS Team", i: "All AT Teams" },
-  { activity: "Go-Live Approval", r: "Akamai TPM (Me)", a: "AT Retailers Technical Lead", c: "All Teams", i: "Executive Sponsors" },
+  { activity: "Week 1: Golden Template Design", r: "TPM-DNS + Tech Arch", a: "Akamai TPM (Me)", c: "AT Retailers Technical Lead", i: "AT Dev Teams" },
+  { activity: "Week 1: Akamai Product Training", r: "Akamai TPM (Me)", a: "AT Retailers Technical Lead", c: "Akamai PS Team", i: "All AT Teams" },
+  { activity: "Week 2: Domain Validation Setup", r: "TPM-DNS", a: "Akamai TPM (Me)", c: "AT IT Operations", i: "AT Business Owners" },
+  { activity: "Week 2: Property Creation (PAPI)", r: "TPM-DNS + Delivery Team", a: "Akamai TPM (Me)", c: "AT IT Security", i: "AT Dev Teams" },
+  { activity: "Week 2-4: WAF Rule Config", r: "Security Consultant", a: "Akamai TPM (Me)", c: "AT SecOps Team", i: "AT Dev Teams" },
+  { activity: "Week 2-4: Bot Manager Setup & Tuning", r: "Security Consultant", a: "Akamai TPM (Me)", c: "AT E-commerce Team", i: "AT Business Stakeholders" },
+  { activity: "Wave Execution (DNS Cutover)", r: "AT IT Operations + TPM-DNS", a: "Akamai TPM (Me)", c: "Akamai Delivery Team", i: "AT Business Owners" },
+  { activity: "Wave Validation & Post-Cutover", r: "Tech Arch + Security + Ops", a: "Akamai TPM (Me)", c: "AT Technical Lead", i: "Executive Sponsors" },
 ];
 
 const RiskSlide = () => {

@@ -129,7 +129,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Hero section background */
 .hero-bg {
-  background: linear-gradient(160deg, hsl(220, 40%, 18%) 0%, hsl(210, 50%, 25%) 50%, hsl(220, 35%, 15%) 100%);
+  background: linear-gradient(135deg, #000000 5%, #2267bb 100%);
 }
 
 /* Callout badge */
@@ -255,17 +255,34 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Print styles */
 @media print {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+  html, body, #root {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    height: auto !important;
+    max-width: none !important;
+  }
   .slide {
     page-break-after: always;
+    width: 100% !important;
+    height: auto !important;
     min-height: 100vh;
     break-after: page;
     page-break-inside: avoid;
     break-inside: avoid;
+    position: relative;
+    overflow: visible !important;
+    margin: 0 !important;
+    padding: 2rem !important;
   }
   .slide:last-child {
     page-break-after: auto;
   }
-  .slide-nav, .no-print {
+  .slide-nav, .no-print, nav, .SlideNav {
     display: none !important;
   }
   .print-only {
@@ -277,12 +294,16 @@ h1, h2, h3, h4, h5, h6 {
   }
   @page {
     size: landscape;
-    margin: 0;
+    margin: 0.5in;
   }
-  html, body {
-    margin: 0;
-    padding: 0;
-    height: 100%;
+  /* Ensure modals and overlays don't show in print */
+  [role="dialog"], .modal, dialog {
+    display: none !important;
+  }
+  /* Allow transforms to be disabled */
+  .stagger-children > * {
+    animation: none !important;
+    opacity: 1 !important;
   }
 }
 .print-only {
