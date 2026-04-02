@@ -1,104 +1,126 @@
 import { useState } from "react";
-import { Shield, AlertTriangle, CheckCircle2, Clock, TrendingUp } from "lucide-react";
+import { CheckCircle2 } from "lucide-react";
 
 const LegacyWAFViewer = () => {
-  const [activeTab, setActiveTab] = useState<"audit" | "rules" | "tuning">("audit");
+  const [activeTab, setActiveTab] = useState<"enable" | "analyze" | "changes" | "monitor">("enable");
 
-  const auditFindings = [
+  const enableData = [
+    {
+      label: "Deployment Mode",
+      value: "Alert-Only Monitoring",
+      detail: "AAP deployed in monitoring mode. All suspicious requests logged, zero traffic blocked. 100% visibility, zero user impact.",
+    },
+    {
+      label: "Rule Set Activated",
+      value: "50+ OWASP Top 10 Rules",
+      detail: "SQL Injection, XSS, CSRF, Broken Auth, Deserialization, XXE, Access Control, Data Exposure, Component Vulns, Logging",
+    },
+    {
+      label: "Detection Coverage",
+      value: "OWASP + Zero-Day + Reputation",
+      detail: "Signature-based (known attacks), behavioral anomaly detection (unknown attacks), IP/ASN reputation feeds (known attacker sources)",
+    },
+    {
+      label: "Data Collection Targets",
+      value: "All HTTP Traffic",
+      detail: "Headers, request body, response patterns, source IP, user-agent, geo-location, TLS fingerprint. 7-day baseline collection.",
+    },
+  ];
+
+  const observationData = [
+    {
+      pattern: "SQL Injection Probes",
+      frequency: "2,847 attempts/day",
+      sources: "Primarily from 12 known datacenter IPs (ASN hosting botnets)",
+      risk: "CRITICAL",
+      detail: "UNION-based, time-based, blind SQLi variants. All targeted /admin/login and /api/search endpoints.",
+    },
+    {
+      pattern: "XSS Attack Vectors",
+      frequency: "1,156 attempts/day",
+      sources: "Distributed: 450+ unique IPs, mostly residential proxies",
+      risk: "CRITICAL",
+      detail: "DOM-based XSS, event handler injection, innerHTML tampering. Targeting user profile & comment endpoints.",
+    },
+    {
+      pattern: "Session Hijacking / Token Theft",
+      frequency: "3,421 attempts/day",
+      sources: "Stolen session cookies being replayed; detected via geo-velocity (NYC user to Tokyo 15 seconds later)",
+      risk: "CRITICAL",
+      detail: "Not protocol-level attacks; rather abuse of stolen credentials. Cross-geography jumps, unusual device fingerprints.",
+    },
+    {
+      pattern: "False Positive Alerts",
+      frequency: "47 alerts/day from legitimate tools",
+      sources: "Internal: Automated health checks, third-party monitoring (New Relic, DataDog), security scanners",
+      risk: "LOW",
+      detail: "Need bypass rules for /health endpoint (returns JSON with 'error' keyword that triggers XSS rule). Security scanner IPs already in whitelist.",
+    },
+  ];
+
+  const changesData = [
     {
       rule: "SQL Injection Detection",
-      status: "OUTDATED",
-      coverage: "40% of OWASP Top 10 patterns",
-      issue: "Missing parameterized query detection, no time-based SQLi detection",
-      fixedBy: "AAP",
-      detail: "Legacy WAF: signature-based only. AAP: behavioral + signature + context-aware (sees intent, not just syntax)",
+      action: "Tuned Sensitivity",
+      change: "Reduced false positives by raising confidence threshold to 85% (from 60%)",
+      impact: "Block obvious injection attempts, allow unusual-but-legitimate queries (e.g., SQL reporting tools)",
+      bypassList: "/admin/sql-tools/* (internal reporting), /api/advanced-search (complex WHERE clauses)",
     },
     {
-      rule: "Cross-Site Scripting (XSS)",
-      status: "OUTDATED",
-      coverage: "60% coverage",
-      issue: "DOM-based XSS not detected, missing event handler variants (onload, onerror, etc.)",
-      fixedBy: "AAP",
-      detail: "Legacy: blacklist approach. AAP: whitelist approach (allow only safe patterns), covers 200+ XSS variants",
+      rule: "XSS Attack Handler",
+      action: "Context-Aware Filtering",
+      change: "Enabled HTML-aware parsing; allows HTML entities in comments but blocks raw script tags",
+      impact: "Users can post HTML-safe content; malicious <script> tags blocked",
+      bypassList: "/api/rich-text-editor/* (trusted WYSIWYG endpoints with content-type: application/json restriction)",
     },
     {
-      rule: "Session Hijacking",
-      status: "NOT COVERED",
-      coverage: "0%",
-      issue: "No detection for stolen session cookies, token replay attacks, or session fixation",
-      fixedBy: "AAP + Bot Manager",
-      detail: "AAP detects abnormal session patterns (geographic jump, device change). Bot Manager identifies session abuse patterns.",
+      rule: "Session Hijacking Detection",
+      action: "Geo-Velocity Enforcement",
+      change: "Flag & challenge if session crosses >1000 miles in <5 minutes; require 2FA re-auth",
+      impact: "Block stolen sessions replayed from different countries; legitimate users traveling via same network (office VPN) unaffected",
+      bypassList: "Corporate VPNs (whitelisted by IP range), Akamai IP ranges (internal tools)",
     },
     {
-      rule: "Broken Authentication",
-      status: "NOT COVERED",
-      coverage: "0%",
-      issue: "No weak password enforcement, no brute force detection at WAF layer",
-      fixedBy: "Bot Manager + EdgeWorkers",
-      detail: "Bot Manager detects credential stuffing (50+ failed attempts/sec). EdgeWorkers enforces account lockout + CAPTCHA.",
-    },
-    {
-      rule: "Data Exposure",
-      status: "PARTIAL",
-      coverage: "30%",
-      issue: "No detection for unencrypted sensitive data in responses, no DLP (Data Loss Prevention)",
-      fixedBy: "AAP",
-      detail: "AAP scans response bodies for PII patterns (SSN, CC numbers, API keys) before reaching users.",
+      rule: "Reputation Integration",
+      action: "IP Reputation Scoring",
+      change: "Auto-block IPs with 3+ reputation sources marking as malicious (botnet/zombie/proxy)",
+      impact: "No need for manual IP blocklist; global threat feeds do the work",
+      bypassList: "None - reputation is automatic. Customer can request whitelist via support if legitimate IP falsely marked.",
     },
   ];
 
-  const aapRules = [
+  const monitoringData = [
     {
-      category: "OWASP Top 10 Detection",
-      count: "50+ managed rules",
-      updates: "Auto-updated daily",
-      detail: "SQL Injection, XSS, CSRF, Insecure Deserialization, XML External Entities, Broken Access Control, Sensitive Data Exposure, XXE, Using Components with Known Vulnerabilities, Insufficient Logging & Monitoring",
-      icon: <Shield size={16} className="text-akamai-red" />,
+      metric: "False Positive Rate",
+      baseline: "2.3% of legitimate traffic flagged",
+      target: "<0.1%",
+      achieved: "0.08% after tuning",
+      status: "✓ PASSED",
+      detail: "47 daily FP alerts → 3 alerts/day after bypass rules applied. Legitimate traffic unaffected.",
     },
     {
-      category: "Zero-Day Detection",
-      count: "20+ ML models",
-      updates: "Real-time",
-      detail: "Anomaly detection for new attacks that don't match known signatures. Akamai analyzes attacks globally and pushes rules within hours of detection.",
-      icon: <AlertTriangle size={16} className="text-accent" />,
+      metric: "Detection Effectiveness",
+      baseline: "Unknown (legacy WAF had no visibility)",
+      target: ">99% attack detection",
+      achieved: "99.7% (all SQL injection, 99%+ XSS, 100% session hijacking captured)",
+      status: "✓ PASSED",
+      detail: "2,847 SQLi attempts → 2,837 detected. 1,156 XSS → 1,145 detected. Zero session hijacking bypassed.",
     },
     {
-      category: "Reputation-Based Rules",
-      count: "1000+ threat feeds",
-      updates: "Hourly",
-      detail: "IP reputation (known attacker IPs), ASN reputation (ISP hosting botnets), domain reputation. Auto-block known sources.",
-      icon: <TrendingUp size={16} className="text-akamai-electric" />,
+      metric: "Rule Update Latency",
+      baseline: "N/A (manual rule updates, typically 2-3 weeks behind CVEs)",
+      target: "<24h from CVE publication",
+      achieved: "Real-time threat feed integration",
+      status: "✓ PASSED",
+      detail: "New vulnerabilities detected globally by Akamai, pushed to AAP within 4 hours. Zero manual maintenance.",
     },
     {
-      category: "API-Specific Rules",
-      count: "30+ rules",
-      updates: "Weekly",
-      detail: "GraphQL injection, XML bomb, XXE injection, API schema violations, missing authentication, rate limit bypass patterns",
-      icon: <CheckCircle2 size={16} className="text-akamai-green" />,
-    },
-  ];
-
-  const tuningPhases = [
-    {
-      day: "Day 1-2",
-      mode: "Alert Only",
-      action: "Deploy AAP in monitoring mode. All suspicious requests logged, none blocked.",
-      metric: "Track flagged requests by rule. Identify false positive patterns.",
-      result: "0 user impact, 100% visibility into incoming threats",
-    },
-    {
-      day: "Day 3-5",
-      mode: "Alert + Selective Enforcement",
-      action: "Enable blocking for high-confidence rules only (SQL injection, shell commands, XXE). Keep monitoring on lower-confidence rules.",
-      metric: "Monitor 5xx errors. If surge detected, disable that rule.",
-      result: "Block obvious attacks, gather data on edge cases",
-    },
-    {
-      day: "Day 6-7",
-      mode: "Full Enforcement",
-      action: "Enable all rules. Create bypass list for known false positives (e.g., legitimate API calls flagged as injection).",
-      metric: "Monitor false positive rate. Target: <0.1% of legitimate traffic blocked.",
-      result: "Full WAF coverage, ready for production",
+      metric: "Production Readiness",
+      baseline: "Legacy WAF blocking 0% of attacks",
+      target: "Ready for full enforcement Week 2",
+      achieved: "Full enforcement enabled Day 8 (after 7-day baseline)",
+      status: "✓ READY",
+      detail: "All KPIs met. Switch from 'Monitor & Log' to 'Monitor & Block' for all OWASP rules on Day 8.",
     },
   ];
 
@@ -107,172 +129,179 @@ const LegacyWAFViewer = () => {
       {/* Tab Switcher */}
       <div className="flex gap-2 border-b flex-wrap">
         <button
-          onClick={() => setActiveTab("audit")}
+          onClick={() => setActiveTab("enable")}
           className={`px-3 py-2 text-sm font-medium transition ${
-            activeTab === "audit"
+            activeTab === "enable"
               ? "border-b-2 border-akamai-red text-akamai-red"
               : "text-muted-foreground hover:text-foreground"
           }`}
         >
-          Coverage Audit
+          Step 1: Enable & Audit
         </button>
         <button
-          onClick={() => setActiveTab("rules")}
+          onClick={() => setActiveTab("analyze")}
           className={`px-3 py-2 text-sm font-medium transition ${
-            activeTab === "rules"
+            activeTab === "analyze"
               ? "border-b-2 border-akamai-red text-akamai-red"
               : "text-muted-foreground hover:text-foreground"
           }`}
         >
-          AAP Managed Rules
+          Step 2: Analyze
         </button>
         <button
-          onClick={() => setActiveTab("tuning")}
+          onClick={() => setActiveTab("changes")}
           className={`px-3 py-2 text-sm font-medium transition ${
-            activeTab === "tuning"
+            activeTab === "changes"
               ? "border-b-2 border-akamai-red text-akamai-red"
               : "text-muted-foreground hover:text-foreground"
           }`}
         >
-          7-Day Tuning
+          Step 3: Changes
+        </button>
+        <button
+          onClick={() => setActiveTab("monitor")}
+          className={`px-3 py-2 text-sm font-medium transition ${
+            activeTab === "monitor"
+              ? "border-b-2 border-akamai-red text-akamai-red"
+              : "text-muted-foreground hover:text-foreground"
+          }`}
+        >
+          Step 4: Monitor
         </button>
       </div>
 
-      {/* TAB 1: Coverage Audit */}
-      {activeTab === "audit" && (
+      {/* TAB 1: Enable & Audit */}
+      {activeTab === "enable" && (
         <div className="space-y-3">
-          {auditFindings.map((finding, idx) => (
+          <div className="bg-accent/10 border border-accent/30 rounded p-3 space-y-2 mb-4">
+            <p className="font-semibold text-accent text-sm">Day 1: Deploy in Monitoring Mode</p>
+            <p className="text-accent/80 text-sm">
+              AAP deployed in alert-only mode. All suspicious requests logged, none blocked. 7-day baseline collection to understand attack patterns before enforcement.
+            </p>
+          </div>
+
+          {enableData.map((item, idx) => (
             <div key={idx} className="bg-muted/40 border border-border/50 rounded p-3 text-sm space-y-2">
-              <div className="flex items-start justify-between gap-2 mb-2">
-                <h4 className="font-semibold text-foreground">{finding.rule}</h4>
-                <span
-                  className={`text-xs font-bold px-2 py-0.5 rounded whitespace-nowrap ${
-                    finding.status === "OUTDATED"
-                      ? "bg-accent/20 text-accent"
-                      : finding.status === "NOT COVERED"
-                        ? "bg-destructive/20 text-destructive"
-                        : "bg-akamai-green/20 text-akamai-green"
-                  }`}
-                >
-                  {finding.status}
-                </span>
-              </div>
-
-              <div className="grid grid-cols-2 gap-2">
-                <div>
-                  <p className="text-muted-foreground mb-1">Current Coverage</p>
-                  <p className="font-mono font-bold text-foreground">{finding.coverage}</p>
-                </div>
-                <div>
-                  <p className="text-muted-foreground mb-1">Fixed By</p>
-                  <p className="font-semibold text-akamai-red">{finding.fixedBy}</p>
-                </div>
-              </div>
-
-              <div className="bg-background rounded p-2 border border-border/50">
-                <p className="text-muted-foreground mb-2">{finding.issue}</p>
-                <div className="border-t border-border/50 pt-2">
-                  <p className="text-muted-foreground italic">{finding.detail}</p>
-                </div>
-              </div>
+              <h4 className="font-semibold text-foreground">{item.label}</h4>
+              <p className="font-mono text-akamai-red font-bold">{item.value}</p>
+              <p className="text-muted-foreground text-xs">{item.detail}</p>
             </div>
           ))}
-
-          <div className="bg-destructive/10 border border-destructive/30 rounded p-3 text-sm space-y-2">
-            <p className="font-semibold text-destructive">Audit Summary</p>
-            <ul className="space-y-1 text-destructive/80">
-              <li>• <strong>Gap:</strong> 3 out of 10 OWASP Top 10 categories have {`<`}50% coverage</li>
-              <li>• <strong>Risk:</strong> Session hijacking and broken auth not covered at all</li>
-              <li>• <strong>Action:</strong> AAP fills all gaps. Expected coverage: 90%+ OWASP Top 10</li>
-            </ul>
-          </div>
         </div>
       )}
 
-      {/* TAB 2: AAP Managed Rules */}
-      {activeTab === "rules" && (
+      {/* TAB 2: Analyze Observations */}
+      {activeTab === "analyze" && (
         <div className="space-y-3">
-          {aapRules.map((rule, idx) => (
-            <div key={idx} className="bg-muted/40 border border-border/50 rounded p-3 text-sm space-y-2">
-              <div className="flex items-start gap-2 mb-2">
-                {rule.icon}
-                <h4 className="font-semibold text-foreground flex-1">{rule.category}</h4>
-              </div>
-
-              <div className="grid grid-cols-2 gap-2">
-                <div>
-                  <p className="text-muted-foreground mb-1">Managed Rules</p>
-                  <p className="font-mono font-bold text-foreground">{rule.count}</p>
-                </div>
-                <div>
-                  <p className="text-muted-foreground mb-1">Update Frequency</p>
-                  <p className="font-semibold text-accent">{rule.updates}</p>
-                </div>
-              </div>
-
-              <div className="bg-background rounded p-2 border border-border/50">
-                <p className="text-muted-foreground">{rule.detail}</p>
-              </div>
-            </div>
-          ))}
-
-          <div className="bg-akamai-green/10 border border-akamai-green/30 rounded p-3 text-sm space-y-2">
-            <p className="font-semibold text-akamai-green flex items-center gap-2">
-              <CheckCircle2 size={14} />
-              Auto-Update Benefit
-            </p>
-            <p className="text-akamai-green/80">
-              AAP rules update automatically every day. New CVEs discovered in the wild? Akamai patches within 24 hours. Zero manual rule maintenance.
+          <div className="bg-akamai-electric/10 border border-akamai-electric/30 rounded p-3 space-y-2 mb-4">
+            <p className="font-semibold text-akamai-electric text-sm">Day 7: Baseline Analysis Complete</p>
+            <p className="text-akamai-electric/80 text-sm">
+              After 7 days of monitoring, analyzed attack patterns. Found 4 major threat categories. Decision: configure rules to block with minimal false positives.
             </p>
           </div>
+
+          {observationData.map((obs, idx) => (
+            <div key={idx} className="bg-muted/40 border border-border/50 rounded p-3 text-sm space-y-2">
+              <div className="flex items-start justify-between gap-2 mb-2">
+                <h4 className="font-semibold text-foreground">{obs.pattern}</h4>
+                <span className={`text-xs font-bold px-2 py-0.5 rounded whitespace-nowrap ${
+                  obs.risk === "CRITICAL" ? "bg-destructive/20 text-destructive" : "bg-accent/20 text-accent"
+                }`}>
+                  {obs.risk}
+                </span>
+              </div>
+              <div className="grid grid-cols-2 gap-2 text-xs">
+                <div>
+                  <p className="text-muted-foreground mb-0.5">Frequency</p>
+                  <p className="font-bold text-foreground">{obs.frequency}</p>
+                </div>
+                <div>
+                  <p className="text-muted-foreground mb-0.5">Sources</p>
+                  <p className="text-foreground">{obs.sources}</p>
+                </div>
+              </div>
+              <p className="text-muted-foreground text-xs italic">{obs.detail}</p>
+            </div>
+          ))}
         </div>
       )}
 
-      {/* TAB 3: 7-Day Tuning Window */}
-      {activeTab === "tuning" && (
+      {/* TAB 3: Changes & Configuration */}
+      {activeTab === "changes" && (
         <div className="space-y-3">
-          {tuningPhases.map((phase, idx) => (
+          <div className="bg-akamai-green/10 border border-akamai-green/30 rounded p-3 space-y-2 mb-4">
+            <p className="font-semibold text-akamai-green text-sm">Day 7-8: Tune Rules & Deploy Bypass List</p>
+            <p className="text-akamai-green/80 text-sm">
+              Configured AAP rules based on observations. Raised confidence thresholds to reduce false positives. Created bypass list for legitimate tools.
+            </p>
+          </div>
+
+          {changesData.map((change, idx) => (
             <div key={idx} className="bg-muted/40 border border-border/50 rounded p-3 text-sm space-y-2">
               <div className="flex items-start justify-between gap-2 mb-2">
-                <h4 className="font-semibold text-foreground flex items-center gap-2">
-                  <Clock size={14} className="text-akamai-red" />
-                  {phase.day}
-                </h4>
-                <span className="text-xs font-bold px-2 py-0.5 rounded bg-accent/20 text-accent">
-                  {phase.mode}
+                <h4 className="font-semibold text-foreground">{change.rule}</h4>
+                <span className="text-xs font-bold px-2 py-0.5 rounded bg-akamai-green/20 text-akamai-green whitespace-nowrap">
+                  {change.action}
                 </span>
               </div>
-
-              <div className="space-y-2">
+              <div className="space-y-1 text-xs">
                 <div>
-                  <p className="text-muted-foreground mb-1">
-                    <strong>Action:</strong>
-                  </p>
-                  <p className="text-foreground">{phase.action}</p>
+                  <p className="text-muted-foreground font-semibold">Change:</p>
+                  <p className="text-foreground">{change.change}</p>
                 </div>
                 <div>
-                  <p className="text-muted-foreground mb-1">
-                    <strong>Monitor:</strong>
-                  </p>
-                  <p className="text-foreground">{phase.metric}</p>
+                  <p className="text-muted-foreground font-semibold">Impact:</p>
+                  <p className="text-foreground">{change.impact}</p>
                 </div>
-              </div>
-
-              <div className="bg-background rounded p-2 border border-border/50">
-                <p className="flex items-center gap-2 text-akamai-green font-semibold">
-                  <CheckCircle2 size={12} />
-                  {phase.result}
-                </p>
+                <div>
+                  <p className="text-muted-foreground font-semibold">Bypass Rules:</p>
+                  <p className="font-mono text-foreground/80">{change.bypassList}</p>
+                </div>
               </div>
             </div>
           ))}
+        </div>
+      )}
 
-          <div className="bg-primary/10 border border-primary/30 rounded p-3 text-sm space-y-2">
-            <p className="font-semibold text-primary">Tuning Best Practice</p>
-            <p className="text-primary/80">
-              Never deploy AAP in full-block mode Day 1. 7-day tuning window prevents user-facing false positives. Bypass list for known edge cases (legitimate API calls that trigger rules).
+      {/* TAB 4: Monitor & Verify */}
+      {activeTab === "monitor" && (
+        <div className="space-y-3">
+          <div className="bg-akamai-red/10 border border-akamai-red/30 rounded p-3 space-y-2 mb-4">
+            <p className="font-semibold text-akamai-red text-sm">Days 8+: Full Enforcement Ready</p>
+            <p className="text-akamai-red/80 text-sm">
+              After tuning validation, AAP switched from monitoring to enforcement. All KPIs met. Ready for production on Day 8 before Wave 1 cutover.
             </p>
           </div>
+
+          {monitoringData.map((metric, idx) => (
+            <div key={idx} className="bg-muted/40 border border-border/50 rounded p-3 text-sm space-y-2">
+              <div className="flex items-start justify-between gap-2 mb-2">
+                <h4 className="font-semibold text-foreground">{metric.metric}</h4>
+                <span className={`text-xs font-bold px-2 py-0.5 rounded whitespace-nowrap ${
+                  metric.status.includes("PASSED") || metric.status.includes("READY") 
+                    ? "bg-akamai-green/20 text-akamai-green" 
+                    : "bg-accent/20 text-accent"
+                }`}>
+                  {metric.status}
+                </span>
+              </div>
+              <div className="grid grid-cols-3 gap-2 text-xs">
+                <div>
+                  <p className="text-muted-foreground mb-0.5">Baseline</p>
+                  <p className="font-mono text-foreground">{metric.baseline}</p>
+                </div>
+                <div>
+                  <p className="text-muted-foreground mb-0.5">Target</p>
+                  <p className="font-mono text-foreground">{metric.target}</p>
+                </div>
+                <div>
+                  <p className="text-muted-foreground mb-0.5">Achieved</p>
+                  <p className="font-mono font-bold text-akamai-green">{metric.achieved}</p>
+                </div>
+              </div>
+              <p className="text-muted-foreground text-xs italic">{metric.detail}</p>
+            </div>
+          ))}
         </div>
       )}
     </div>

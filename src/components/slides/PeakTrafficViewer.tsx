@@ -12,17 +12,17 @@ const PeakTrafficViewer = () => {
     },
     {
       number: 2,
-      title: "Traffic Surge Detection",
-      description: "Akamai monitors origin health every 60s — detects latency spike or origin saturation",
-      detail: "Origin latency jumps from 50ms → 300ms, or request queue growing. EdgeWorkers detects via SureRoute health checks.",
+      title: "500 Error Detection",
+      description: "Monitor detects origin 500 errors exceeding threshold → Triggers GitHub Action → Updates EdgeKV flag",
+      detail: "When 5xx errors spike above 5% of traffic, Monitor calls GitHub Action. Action sets waiting_room_enabled = true in EdgeKV (~1 second).",
       icon: <TrendingUp size={20} className="text-accent" />,
-      highlight: "Action: Enter queue mode",
+      highlight: "Detection: ~1-2 seconds",
     },
     {
       number: 3,
       title: "Activate Waiting Room (Edge)",
-      description: "EdgeWorkers intercepts incoming traffic, routes users to personalized queue page",
-      detail: "No requests reach origin. Users see: 'You're in line. Estimated wait: 5 min. Current traffic: 500 users ahead.'",
+      description: "EdgeWorker reads waiting_room_enabled flag from EdgeKV on each request → Routes to queue if true",
+      detail: "Next request after flag update: EdgeWorker checks KV, finds waiting_room_enabled = true. User redirected to branded queue page. No request reaches origin.",
       icon: <Users size={20} className="text-akamai-electric" />,
       highlight: "Position: Edge (no origin load)",
     },
@@ -37,16 +37,16 @@ const PeakTrafficViewer = () => {
     {
       number: 5,
       title: "Origin Recovers",
-      description: "Origin latency returns to baseline (<100ms), queue shrinks",
-      detail: "SureRoute confirms health. EdgeWorkers gradually increases release rate (50 → 100 → 150 req/sec). No 503 errors.",
+      description: "Monitor detects 5xx error rate returning to normal → GitHub Action resets EdgeKV flag",
+      detail: "When 5xx errors drop below 2% of traffic for 2+ minutes, Monitor triggers GitHub Action. Action sets waiting_room_enabled = false. Queue drains naturally.",
       icon: <Zap size={20} className="text-akamai-green" />,
-      highlight: "Recovery: Automatic escalation",
+      highlight: "Recovery: ~2-3 minutes",
     },
     {
       number: 6,
-      title: "Queue Depleted, Normal Mode",
-      description: "All users released, waiting room disabled. Traffic returns to normal flow.",
-      detail: "Remaining users (new sessions) served directly. Queue page removed from experience. Origin back to <50ms latency.",
+      title: "Queue Disabled, Normal Mode Restored",
+      description: "EdgeWorker reads waiting_room_enabled = false → Routes all traffic directly to origin",
+      detail: "New requests: EdgeWorker checks KV, finds flag = false. Request forwarded to origin normally. Users arriving after recovery skip queue entirely.",
       icon: <CheckCircle2 size={20} className="text-akamai-green" />,
       highlight: "Status: Normal",
     },
@@ -61,57 +61,138 @@ const PeakTrafficViewer = () => {
 
   const configPoints = [
     {
-      label: "Queue threshold",
-      value: "300ms origin latency OR 50+ requests pending",
-      detail: "Configure per domain based on baseline health",
+      label: "Activation threshold",
+      value: "5% of traffic returns 5xx errors",
+      detail: "Monitor triggers GitHub Action → EdgeKV updated (~1-2 sec)",
     },
     {
-      label: "Release rate",
-      value: "50 req/sec (tuned to origin)",
-      detail: "Adjust based on origin CPU capacity",
+      label: "Recovery threshold",
+      value: "<2% 5xx error rate for 2+ minutes",
+      detail: "Monitor clears flag → EdgeWorker routes normally again",
     },
     {
-      label: "Queue page branding",
-      value: "Custom HTML/CSS per tenant",
-      detail: "Display countdown, current position, regional info",
+      label: "Queue page experience",
+      value: "Branded HTML + real-time position estimate",
+      detail: "Static HTML delivered from edge (<100ms). Personalization tokens per user session.",
     },
     {
-      label: "Fallback origin",
-      value: "GTM routes to secondary if primary overloaded",
-      detail: "Waiting room + failover = double protection",
+      label: "Release mechanism",
+      value: "FIFO queue with per-request token validation",
+      detail: "Queue token issued when released. EdgeWorker validates on next request.",
+    },
+  ];
+
+  const sequenceSteps = [
+    {
+      phase: "Normal State (waiting_room_enabled = false)",
+      steps: [
+        "User sends request → Akamai Property",
+        "Property invokes EdgeWorker via rule",
+        "EdgeWorker reads EdgeKV: 'waiting_room_enabled'",
+        "KV returns: false",
+        "EdgeWorker allows request → Origin",
+        "Origin responds normally → User",
+      ],
+    },
+    {
+      phase: "Error Detection & Activation (~1-2 seconds)",
+      steps: [
+        "Origin returns 5xx errors (5%+ of traffic)",
+        "Monitor detects threshold exceeded",
+        "Monitor → GitHub Action (webhook)",
+        "GitHub Action updates EdgeKV",
+        "KV now: waiting_room_enabled = true",
+      ],
+    },
+    {
+      phase: "Queue Mode Active (next request onwards)",
+      steps: [
+        "User sends request → Akamai Property",
+        "Property invokes EdgeWorker via rule",
+        "EdgeWorker reads EdgeKV: 'waiting_room_enabled'",
+        "KV returns: true",
+        "EdgeWorker → Redirect/Serve queue page at edge",
+        "No request reaches origin. User sees waiting room UI.",
+      ],
+    },
+    {
+      phase: "Recovery Detection (~2-3 minutes)",
+      steps: [
+        "Origin 5xx errors drop below 2% for 2+ minutes",
+        "Monitor detects recovery",
+        "Monitor → GitHub Action (webhook)",
+        "GitHub Action updates EdgeKV",
+        "KV now: waiting_room_enabled = false",
+      ],
+    },
+    {
+      phase: "Normal Mode Restored",
+      steps: [
+        "User sends request → Akamai Property",
+        "Property invokes EdgeWorker via rule",
+        "EdgeWorker reads EdgeKV: 'waiting_room_enabled'",
+        "KV returns: false",
+        "EdgeWorker allows request → Origin",
+        "Origin responds normally. Queue page gone. Normal flow restored.",
+      ],
     },
   ];
 
   return (
     <div className="space-y-4">
-      {/* Vertical Timeline */}
+      {/* Integrated Timeline + Sequence Flow */}
       <div className="space-y-3">
-        {phases.map((phase, idx) => (
-          <div key={phase.number} className="flex gap-4">
-            {/* Timeline connector */}
-            <div className="flex flex-col items-center">
-              <div className="w-10 h-10 rounded-full bg-primary/10 border-2 border-primary flex items-center justify-center shrink-0">
-                {phase.icon}
+        {phases.map((phase, idx) => {
+          // Find corresponding sequence block for this phase
+          const sequenceBlock = sequenceSteps[idx];
+          
+          return (
+            <div key={phase.number} className="flex gap-4">
+              {/* Timeline connector */}
+              <div className="flex flex-col items-center">
+                <div className="w-10 h-10 rounded-full bg-primary/10 border-2 border-primary flex items-center justify-center shrink-0">
+                  {phase.icon}
+                </div>
+                {idx < phases.length - 1 && <div className="w-0.5 h-12 bg-primary/20 my-1" />}
               </div>
-              {idx < phases.length - 1 && <div className="w-0.5 h-12 bg-primary/20 my-1" />}
-            </div>
 
-            {/* Phase content */}
-            <div className="flex-1 pt-1 pb-3">
-              <div className="flex items-start justify-between gap-2 mb-1">
-                <h4 className="font-semibold text-sm text-foreground">{phase.title}</h4>
-                <span className="text-xs font-mono bg-primary/10 text-primary px-2 py-0.5 rounded whitespace-nowrap">
-                  Step {phase.number}
-                </span>
+              {/* Combined phase + sequence */}
+              <div className="flex-1 space-y-2">
+                {/* Phase header */}
+                <div className="flex items-start justify-between gap-2">
+                  <div>
+                    <h4 className="font-semibold text-sm text-foreground">{phase.title}</h4>
+                    <p className="text-xs text-muted-foreground mt-0.5">{phase.description}</p>
+                  </div>
+                  <span className="text-xs font-mono bg-primary/10 text-primary px-2 py-0.5 rounded whitespace-nowrap">Step {phase.number}</span>
+                </div>
+
+                {/* Phase detail */}
+                <div className="bg-muted/40 rounded p-2 text-xs text-foreground border border-border/50">
+                  {phase.detail}
+                </div>
+
+                {/* Sequence steps for this phase */}
+                {sequenceBlock && (
+                  <div className="bg-primary/5 border border-primary/20 rounded p-2 space-y-1">
+                    <p className="text-xs font-semibold text-primary">{sequenceBlock.phase}</p>
+                    <div className="space-y-0.5">
+                      {sequenceBlock.steps.map((step, stepIdx) => (
+                        <div key={stepIdx} className="flex items-start gap-2 text-xs text-muted-foreground">
+                          <span className="font-mono text-primary/70 shrink-0 w-4">{stepIdx + 1}.</span>
+                          <span>{step}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* Phase highlight */}
+                <div className="text-xs font-semibold text-accent">{phase.highlight}</div>
               </div>
-              <p className="text-sm text-muted-foreground mb-2">{phase.description}</p>
-              <div className="bg-muted/40 rounded p-2 text-sm text-foreground border border-border/50 mb-2">
-                {phase.detail}
-              </div>
-              <div className="text-xs font-semibold text-accent">{phase.highlight}</div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
 
       {/* Key Benefits */}
