@@ -28,9 +28,9 @@ const Index = () => (
     <RoadmapSlide />
     <ResourcePlanSlide />
     <RiskSlide />
-    <BulkDVProvisioningSlide />
     <CompetitiveSlide />
     <SummarySlide />
+    <BulkDVProvisioningSlide />
   </div>
 );
 

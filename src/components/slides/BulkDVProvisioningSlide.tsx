@@ -15,10 +15,11 @@ const PhaseBox = ({ children, className = "" }: { children: React.ReactNode; cla
 
 const BulkDVProvisioningSlide = () => {
   return (
-    <SlideLayout id="bulk-dv" variant="dark" pageNumber={5}>
+    <SlideLayout id="bulk-dv" variant="dark" pageNumber={13}>
       <div className="space-y-5">
         {/* Title */}
         <div className="text-center">
+          <p className="text-xs uppercase tracking-widest text-accent font-semibold mb-1">Appendix</p>
           <h2 className="text-2xl md:text-3xl font-bold tracking-tight">
             Akamai Bulk DV Provisioning
           </h2>

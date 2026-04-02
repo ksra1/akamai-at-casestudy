@@ -26,7 +26,7 @@ const RiskSlide = () => {
   const [riskModal, setRiskModal] = useState<number | null>(null);
 
   return (
-    <SlideLayout id="risk" variant="alt" pageNumber={9}>
+    <SlideLayout id="risk" variant="alt" pageNumber={10}>
       <div className="space-y-5 stagger-children">
         <div>
           <p className="text-accent font-semibold tracking-[0.2em] uppercase text-xs mb-2">Governance (contd.)</p>
@@ -63,7 +63,7 @@ const RiskSlide = () => {
                 </button>
               ))}
               <div className="absolute -bottom-5 left-0 right-0 text-center text-xs text-muted-foreground">Likelihood →</div>
-              <div className="absolute -left-5 top-0 bottom-0 flex items-center">
+              <div className="absolute -left-9 top-0 bottom-0 flex items-center">
                 <span className="text-xs text-muted-foreground -rotate-90 whitespace-nowrap">Impact →</span>
               </div>
             </div>

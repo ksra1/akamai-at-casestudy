@@ -11,7 +11,7 @@ const advantages = [
 ];
 
 const CompetitiveSlide = () => (
-  <SlideLayout id="competitive" variant="dark" pageNumber={10}>
+  <SlideLayout id="competitive" variant="dark" pageNumber={11}>
     <div className="space-y-6 stagger-children">
       <div>
         <p className="text-white/50 font-semibold tracking-[0.2em] uppercase text-xs mb-2">Competitive Advantages</p>
