@@ -6,7 +6,6 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import Index from "./pages/Index.tsx";
 import NotFound from "./pages/NotFound.tsx";
 
-
 const queryClient = new QueryClient();
 const basename = import.meta.env.BASE_URL.replace(/\/$/, "");
 
