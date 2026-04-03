@@ -1,11 +1,12 @@
 import { useState } from "react";
 import SlideLayout from "./SlideLayout";
 import CalloutModal from "./CalloutModal";
-import { Shield, Bot, UserX, AlertTriangle, CheckCircle2, ArrowRight } from "lucide-react";
+import { Shield, Bot, UserX, UserCheck, AlertTriangle, CheckCircle2, ArrowRight } from "lucide-react";
 import DDoSProtectionViewer from "./DDoSProtectionViewer";
 import LegacyWAFViewer from "./LegacyWAFViewer";
 import CredentialStuffingViewer from "./CredentialStuffingViewer";
 import BotThreatViewer from "./BotThreatViewer";
+import AccountProtectorViewer from "./AccountProtectorViewer";
 
 const securitySolutions = [
   {
@@ -33,10 +34,10 @@ const securitySolutions = [
   {
     icon: UserX, issue: "Credential stuffing surge", solution: "Bot Manager — Automated login defense", products: ["Bot Manager Premier"],
     steps: [
-      "Bot Manager detects login attack patterns — 50+ attempts/second vs normal 1-2/minute",
-      "Blocks at edge before reaching origin — stops attackers instantly, no server strain",
+      "Bot Manager focuses on automated traffic — detects credential stuffing bots by request rate, timing, and fingerprint",
+      "Blocks bot-driven login attacks at edge before reaching origin — no server strain",
       "Legitimate users see zero friction — real login behavior passes through automatically",
-      "Account lockout integration — locks account for 30 minutes after blocked attempts",
+      "Identifies bot behavior in real time: scraping, credential stuffing, fake signups, and inventory abuse",
     ],
     result: "99% of credential stuffing blocked. Attackers' automation becomes useless.",
     bestPractice: "Start in monitoring mode (1-2 days) to establish baseline before blocking",
@@ -44,13 +45,24 @@ const securitySolutions = [
   {
     icon: Bot, issue: "Scraping, carding & bot evasion", solution: "Bot Manager — Behavioral ML detection", products: ["Bot Manager Premier"],
     steps: [
-      "Bot Manager detects all bot attack patterns — scraping (sequential lookups), carding (100 cards/min), evasion (same device across IPs)",
+      "Bot Manager focuses on automated traffic — scraping (sequential lookups), carding (100 cards/min), evasion (same device across IPs)",
       "Multi-signal defense — analyzes request rate, timing, device fingerprint, IP rotation, abnormal headers",
       "Escalating response — challenge → rate-limit → block based on confidence",
       "Zero friction for legitimate users — real behavior passes through automatically",
     ],
     result: "Blocks 99%+ of scraping, carding, and evasion attacks without impacting real customers.",
     bestPractice: "Start in monitoring mode to establish baseline patterns before enforcement",
+  },
+  {
+    icon: UserCheck, issue: "Account takeover & fraud", solution: "Account Protector — Human-driven abuse defense", products: ["Account Protector"],
+    steps: [
+      "Focuses on human-driven abuse around sensitive events: login, password reset, account changes, checkout",
+      "Builds risk picture from behavioral & contextual signals — device, network, location, time of activity",
+      "Real-time risk scoring per request lets you step up authentication, challenge, or block suspicious activity",
+      "Detects anomalies from first interaction using population-wide behavioral baseline across all Akamai customers",
+    ],
+    result: "Account takeover blocked in real time. Legitimate users experience zero added friction.",
+    bestPractice: "Organization-specific tuning ensures thresholds match your risk tolerance and user patterns",
   },
 ];
 
@@ -100,6 +112,9 @@ const SecuritySolutionsSlide = () => {
       </CalloutModal>
       <CalloutModal open={activeModal === 3} onOpenChange={() => setActiveModal(null)} title={securitySolutions[3].issue}>
         <BotThreatViewer />
+      </CalloutModal>
+      <CalloutModal open={activeModal === 4} onOpenChange={() => setActiveModal(null)} title={securitySolutions[4].issue}>
+        <AccountProtectorViewer />
       </CalloutModal>
     </SlideLayout>
   );

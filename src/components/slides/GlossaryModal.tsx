@@ -6,6 +6,7 @@ const glossary = [
   { term: "Global Traffic Management (GTM)", def: "DNS-based intelligent traffic routing with failover, performance-based routing, and geographic load balancing." },
   { term: "App & API Protector (AAP)", def: "Next-generation adaptive WAF with built-in API protection, DDoS defense, and Adaptive Security Engine for automated rule tuning." },
   { term: "Bot Manager Premier", def: "Advanced bot detection using behavioral analysis, device fingerprinting, and ML classification. Handles sophisticated evasion techniques." },
+  { term: "Account Protector", def: "User identity protection that recognizes authentic users via device, network, location, and behavioral profiles. Real-time risk scoring across the full account lifecycle, adversarial bot detection on first interaction, source reputation analysis across all Akamai customers, and organization-specific tuning. Integrates with SIEM and fraud investigation tools." },
   { term: "Prolexic", def: "Always-on DDoS protection service with 10+ Tbps scrubbing capacity. BGP-based routing for automatic attack diversion." },
   { term: "Site Shield", def: "Origin cloaking service that hides origin server IPs, preventing direct-to-origin DDoS and application attacks." },
   { term: "EdgeWorkers", def: "Serverless compute at the Akamai edge. Run JavaScript/TypeScript for A/B testing, personalization, and custom logic without origin round-trips." },

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import SlideLayout from "./SlideLayout";
 import CalloutModal from "./CalloutModal";
-import { ArrowRight, Cloud, Shield, Server, Users, Zap, Globe, Bot, Lock, Image, BarChart3, Layers, Code2 } from "lucide-react";
+import { ArrowRight, Cloud, Shield, Server, Users, Zap, Globe, Bot, Lock, Image, BarChart3, Layers, Code2, UserCheck } from "lucide-react";
 
 const deliveryProducts = [
   { icon: Zap, label: "Ion", desc: "Akamai's flagship CDN product for dynamic site acceleration. Combines intelligent caching, prefetching, SureRoute optimization, and adaptive acceleration to deliver fast, reliable web experiences globally." },
@@ -15,6 +15,7 @@ const securityProducts = [
   { icon: Shield, label: "Prolexic", desc: "Akamai's dedicated DDoS protection product. Always-on with 20+ Tbps of scrubbing capacity across 36 global centers. Stops volumetric, protocol, and application-layer attacks before they reach your infrastructure. Different from WAF — Prolexic handles network-layer volumetric floods, while AAP handles application-layer attacks." },
   { icon: Shield, label: "App & API Protector", desc: "Akamai's next-gen WAF — App & API Protector (AAP, replaces legacy Kona WAF). Combines WAF, API protection, and rate limiting in one product. Features Adaptive Security Engine with auto-updating rules for OWASP Top 10, API schema validation, shadow API discovery, and anomalous usage detection. ML-driven tuning reduces false positives 5x vs legacy WAF." },
   { icon: Bot, label: "Bot Manager Premier", desc: "Behavioral bot detection using 100+ signals: device fingerprinting, TLS analysis, mouse/keyboard patterns. Catches sophisticated bots that rotate IPs and spoof User-Agents." },
+  { icon: UserCheck, label: "Account Protector", desc: "Recognizes authentic users based on detailed profiles — devices, networks, locations, and time of activity. Mitigates high-risk events in real time at the edge with advanced response actions. Identifies risk across the entire account lifecycle, detects anomalies from first interaction using population-wide behavior profiles, and catches adversarial bots even on first contact. Includes real-time risk scoring, fraud investigation, source reputation based on malicious activity across all Akamai customers, and organization-specific tuning." },
 ];
 
 const ArchitectureSlide = () => {
@@ -80,9 +81,9 @@ const ArchitectureSlide = () => {
               <p className="text-xs font-semibold text-muted-foreground tracking-[0.15em] uppercase mb-2">Origins</p>
               <div className="grid grid-cols-3 gap-2">
                 {[
-                  { icon: Server, label: "On-Prem", sub: "Legacy" },
-                  { icon: Cloud, label: "AWS", sub: "Micro" },
-                  { icon: Layers, label: "Acquired", sub: "Migration" },
+                  { icon: Server, label: "On-Prem", sub: "Legacy/ Monolith" },
+                  { icon: Cloud, label: "AWS", sub: "Microservices" },
+                  { icon: Layers, label: "On-Prem", sub: "Modern" },
                 ].map(({ icon: Icon, label, sub }) => (
                   <div key={label} className="stripe-card stripe-card-orange p-2 text-center">
                     <Icon size={14} className="text-accent mx-auto mb-1" />
@@ -130,7 +131,7 @@ const ArchitectureSlide = () => {
                 </div>
                 <div>
                   <p className="text-xs font-semibold text-accent tracking-wider uppercase mb-2">Security</p>
-                  <div className="grid grid-cols-3 gap-2">
+                  <div className="grid grid-cols-4 gap-2">
                     {securityProducts.map(({ icon: Icon, label, desc }) => (
                       <button key={label} onClick={() => setActiveProduct({ label, desc })} className="clean-card p-3 text-center hover:border-accent/40 transition-colors cursor-pointer overflow-hidden">
                         <Icon size={18} className="text-accent mx-auto mb-1.5 shrink-0" />
@@ -147,9 +148,9 @@ const ArchitectureSlide = () => {
             <div className="space-y-2">
               <p className="text-xs font-semibold text-muted-foreground tracking-[0.15em] uppercase text-center mb-2">Origins</p>
               {[
-                { icon: Server, label: "On-Prem", sub: "Legacy" },
-                { icon: Cloud, label: "AWS", sub: "Micro" },
-                { icon: Layers, label: "Acquired", sub: "Migration" },
+                { icon: Server, label: "On-Prem", sub: "Legacy/ Monolith" },
+                { icon: Cloud, label: "AWS", sub: "Microservices" },
+                { icon: Layers, label: "On-Prem", sub: "Modern" },
               ].map(({ icon: Icon, label, sub }) => (
                 <div key={label} className="stripe-card stripe-card-orange p-2 flex items-center gap-2">
                   <Icon size={14} className="text-accent shrink-0" />

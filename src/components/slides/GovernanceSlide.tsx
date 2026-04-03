@@ -11,7 +11,7 @@ const governanceSolutions = [
     icon: Globe,
     issue: "Multi-geography resource coordination (Europe, US, Asia)",
     solution: "Regional Team Structure + Timezone Bridge",
-    products: ["Resource Planning", "Team Structure", "Escalation Paths"],
+    products: ["Resource Planning", "Team Structure", "Akamai 24x7 Support", "SOCC"],
     steps: [],
     result: "",
     bestPractice: "",

@@ -2,7 +2,7 @@ import SlideLayout from "./SlideLayout";
 import { Globe, Shield, Brain, Code2, Wrench, BarChart3, Zap } from "lucide-react";
 
 const advantages = [
-  { icon: Globe, title: "Largest Edge Network", stat: "4,200+ PoPs", detail: "More points of presence = lower latency + better cache hit ratios globally. Critical for AT Retailers' multi-region operations." },
+  { icon: Globe, title: "Largest Edge Network", stat: "4,200+ PoPs (Points of Presence)", detail: "More points of presence = lower latency + better cache hit ratios globally. Critical for AT Retailers' multi-region operations." },
   { icon: Shield, title: "Integrated Platform", stat: "Delivery + Security", detail: "WAF, Bot, DDoS, and CDN on one platform. No separate vendors, no traffic tromboning, one pane of glass." },
   { icon: Brain, title: "Bot Manager — Behavioral AI", stat: "ML-Powered", detail: "Behavioral analysis + ML catches sophisticated evasion that rule-based/signature-only solutions miss entirely." },
   { icon: Code2, title: "EdgeWorkers", stat: "Edge Compute", detail: "Custom JS/TS at the edge for A/B testing, personalization, header manipulation — no origin round-trips." },

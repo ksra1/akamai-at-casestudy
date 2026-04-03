@@ -1,30 +1,44 @@
 import { useState } from "react";
-import { Globe, Users, Clock, CheckCircle2, AlertTriangle } from "lucide-react";
+import { Globe, Users, Clock, CheckCircle2, AlertTriangle, Headphones, ShieldCheck } from "lucide-react";
 
 const MultiGeographyGovernanceViewer = () => {
   const [activeTab, setActiveTab] = useState<"structure" | "timezone" | "escalation">("structure");
 
   const regionTeams = [
     {
-      region: "North America (US Operations & Primary)",
-      lead: "Delivery Lead (Primary TPM) — Myself",
-      members: "2 TPMs + 1 DevOps Engineer (NA timezone coverage)",
-      coverage: "8 AM - 6 PM ET (overlaps with EU 12-3 PM, drives all 4 waves)",
-      responsibilities: "Drive delivery roadmap, manage all 4 waves, on-call escalation point, LATAM coordination",
+      region: "Me (Delivery TPM)",
+      lead: "Program Lead",
+      members: "ET (9 AM - 6 PM)",
+      coverage: "Program accountability, wave approvals, executive steering, escalations",
+      responsibilities: "🔐 Wave launch decisions (I hold approval gate)",
     },
     {
-      region: "Europe (EU Operations)",
-      lead: "Regional Support Engineer",
-      members: "1-person team: DevOps Engineer (EU timezone coverage)",
-      coverage: "9 AM - 5 PM CET (overlaps 12-3 PM ET with North America)",
-      responsibilities: "Monitor EU customer issues, coordinate with Delivery Lead, assist with morning deployments",
+      region: "TPM-DNS",
+      lead: "Property & Domain Lead",
+      members: "EU morning + US + ET",
+      coverage: "Property creation, CNAME cutover coordination, domain validation, daily ops",
+      responsibilities: "⏱️ Coordinates CNAME cutover with AT Retailers DNS ops (24h approval gate on their side)",
     },
     {
-      region: "Security & Risk (On-Call Rotation)",
-      lead: "Security Lead (Secondary TPM) + 1 Backup (rotating weekly)",
-      members: "2 TPMs on alternating weekly on-call rotation",
-      coverage: "6 PM - 8 AM ET (off-hours). Primary on weekdays, backup on weekends.",
-      responsibilities: "After-hours incident escalation, bot/security threat monitoring, incident command, risk triage",
+      region: "Tech Architect",
+      lead: "Performance & Monitoring Lead",
+      members: "US/EU rotation",
+      coverage: "mPulse monitoring, performance validation, EdgeWorkers, caching",
+      responsibilities: "✅ Provides go/no-go signal before each wave (error rate <0.5%)",
+    },
+    {
+      region: "Security Consultant",
+      lead: "Security Lead",
+      members: "US/EU overlap",
+      coverage: "WAF rules, Bot Manager tuning, threat response, incident analysis",
+      responsibilities: "🛡️ Alert-only mode Week 1-2, then enforce Week 3+",
+    },
+    {
+      region: "India DevOps",
+      lead: "Regional Support",
+      members: "India evening through US evening",
+      coverage: "Regional infrastructure support, on-call incident response, failover coordination",
+      responsibilities: "🌍 24h on-call rotation for Asia/APAC region cutover windows",
     },
   ];
 
@@ -96,8 +110,41 @@ const MultiGeographyGovernanceViewer = () => {
       <div className="bg-akamai-green/10 border border-akamai-green/30 rounded p-3 text-sm space-y-2">
         <p className="font-semibold text-akamai-green">5-Person Akamai Core Team</p>
         <p className="text-akamai-green/80">
-          <strong>Me (Delivery Lead):</strong> Primary TPM | <strong>TPM-DNS:</strong> Property/Domain Lead | <strong>Tech Architect:</strong> Performance/mPulse | <strong>Security TPM:</strong> 2-person on-call rotation | <strong>India DevOps:</strong> Regional support
+          <strong>Me (Delivery TPM):</strong> Program Lead | <strong>TPM-DNS:</strong> Property/Domain Lead | <strong>Tech Architect:</strong> Performance/mPulse | <strong>Security Consultant:</strong> WAF/Bot/Threat | <strong>India DevOps:</strong> Regional Support
         </p>
+      </div>
+
+      {/* Akamai Support Services */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+        <div className="bg-primary/5 border border-primary/20 rounded-lg p-3 text-sm space-y-2">
+          <div className="flex items-center gap-2">
+            <Headphones size={16} className="text-primary" />
+            <p className="font-semibold text-primary">Akamai Technical Support</p>
+          </div>
+          <p className="text-muted-foreground">
+            24x7x365 coverage via <strong>follow-the-sun model</strong> — support engineers across global time zones provide continuous break/fix assistance, configuration help, and troubleshooting without gaps.
+          </p>
+          <div className="flex flex-wrap gap-1 mt-1">
+            <span className="text-[10px] px-1.5 py-0.5 rounded bg-primary/10 text-primary font-medium">Break/Fix</span>
+            <span className="text-[10px] px-1.5 py-0.5 rounded bg-primary/10 text-primary font-medium">Configuration Assistance</span>
+            <span className="text-[10px] px-1.5 py-0.5 rounded bg-primary/10 text-primary font-medium">Follow-the-Sun</span>
+          </div>
+        </div>
+
+        <div className="bg-accent/5 border border-accent/20 rounded-lg p-3 text-sm space-y-2">
+          <div className="flex items-center gap-2">
+            <ShieldCheck size={16} className="text-accent" />
+            <p className="font-semibold text-accent">Security Operations Control Center (SOCC)</p>
+          </div>
+          <p className="text-muted-foreground">
+            <strong>Optional managed service</strong> — Akamai's SOCC provides proactive security monitoring, threat analysis, and incident response. Augments the internal security team with dedicated Akamai security analysts.
+          </p>
+          <div className="flex flex-wrap gap-1 mt-1">
+            <span className="text-[10px] px-1.5 py-0.5 rounded bg-accent/10 text-accent font-medium">Proactive Monitoring</span>
+            <span className="text-[10px] px-1.5 py-0.5 rounded bg-accent/10 text-accent font-medium">Threat Analysis</span>
+            <span className="text-[10px] px-1.5 py-0.5 rounded bg-accent/10 text-accent font-medium">Optional Add-On</span>
+          </div>
+        </div>
       </div>
       
       {/* Tab Switcher */}
@@ -143,31 +190,27 @@ const MultiGeographyGovernanceViewer = () => {
                 <Globe size={16} className="text-akamai-green shrink-0 mt-0.5" />
                 <div className="flex-1">
                   <h4 className="font-semibold text-foreground">{team.region}</h4>
-                  <p className="text-muted-foreground">Lead: {team.lead}</p>
+                  <p className="text-muted-foreground text-xs">{team.lead}</p>
                 </div>
               </div>
 
               <div className="grid gap-2">
-                <div className="bg-background rounded p-2 border border-border/50">
-                  <p className="text-muted-foreground mb-1">
-                    <strong>Team:</strong>
-                  </p>
-                  <p className="text-foreground">{team.members}</p>
-                </div>
-
                 <div className="grid grid-cols-2 gap-2">
                   <div>
                     <p className="text-muted-foreground mb-1">
-                      <strong>Coverage</strong>
+                      <strong>Timezone</strong>
                     </p>
-                    <p className="font-mono text-foreground text-[11px]">{team.coverage}</p>
+                    <p className="font-mono text-foreground text-[11px]">{team.members}</p>
                   </div>
                   <div>
                     <p className="text-muted-foreground mb-1">
-                      <strong>Responsibilities</strong>
+                      <strong>Duties</strong>
                     </p>
-                    <p className="text-foreground text-[11px]">{team.responsibilities}</p>
+                    <p className="text-foreground text-[11px]">{team.coverage}</p>
                   </div>
+                </div>
+                <div className="bg-background rounded p-2 border border-border/50">
+                  <p className="text-foreground text-[11px]">{team.responsibilities}</p>
                 </div>
               </div>
             </div>
@@ -176,7 +219,7 @@ const MultiGeographyGovernanceViewer = () => {
           <div className="bg-akamai-green/10 border border-akamai-green/30 rounded p-3 text-sm space-y-2">
             <p className="font-semibold text-akamai-green">Resource Governance Principle</p>
             <p className="text-akamai-green/80">
-              Each region has dedicated team + Akamai Operations as centralized command. Timezone overlap windows = minimum escalation delays. On-call rotation ensures 24x7 coverage without burnout.
+              Each role has dedicated ownership + Akamai 24x7 Technical Support as a safety net. Timezone overlap windows = minimum escalation delays. India DevOps ensures round-the-clock on-call coverage.
             </p>
           </div>
         </div>

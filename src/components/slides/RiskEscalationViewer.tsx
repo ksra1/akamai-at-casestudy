@@ -278,7 +278,7 @@ const RiskEscalationViewer = () => {
                     <p className="text-muted-foreground mb-1">
                       <strong>Timeline</strong>
                     </p>
-                    <p className="text-foreground font-mono text-[11px]">{triage.timing}</p>
+                    <p className="text-foreground font-semibold">{triage.timing}</p>
                   </div>
                 </div>
               </div>
