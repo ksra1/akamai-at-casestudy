@@ -57,7 +57,7 @@ const CompanyOverviewSlide = () => (
       <div className="clean-card p-5 text-center space-y-1 border-t-2 border-t-primary">
         <p className="text-xs font-semibold text-primary tracking-[0.2em] uppercase">Program Objective</p>
         <p className="font-display text-lg md:text-xl font-bold text-foreground">
-          Migrate 5,000 hostnames from acquired companies and legacy infrastructure onto Akamai, modernize to microservices, and secure against sophisticated bot threats—all in 30 days with production-first deployment.
+          Migrate 5,000 hostnames to Akamai, modernize to microservices, and defend against bot threats — 30 days, production-first.
         </p>
       </div>
 

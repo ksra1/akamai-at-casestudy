@@ -123,7 +123,7 @@ const RiskSlide = () => {
                   </div>
                   <p className="text-[11px] text-muted-foreground mt-1">{item.desc}</p>
                 </div>
-                {i < 2 && <ArrowRight size={14} className="text-accent shrink-0 rotate-90 md:rotate-0" />}
+                {i < 2 && <ArrowRight size={14} className="text-accent shrink-0 rotate-90 md:rotate-0" style={{ marginTop: "-20px" }} />}
               </div>
             ))}
           </div>
