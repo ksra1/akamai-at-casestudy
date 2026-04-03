@@ -2,7 +2,7 @@ import SlideLayout from "./SlideLayout";
 import { ChevronDown } from "lucide-react";
 import akamaiLogo from "@/assets/akamai-logo.png";
 
-const panelMembers = ["Mark Agostino", "Mike Buonfiglio", "Yancy Carrasco", "Jose Chaverri", "Danisha Nivas", "Shobhit Bhardwaj"];
+const panelMembers = ["Mark Agostino", "Mike Buonfiglio", "Yancy Carrasco", "Jose Chaverri", "Danisha Nivas", "Shobhit Bhardwaj","Joel Leiker", "Michael Longfellow"];
 
 const TitleSlide = () => (
   <SlideLayout variant="dark" id="title" pageNumber={1}>
